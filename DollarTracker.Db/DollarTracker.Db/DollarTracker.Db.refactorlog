@@ -84,4 +84,53 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="CollaboratorId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3c98d682-3e99-4633-83fc-a554e7887882" ChangeDateTime="03/06/2015 03:23:46">
+    <Property Name="ElementName" Value="[dbo].[Expenses].[AdditionalComments]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Expenses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Comments" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="80802a8b-14cb-49d1-b4ab-0e4e8b733a35" ChangeDateTime="03/06/2015 03:35:03">
+    <Property Name="ElementName" Value="[dbo].[CustomExpenseCategories].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CustomExpenseCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CustomExpenseCategoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fb1bd399-3c71-4b10-856c-5dee4d770624" ChangeDateTime="03/06/2015 03:35:55">
+    <Property Name="ElementName" Value="[dbo].[CustomExpenseCategories].[CreatedBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CustomExpenseCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="42db0e54-6db7-42e8-8829-bce6350d2eaa" ChangeDateTime="03/06/2015 03:38:47">
+    <Property Name="ElementName" Value="[dbo].[FK_Expenses_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Expenses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Expenses_ToExpenseCategory]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3cc9a1ef-00d4-4e5e-ad61-7d10d20d8c10" ChangeDateTime="03/06/2015 03:40:52">
+    <Property Name="ElementName" Value="[dbo].[Expenses].[CustomCategoryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Expenses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CustomExpenseCategoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a797c20f-12d7-4918-92c3-d8dd12fc9faa" ChangeDateTime="03/06/2015 03:41:31">
+    <Property Name="ElementName" Value="[dbo].[FK_Expenses_ToCustomExpense]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Expenses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Expenses_ToCustomExpenseCategories]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a1ef8b86-0df6-4f67-9c10-c0be832409e0" ChangeDateTime="03/06/2015 03:41:45">
+    <Property Name="ElementName" Value="[dbo].[FK_Expenses_ToExpenseCategory]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Expenses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Expenses_ToExpenseCategories]" />
+  </Operation>
 </Operations>
