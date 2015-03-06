@@ -60,6 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Users.sql" />
+    <Build Include="ExpenseCategories.sql" />
+    <Build Include="ExpenseStoryTypes.sql" />
+    <Build Include="Collaborators.sql" />
+    <Build Include="ExpenseStories.sql" />
+    <Build Include="Expenses.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="DollarTracker.Db.refactorlog" />

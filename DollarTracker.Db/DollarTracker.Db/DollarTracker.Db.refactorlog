@@ -7,4 +7,81 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="UserId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="6cbfd221-e4b7-4de3-b241-b7189a86875d" ChangeDateTime="03/06/2015 01:31:48">
+    <Property Name="ElementName" Value="[dbo].[ExpenseCategories].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExpenseCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExpenseId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7bb47e92-2da4-4e64-a8fe-837b2b2270d0" ChangeDateTime="03/06/2015 01:45:28">
+    <Property Name="ElementName" Value="[dbo].[ExpenseStoryTypes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExpenseStoryTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExpenseStoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8cf437fe-3184-4b04-a948-f249a7a25e7a" ChangeDateTime="03/06/2015 01:50:42">
+    <Property Name="ElementName" Value="[dbo].[Collaborators].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Collaborators]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CollaboratorId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="efa3399f-300a-43f2-9408-da71ba51a1d5" ChangeDateTime="03/06/2015 01:51:26">
+    <Property Name="ElementName" Value="[dbo].[ExpenseStoryTypes].[ExpenseStoryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExpenseStoryTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExpenseStoryTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4a4e45f1-4ea6-4aaf-9479-7e43e999497e" ChangeDateTime="03/06/2015 01:52:30">
+    <Property Name="ElementName" Value="[dbo].[ExpenseStory].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExpenseStory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExpenseStoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1025de10-32d8-4ad2-9163-e72e4d428019" ChangeDateTime="03/06/2015 01:59:32">
+    <Property Name="ElementName" Value="[dbo].[Expenses].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Expenses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExpenseId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="88966e17-e8fc-4005-938c-8bea1fa224d9" ChangeDateTime="03/06/2015 02:00:43">
+    <Property Name="ElementName" Value="[dbo].[ExpenseCategories].[ExpenseId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExpenseCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExpenseCategoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="036c8e95-40a3-4999-b005-6dd4e8f6c6b4" ChangeDateTime="03/06/2015 02:01:27">
+    <Property Name="ElementName" Value="[dbo].[Expenses].[ExpenseCate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Expenses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExpenseCategoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="97098b57-3897-4181-8274-100cfd8e6cf7" ChangeDateTime="03/06/2015 02:13:58">
+    <Property Name="ElementName" Value="[dbo].[ExpenseStories].[CreatedDt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExpenseStories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedUtcDt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e762b04b-cad1-4f74-8f4a-956f57fb13de" ChangeDateTime="03/06/2015 02:22:21">
+    <Property Name="ElementName" Value="[dbo].[Expenses].[AddedByCollabortorId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Expenses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddedByCollaboratorId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1caa147e-bd9d-4cc0-b979-142e9115db5e" ChangeDateTime="03/06/2015 02:22:45">
+    <Property Name="ElementName" Value="[dbo].[Expenses].[AddedByCollaboratorId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Expenses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CollaboratorId" />
+  </Operation>
 </Operations>
