@@ -12,6 +12,7 @@ namespace DollarTracker.EF
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Common;
     
     public partial class DollarTrackerEntities : DbContext
     {
@@ -23,6 +24,11 @@ namespace DollarTracker.EF
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
+        }
+    
+    	public DollarTrackerEntities(DbConnection connection) 
+            : base(connection, true)
+        {
         }
     
         public virtual DbSet<Collaborators> Collaborators { get; set; }
