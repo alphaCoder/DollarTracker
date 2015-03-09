@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[ExpenseStory]
 (
 	[ExpenseStoryId] VARCHAR(20) NOT NULL PRIMARY KEY, 
-    [ExpenseStoryTypeId] UNIQUEIDENTIFIER NOT NULL,
+    [ExpenseStoryTypeId] VARCHAR(20) NOT NULL,
 	[Budget] FLOAT(7) NULL, 
     [Income] FLOAT(7) NULL, 
 	[CreatedBy] UNIQUEIDENTIFIER NOT NULL, 
