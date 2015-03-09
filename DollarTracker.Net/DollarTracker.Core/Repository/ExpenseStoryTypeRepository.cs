@@ -7,9 +7,9 @@ using DollarTracker.Core.Infrastructure;
 using DollarTracker.EF;
 namespace DollarTracker.Core.Repository
 {
-	public interface IExpenseStoryRepository : IRepository<ExpenseStoryType> { }
+	public interface IExpenseStoryTypeRepository : IRepository<ExpenseStoryType> { }
 
-	public class ExpenseStoryTypeRepository : RepositoryBase<ExpenseStoryType>, IExpenseStoryRepository
+	public class ExpenseStoryTypeRepository : RepositoryBase<ExpenseStoryType>, IExpenseStoryTypeRepository
 	{
 		public ExpenseStoryTypeRepository(IDbFactory dbFactory)
 			: base(dbFactory)
