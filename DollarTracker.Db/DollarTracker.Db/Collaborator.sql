@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Collaborators]
+﻿CREATE TABLE [dbo].[Collaborator]
 (
 	[CollaboratorId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [UserId] UNIQUEIDENTIFIER NOT NULL, 
