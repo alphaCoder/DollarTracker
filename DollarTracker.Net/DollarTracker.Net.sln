@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DollarTracker.EF", "DollarT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DollarTracker.Core", "DollarTracker.Core\DollarTracker.Core.csproj", "{0221907E-897B-49B4-8AFB-188A34EFFE46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DollarTracker.Core.Tests", "DollarTracker.Core.Tests\DollarTracker.Core.Tests.csproj", "{8F90164D-6166-416E-89E1-B16CDA6D94E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0221907E-897B-49B4-8AFB-188A34EFFE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0221907E-897B-49B4-8AFB-188A34EFFE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0221907E-897B-49B4-8AFB-188A34EFFE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F90164D-6166-416E-89E1-B16CDA6D94E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F90164D-6166-416E-89E1-B16CDA6D94E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F90164D-6166-416E-89E1-B16CDA6D94E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F90164D-6166-416E-89E1-B16CDA6D94E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

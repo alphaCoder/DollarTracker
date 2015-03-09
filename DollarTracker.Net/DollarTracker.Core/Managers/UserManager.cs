@@ -4,6 +4,7 @@ using DollarTracker.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,9 @@ namespace DollarTracker.Core.Managers
 	{
 		void AddUser(Users user);
 		void UpdateUser(Users user);
-		Users GetUser(Guid userId);
+		Users GetUserViaUserId(Guid userId);
+		Users GetUserViaEmail(string email);
+		Users GetUserViaUsername(string username);
 		void SaveUser();
 	}
 	public class UserManager : IUserManager
@@ -27,7 +30,7 @@ namespace DollarTracker.Core.Managers
 		}
 		public void AddUser(Users user)
 		{
-			var existingUser = userRepository.Get(x => x.Email == user.Email);
+			var existingUser = userRepository.Get(x => x.Email == user.Email || x.Username == user.Username);
 			if (existingUser == null)
 			{
 				userRepository.Add(user);
@@ -47,11 +50,20 @@ namespace DollarTracker.Core.Managers
 			};
 		}
 
-		public Users GetUser(Guid userId)
+		public Users GetUserViaUserId(Guid userId)
 		{
-			return userRepository.Get(x => x.UserId == userId);
+			return userRepository.GetById(userId);
 		}
 
+		public Users GetUserViaEmail(string email)
+		{
+			return userRepository.Get(user => user.Email == email);
+		}
+
+		public Users GetUserViaUsername(string username)
+		{
+			return userRepository.Get(user => user.Username == username);
+		}
 
 		public void SaveUser()
 		{
