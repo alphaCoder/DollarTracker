@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DollarTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DollarTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Collaborator">
           <Key>
             <PropertyRef Name="CollaboratorId" />
@@ -51,7 +51,7 @@
             <PropertyRef Name="ExpenseStoryId" />
           </Key>
           <Property Name="ExpenseStoryId" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="ExpenseStoryTypeId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpenseStoryTypeId" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Budget" Type="real" />
           <Property Name="Income" Type="real" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
@@ -63,8 +63,8 @@
           <Key>
             <PropertyRef Name="ExpenseStoryTypeId" />
           </Key>
-          <Property Name="ExpenseStoryTypeId" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ExpenseStoryTypeId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -183,8 +183,7 @@
             <End Role="ExpenseStory" EntitySet="ExpenseStory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DollarTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -242,7 +241,7 @@
             <PropertyRef Name="ExpenseStoryId" />
           </Key>
           <Property Name="ExpenseStoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ExpenseStoryTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpenseStoryTypeId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Budget" Type="Single" />
           <Property Name="Income" Type="Single" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
@@ -256,8 +255,8 @@
           <Key>
             <PropertyRef Name="ExpenseStoryTypeId" />
           </Key>
-          <Property Name="ExpenseStoryTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpenseStoryTypeId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_ExpenseStories_ToExpenseStoryTypes" FromRole="ExpenseStoryType" ToRole="ExpenseStory" />
         </EntityType>
         <EntityType Name="User">

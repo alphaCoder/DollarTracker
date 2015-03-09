@@ -1,4 +1,6 @@
 ﻿using DollarTracker.Core.Infrastructure;
+using DollarTracker.Core.Repository;
+using DollarTracker.Core.Utils;
 using DollarTracker.EF;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ namespace DollarTracker.Core.Tests
 			dbFactory = new DbFactory();
 			dataContext = dbFactory.Get();
 			unitOfWork = new UnitOfWork(dbFactory);
+			DataMock.Seed();
 		}
 
 		protected User GetNewMockUser()

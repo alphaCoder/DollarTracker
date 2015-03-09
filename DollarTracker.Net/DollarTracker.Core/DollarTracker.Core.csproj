@@ -67,6 +67,7 @@
     <Compile Include="Repository\ExpenseStoryRepository.cs" />
     <Compile Include="Repository\ExpenseStoryTypeRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Utils\DataMock.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
