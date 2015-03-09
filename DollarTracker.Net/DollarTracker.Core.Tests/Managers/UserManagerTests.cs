@@ -24,7 +24,7 @@ namespace DollarTracker.Core.Tests.Managers
 			var expectedUser = GetNewMockUser();
 
 			userManager.AddUser(expectedUser);
-			var actualUser = dataContext.Users.First(x => x.UserId == expectedUser.UserId);
+			var actualUser = dataContext.User.First(x => x.UserId == expectedUser.UserId);
 
 			Assert.IsNotNull(actualUser);
 			Assert.AreEqual(expectedUser.GetHashCode(), actualUser.GetHashCode());
@@ -40,7 +40,7 @@ namespace DollarTracker.Core.Tests.Managers
 			user.UserId = Guid.NewGuid();
 			user.Username = Guid.NewGuid().ToString("N").Substring(0, 10);
 			userManager.AddUser(user);
-			int actualCount = dataContext.Users.Where(x => x.Email == user.Email).Count();
+			int actualCount = dataContext.User.Where(x => x.Email == user.Email).Count();
 
 			Assert.AreEqual(expectedCount, actualCount);
 		}
@@ -55,7 +55,7 @@ namespace DollarTracker.Core.Tests.Managers
 			user.UserId = Guid.NewGuid();
 			user.Email = Guid.NewGuid().ToString("N").Substring(0, 10) + "@test.com";
 			userManager.AddUser(user);
-			int actualCount = dataContext.Users.Where(x => x.Username == user.Username).Count();
+			int actualCount = dataContext.User.Where(x => x.Username == user.Username).Count();
 
 			Assert.AreEqual(expectedCount, actualCount);
 		}
