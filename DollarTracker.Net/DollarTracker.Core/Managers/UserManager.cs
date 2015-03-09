@@ -12,11 +12,11 @@ namespace DollarTracker.Core.Managers
 {
 	public interface IUserManager
 	{
-		void AddUser(Users user);
-		void UpdateUser(Users user);
-		Users GetUserViaUserId(Guid userId);
-		Users GetUserViaEmail(string email);
-		Users GetUserViaUsername(string username);
+		void AddUser(User user);
+		void UpdateUser(User user);
+		User GetUserViaUserId(Guid userId);
+		User GetUserViaEmail(string email);
+		User GetUserViaUsername(string username);
 		void SaveUser();
 	}
 	public class UserManager : IUserManager
@@ -28,7 +28,7 @@ namespace DollarTracker.Core.Managers
 			this.userRepository = userRepository;
 			this.unitOfWork = unitOfWork;
 		}
-		public void AddUser(Users user)
+		public void AddUser(User user)
 		{
 			var existingUser = userRepository.Get(x => x.Email == user.Email || x.Username == user.Username);
 			if (existingUser == null)
@@ -38,7 +38,7 @@ namespace DollarTracker.Core.Managers
 			}
 		}
 
-		public void UpdateUser(Users user)
+		public void UpdateUser(User user)
 		{
 			var existingUser = userRepository.Get(x => x.Email == user.Email);
 			if (existingUser != null)
@@ -50,17 +50,17 @@ namespace DollarTracker.Core.Managers
 			};
 		}
 
-		public Users GetUserViaUserId(Guid userId)
+		public User GetUserViaUserId(Guid userId)
 		{
 			return userRepository.GetById(userId);
 		}
 
-		public Users GetUserViaEmail(string email)
+		public User GetUserViaEmail(string email)
 		{
 			return userRepository.Get(user => user.Email == email);
 		}
 
-		public Users GetUserViaUsername(string username)
+		public User GetUserViaUsername(string username)
 		{
 			return userRepository.Get(user => user.Username == username);
 		}

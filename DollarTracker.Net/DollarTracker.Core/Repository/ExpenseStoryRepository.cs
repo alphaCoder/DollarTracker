@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DollarTracker.Core.Repository
 {
-	public interface IExpenseStoryRepository : IRepository<ExpenseStories>
+	public interface IExpenseStoryRepository : IRepository<ExpenseStory>
 	{
 
 	}
-	public class ExpenseStoryRepository: RepositoryBase<ExpenseStories>, IExpenseStoryRepository
+	public class ExpenseStoryRepository: RepositoryBase<ExpenseStory>, IExpenseStoryRepository
 	{
 		public ExpenseStoryRepository(IDbFactory dbFactory)
 			: base(dbFactory)

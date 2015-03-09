@@ -20,9 +20,9 @@ namespace DollarTracker.Core.Tests
 			unitOfWork = new UnitOfWork(dbFactory);
 		}
 
-		protected Users GetNewMockUser()
+		protected User GetNewMockUser()
 		{
-			return new Users
+			return new User
 			{
 				UserId = Guid.NewGuid(),
 				Password = Guid.NewGuid().ToString("N"),

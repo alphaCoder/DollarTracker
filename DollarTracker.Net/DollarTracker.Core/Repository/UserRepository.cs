@@ -8,11 +8,11 @@ using DollarTracker.Core.Infrastructure;
 
 namespace DollarTracker.Core.Repository
 {
-	public interface IUserRepository: IRepository<Users>
+	public interface IUserRepository: IRepository<User>
 	{
 
 	}
-	public class UserRepository: RepositoryBase<Users>, IUserRepository
+	public class UserRepository: RepositoryBase<User>, IUserRepository
 	{
 		public UserRepository(IDbFactory dbFactory)
 			: base(dbFactory)
