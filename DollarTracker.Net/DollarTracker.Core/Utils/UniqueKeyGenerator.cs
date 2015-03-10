@@ -10,7 +10,7 @@ namespace DollarTracker.Core.Utils
 	{
 		private static readonly int longKeyLen = 40;
 		private static readonly int shortKeyLen = 40;
-		public static string DatePrefixShortKey(int len = 20)
+		public static string DatePrefixShortKey()
 		{
 			//todo: need to double check about possible key collision
 			return DatePrefixKey(shortKeyLen);

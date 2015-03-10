@@ -25,9 +25,30 @@ namespace DollarTracker.Core.Utils
 					{
 						isCalled = true;
 						SeedExpenseStoryType();
+						SeedExpenseCategories();
 					}
 				}
 			}
+		}
+
+		private static void SeedExpenseCategories()
+		{
+			var expenseCategoryRepository = new ExpenseCategoryRepository(dbFactory);
+			var groceryCategory = new ExpenseCategory
+			{
+				ExpenseCategoryId = "Groceries",
+				Description = "Groceries"
+			};
+
+			var gasCategory = new ExpenseCategory
+			{
+				ExpenseCategoryId = "Gas",
+				Description = "Gas"
+			};
+
+			expenseCategoryRepository.Add(groceryCategory);
+			expenseCategoryRepository.Add(gasCategory);
+			unitOfWork.Save();
 		}
 
 		private static void SeedExpenseStoryType()

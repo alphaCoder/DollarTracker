@@ -30,7 +30,7 @@ namespace DollarTracker.Core.Tests.Managers
 		[TestMethod]
 		public void AddNewPersonalExpenseStoryTest()
 		{
-			var expectedExpenseStory = GetNewMockPersonalExpenseStory();
+			var expectedExpenseStory = GetNewMockPersonalExpenseStory(user.UserId);
 			expenseStoryManager.AddExpenseStory(expectedExpenseStory);
 
 			var actualExpenseStory = dataContext.ExpenseStory.FirstOrDefault(x => x.ExpenseStoryId == expectedExpenseStory.ExpenseStoryId);
@@ -42,7 +42,7 @@ namespace DollarTracker.Core.Tests.Managers
 		[TestMethod]
 		public void AddNewSharedExpenseStoryTest()
 		{
-			var expectedExpenseStory = GetNewMockSharedExpenseStory();
+			var expectedExpenseStory = GetNewMockSharedExpenseStory(user.UserId);
 			expenseStoryManager.AddExpenseStory(expectedExpenseStory);
 
 			var actualExpenseStory = dataContext.ExpenseStory.FirstOrDefault(x => x.ExpenseStoryId == expectedExpenseStory.ExpenseStoryId);
@@ -54,7 +54,7 @@ namespace DollarTracker.Core.Tests.Managers
 		[TestMethod]
 		public void UpdateExpenseStoryTest()
 		{
-			var expenseStory = GetNewMockPersonalExpenseStory();
+			var expenseStory = GetNewMockPersonalExpenseStory(user.UserId);
 			expenseStoryManager.AddExpenseStory(expenseStory);
 
 			expenseStory.Income = Faker.NumberFaker.Number(5000000);
@@ -112,8 +112,8 @@ namespace DollarTracker.Core.Tests.Managers
 		public void DeleteExpenseStoryTests()
 		{
 			var mockUser = GetNewMockUser();
-			var exp1 = GetNewMockPersonalExpenseStory();
-			var exp2 = GetNewMockPersonalExpenseStory();
+			var exp1 = GetNewMockPersonalExpenseStory(mockUser.UserId);
+			var exp2 = GetNewMockPersonalExpenseStory(mockUser.UserId);
 
 			expenseStoryManager.AddExpenseStory(exp1);
 			expenseStoryManager.AddExpenseStory(exp2);
@@ -124,30 +124,6 @@ namespace DollarTracker.Core.Tests.Managers
 			Assert.IsNull(story);
 		}
 
-		private ExpenseStory GetNewMockPersonalExpenseStory(Guid? userId = null)
-		{
-			return GetNewMockExpenseStory("Personal", userId);
-		}
-
-		private ExpenseStory GetNewMockSharedExpenseStory(Guid? userId = null)
-		{
-			return GetNewMockExpenseStory("Shared", userId);
-		}
-
-		private ExpenseStory GetNewMockExpenseStory(string expenseStoryTypeId, Guid? userId = null)
-		{
-			var expenseStory = new ExpenseStory
-			{
-				ExpenseStoryId = Guid.NewGuid().ToString("N").Substring(0, 20),
-				ExpenseStoryTypeId = expenseStoryTypeId,
-				CreatedBy = userId ?? user.UserId,
-				StartDt = DateTime.UtcNow,
-				EndDt = DateTime.UtcNow.AddDays(10),
-				CreatedUtcDt = DateTime.UtcNow,
-				Income = (float)Faker.NumberFaker.Number(10000, 100000),
-				Budget = (float)Faker.NumberFaker.Number(1000, 10000)
-			};
-			return expenseStory;
-		}
+		
 	}
 }

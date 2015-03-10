@@ -36,5 +36,31 @@ namespace DollarTracker.Core.Tests
 				Status = true
 			};
 		}
+
+		protected ExpenseStory GetNewMockPersonalExpenseStory(Guid userId)
+		{
+			return GetNewMockExpenseStory("Personal", userId);
+		}
+
+		protected ExpenseStory GetNewMockSharedExpenseStory(Guid userId)
+		{
+			return GetNewMockExpenseStory("Shared", userId);
+		}
+
+		protected ExpenseStory GetNewMockExpenseStory(string expenseStoryTypeId, Guid userId)
+		{
+			var expenseStory = new ExpenseStory
+			{
+				ExpenseStoryId = Guid.NewGuid().ToString("N").Substring(0, 20),
+				ExpenseStoryTypeId = expenseStoryTypeId,
+				CreatedBy = userId,
+				StartDt = DateTime.UtcNow,
+				EndDt = DateTime.UtcNow.AddDays(10),
+				CreatedUtcDt = DateTime.UtcNow,
+				Income = (float)Faker.NumberFaker.Number(10000, 100000),
+				Budget = (float)Faker.NumberFaker.Number(1000, 10000)
+			};
+			return expenseStory;
+		}
 	}
 }
