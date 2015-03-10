@@ -23,5 +23,6 @@ namespace DollarTracker.Core.Infrastructure
 			Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
 			string includeProperties = "",
 			int? take=null);
+		bool Any(Expression<Func<T, bool>> predicate);
 	}
 }

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DollarTracker.EF;
-using DollarTracker.Core.Managers;
+﻿using DollarTracker.Core.Managers;
 using DollarTracker.Core.Repository;
 using DollarTracker.EF;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace DollarTracker.Core.Tests.Managers
 {
@@ -71,10 +70,10 @@ namespace DollarTracker.Core.Tests.Managers
 		public void GetAllExpenseStoryTest()
 		{
 			var mockUser = GetNewMockUser();
-			var exp1 = GetNewMockPersonalExpenseStory();
-			var exp2 = GetNewMockPersonalExpenseStory();
-			var exp3 = GetNewMockSharedExpenseStory();
-			var exp4 = GetNewMockSharedExpenseStory();
+			var exp1 = GetNewMockPersonalExpenseStory(mockUser.UserId);
+			var exp2 = GetNewMockPersonalExpenseStory(mockUser.UserId);
+			var exp3 = GetNewMockSharedExpenseStory(mockUser.UserId);
+			var exp4 = GetNewMockSharedExpenseStory(mockUser.UserId);
 			int expectedStoryCount = 4;
 
 			expenseStoryManager.AddExpenseStory(exp1);
@@ -92,12 +91,11 @@ namespace DollarTracker.Core.Tests.Managers
 		public void GetTopNExpenseStoriesTests()
 		{
 			var mockUser = GetNewMockUser();
-			var exp1 = GetNewMockPersonalExpenseStory();
-			var exp2 = GetNewMockPersonalExpenseStory();
-			var exp3 = GetNewMockSharedExpenseStory();
-			var exp4 = GetNewMockSharedExpenseStory();
+			var exp1 = GetNewMockPersonalExpenseStory(mockUser.UserId);
+			var exp2 = GetNewMockPersonalExpenseStory(mockUser.UserId);
+			var exp3 = GetNewMockSharedExpenseStory(mockUser.UserId);
+			var exp4 = GetNewMockSharedExpenseStory(mockUser.UserId);
 			int expectedStoryCount = 2;
-
 
 			expenseStoryManager.AddExpenseStory(exp1);
 			expenseStoryManager.AddExpenseStory(exp2);
@@ -126,23 +124,23 @@ namespace DollarTracker.Core.Tests.Managers
 			Assert.IsNull(story);
 		}
 
-		private ExpenseStory GetNewMockPersonalExpenseStory()
+		private ExpenseStory GetNewMockPersonalExpenseStory(Guid? userId = null)
 		{
-			return GetNewMockExpenseStory("Personal");
+			return GetNewMockExpenseStory("Personal", userId);
 		}
 
-		private ExpenseStory GetNewMockSharedExpenseStory()
+		private ExpenseStory GetNewMockSharedExpenseStory(Guid? userId = null)
 		{
-			return GetNewMockExpenseStory("Shared");
+			return GetNewMockExpenseStory("Shared", userId);
 		}
 
-		private ExpenseStory GetNewMockExpenseStory(string expenseStoryTypeId)
+		private ExpenseStory GetNewMockExpenseStory(string expenseStoryTypeId, Guid? userId = null)
 		{
 			var expenseStory = new ExpenseStory
 			{
 				ExpenseStoryId = Guid.NewGuid().ToString("N").Substring(0, 20),
 				ExpenseStoryTypeId = expenseStoryTypeId,
-				CreatedBy = user.UserId,
+				CreatedBy = userId ?? user.UserId,
 				StartDt = DateTime.UtcNow,
 				EndDt = DateTime.UtcNow.AddDays(10),
 				CreatedUtcDt = DateTime.UtcNow,

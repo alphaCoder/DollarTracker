@@ -30,8 +30,7 @@ namespace DollarTracker.Core.Managers
 		}
 		public void AddUser(User user)
 		{
-			var existingUser = userRepository.Get(x => x.Email == user.Email || x.Username == user.Username);
-			if (existingUser == null)
+			if (!userRepository.Any(x => x.Email == user.Email || x.Username == user.Username))
 			{
 				userRepository.Add(user);
 				SaveUser();

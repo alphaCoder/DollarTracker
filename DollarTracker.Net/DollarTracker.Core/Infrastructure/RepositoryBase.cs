@@ -101,5 +101,10 @@ namespace DollarTracker.Core.Infrastructure
 			}
 			return query.ToList();
 		}
+
+		public virtual bool Any(Expression<Func<T, bool>> predicate)
+		{
+			return dbset.Any(predicate);
+		}
 	}
 }

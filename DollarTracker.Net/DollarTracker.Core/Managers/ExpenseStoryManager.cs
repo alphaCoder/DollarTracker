@@ -15,6 +15,7 @@ namespace DollarTracker.Core.Managers
 		void UpdateExpenseStory(ExpenseStory story);
 		IEnumerable<ExpenseStory> GetAllExpenseStories(Guid userId);
 		IEnumerable<ExpenseStory> GetTopNExpenseStories(Guid userId, int n);
+		IEnumerable<ExpenseStory> GetAllExpenseStoryWithInDtRange(Guid userId, DateTime startDt, DateTime endDt);
 		void DeleteExpenseStory(string storyId);
 		void SaveExpenseStory();
 	}
@@ -29,14 +30,31 @@ namespace DollarTracker.Core.Managers
         }
 		public void AddExpenseStory(ExpenseStory story)
 		{
-			expenseStoryRepository.Add(story);
-			SaveExpenseStory();
+			
+			if (!expenseStoryRepository.Any(x=>x.ExpenseStoryId == story.ExpenseStoryId))
+			{
+				expenseStoryRepository.Add(story);
+				SaveExpenseStory();
+			}
 		}
 
 		public void UpdateExpenseStory(ExpenseStory story)
 		{
-			expenseStoryRepository.Update(story);
-			SaveExpenseStory();
+			var existingExpenseStory = expenseStoryRepository.Get(x => x.ExpenseStoryId == story.ExpenseStoryId);
+			//? todo need to determine if I need to update other fields as well.
+			if (existingExpenseStory != null)
+			{
+				if (story.Income.HasValue)
+				{
+					existingExpenseStory.Income = story.Income;
+				}
+				if (story.Budget.HasValue)
+				{
+					existingExpenseStory.Budget = story.Budget;
+				}
+				expenseStoryRepository.Update(story);
+				SaveExpenseStory();
+			}
 		}
 
 		public IEnumerable<ExpenseStory> GetAllExpenseStories(Guid userId)
@@ -49,6 +67,10 @@ namespace DollarTracker.Core.Managers
 			return expenseStoryRepository.Get(x => x.CreatedBy == userId, take: n);
 		}
 
+		public IEnumerable<ExpenseStory> GetAllExpenseStoryWithInDtRange(Guid userId, DateTime startDt, DateTime endDt)
+		{
+			return expenseStoryRepository.Get(x => x.CreatedBy == userId && (x.StartDt >= startDt && x.EndDt <= endDt), orderBy: (z => z.OrderByDescending(y => y.StartDt)));
+		}
 		public void DeleteExpenseStory(string storyId)
 		{
 			expenseStoryRepository.Delete(x => x.ExpenseStoryId == storyId);
