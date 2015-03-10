@@ -67,6 +67,65 @@ namespace DollarTracker.Core.Tests.Managers
 			Assert.AreEqual(expenseStory.Income, actualExpenseStory.Income);
 		}
 
+		[TestMethod]
+		public void GetAllExpenseStoryTest()
+		{
+			var mockUser = GetNewMockUser();
+			var exp1 = GetNewMockPersonalExpenseStory();
+			var exp2 = GetNewMockPersonalExpenseStory();
+			var exp3 = GetNewMockSharedExpenseStory();
+			var exp4 = GetNewMockSharedExpenseStory();
+			int expectedStoryCount = 4;
+
+			expenseStoryManager.AddExpenseStory(exp1);
+			expenseStoryManager.AddExpenseStory(exp2);
+			expenseStoryManager.AddExpenseStory(exp3);
+			expenseStoryManager.AddExpenseStory(exp4);
+
+			var stories = expenseStoryManager.GetAllExpenseStories(mockUser.UserId);
+
+			Assert.IsNotNull(stories);
+			Assert.AreEqual(expectedStoryCount, stories.Count());
+		}
+
+		[TestMethod]
+		public void GetTopNExpenseStoriesTests()
+		{
+			var mockUser = GetNewMockUser();
+			var exp1 = GetNewMockPersonalExpenseStory();
+			var exp2 = GetNewMockPersonalExpenseStory();
+			var exp3 = GetNewMockSharedExpenseStory();
+			var exp4 = GetNewMockSharedExpenseStory();
+			int expectedStoryCount = 2;
+
+
+			expenseStoryManager.AddExpenseStory(exp1);
+			expenseStoryManager.AddExpenseStory(exp2);
+			expenseStoryManager.AddExpenseStory(exp3);
+			expenseStoryManager.AddExpenseStory(exp4);
+
+			var stories = expenseStoryManager.GetTopNExpenseStories(mockUser.UserId, expectedStoryCount);
+
+			Assert.IsNotNull(stories);
+			Assert.AreEqual(expectedStoryCount, stories.Count());
+		}
+
+		[TestMethod]
+		public void DeleteExpenseStoryTests()
+		{
+			var mockUser = GetNewMockUser();
+			var exp1 = GetNewMockPersonalExpenseStory();
+			var exp2 = GetNewMockPersonalExpenseStory();
+
+			expenseStoryManager.AddExpenseStory(exp1);
+			expenseStoryManager.AddExpenseStory(exp2);
+
+			expenseStoryManager.DeleteExpenseStory(exp1.ExpenseStoryId);
+
+			var story = expenseStoryRepository.Get(x => x.ExpenseStoryId == exp1.ExpenseStoryId);
+			Assert.IsNull(story);
+		}
+
 		private ExpenseStory GetNewMockPersonalExpenseStory()
 		{
 			return GetNewMockExpenseStory("Personal");
