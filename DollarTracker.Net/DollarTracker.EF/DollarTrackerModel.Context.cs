@@ -19,6 +19,7 @@ namespace DollarTracker.EF
         public DollarTrackerEntities(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
+    	this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

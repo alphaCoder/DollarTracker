@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,13 @@ namespace DollarTracker.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+			var formatters = GlobalConfiguration.Configuration.Formatters;
+			var jsonFormatter = formatters.JsonFormatter;
+			var settings = jsonFormatter.SerializerSettings;
+			settings.DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore;
+			settings.Formatting = Newtonsoft.Json.Formatting.Indented;
+			settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }
