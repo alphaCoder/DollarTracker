@@ -62,5 +62,30 @@ namespace DollarTracker.Core.Tests
 			};
 			return expenseStory;
 		}
+		
+		protected Expense GetNewMockExpense(Guid collaboratorId, string expenseStoryId)
+		{
+			return new Expense
+			{
+				ExpenseId = UniqueKeyGenerator.DatePrefixShortKey(),
+				CreatedUtcDt = DateTime.UtcNow,
+				ExpenseStoryId = expenseStoryId,
+				CollaboratorId = collaboratorId,
+				ExpenseCategoryId = "Groceries",
+				Amount = 30000
+			};
+		}
+
+		protected Collaborator GetNewMockCollaborator(Guid userId, string storyId)
+		{
+			return new Collaborator
+			{
+				CollaboratorId = Guid.NewGuid(),
+				UserStoryId = storyId,
+				UserId = userId,
+				CreatedUtcDt = DateTime.UtcNow,
+				Status = true
+			};
+		}
 	}
 }

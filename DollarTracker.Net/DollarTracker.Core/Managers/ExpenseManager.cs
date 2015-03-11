@@ -14,8 +14,9 @@ namespace DollarTracker.Core.Managers
 		void AddExpense(Expense e);
 		void UpdateExpense(Expense e);
 		IEnumerable<Expense> GetAllExpenses(string storyId);
+		IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId);
 		void DeleteExpense(string expenseId);
-		void SaveExpenses();
+		void SaveExpense();
 	}
 	public class ExpenseManager : IExpenseManager
 	{
@@ -33,7 +34,7 @@ namespace DollarTracker.Core.Managers
 			if (!expenseRepository.Any(x => x.ExpenseId == e.ExpenseId))
 			{
 				expenseRepository.Add(e);
-				SaveExpenses();
+				SaveExpense();
 			}
 		}
 
@@ -47,7 +48,7 @@ namespace DollarTracker.Core.Managers
 					existingExpense.CustomExpenseCategoryId = e.CustomExpenseCategoryId;
 				}
 				expenseRepository.Update(existingExpense);
-				SaveExpenses();
+				SaveExpense();
 				//? todo: need to determine if modify any other fields.
 			}
 		}
@@ -56,16 +57,20 @@ namespace DollarTracker.Core.Managers
 		{
 			return expenseRepository.GetMany(x => x.ExpenseStoryId == storyId);
 		}
+		public IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId)
+		{
+			return expenseRepository.GetMany(x => x.ExpenseStoryId == storyId && x.CollaboratorId == collaboratorId);
+		}
 
 		public void DeleteExpense(string expenseId)
 		{
 			if(expenseRepository.Any(x=>x.ExpenseId == expenseId)){
 				expenseRepository.Delete(x=>x.ExpenseId == expenseId);
-				SaveExpenses();
+				SaveExpense();
 			}
 		}
 
-		public void SaveExpenses()
+		public void SaveExpense()
 		{
 			unitOfWork.Save();
 		}
