@@ -48,7 +48,7 @@ namespace DollarTracker.Core.Managers
 
 		public IEnumerable<Collaborator> GetAllCollaborators(string expenseStoryId)
 		{
-			return collaboratorRepository.GetMany(c => c.UserStoryId == expenseStoryId);
+			return collaboratorRepository.GetMany(c => c.ExpenseStoryId == expenseStoryId);
 		}
 
 		public void DeleteCollaborator(Guid collaboratorId)

@@ -81,7 +81,7 @@ namespace DollarTracker.Core.Tests
 			return new Collaborator
 			{
 				CollaboratorId = Guid.NewGuid(),
-				UserStoryId = storyId,
+				ExpenseStoryId = storyId,
 				UserId = userId,
 				CreatedUtcDt = DateTime.UtcNow,
 				Status = true

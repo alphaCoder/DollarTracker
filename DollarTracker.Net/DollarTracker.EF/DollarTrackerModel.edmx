@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DollarTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Collaborator">
+          <Key>
+            <PropertyRef Name="CollaboratorId" />
+          </Key>
+          <Property Name="CollaboratorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ExpenseStoryId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedUtcDt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomExpenseCategory">
+          <Key>
+            <PropertyRef Name="CustomExpenseCategoryId" />
+          </Key>
+          <Property Name="CustomExpenseCategoryId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDt" Type="datetime2" Precision="7" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="ExpenseId" />
+          </Key>
+          <Property Name="ExpenseId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ExpenseStoryId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CollaboratorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="Receipt" Type="image" />
+          <Property Name="CreatedUtcDt" Type="datetime2" Precision="7" />
+          <Property Name="Comments" Type="varchar" MaxLength="140" />
+          <Property Name="ExpenseCategoryId" Type="varchar" MaxLength="20" />
+          <Property Name="CustomExpenseCategoryId" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ExpenseCategory">
+          <Key>
+            <PropertyRef Name="ExpenseCategoryId" />
+          </Key>
+          <Property Name="ExpenseCategoryId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExpenseStory">
+          <Key>
+            <PropertyRef Name="ExpenseStoryId" />
+          </Key>
+          <Property Name="ExpenseStoryId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ExpenseStoryTypeId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Budget" Type="real" />
+          <Property Name="Income" Type="real" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StartDt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndDt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedUtcDt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExpenseStoryType">
+          <Key>
+            <PropertyRef Name="ExpenseStoryTypeId" />
+          </Key>
+          <Property Name="ExpenseStoryTypeId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="PasswordSalt" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDtUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Collaborator_ToExpenseStory">
+          <End Role="ExpenseStory" Type="Self.ExpenseStory" Multiplicity="1" />
+          <End Role="Collaborator" Type="Self.Collaborator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseStory">
+              <PropertyRef Name="ExpenseStoryId" />
+            </Principal>
+            <Dependent Role="Collaborator">
+              <PropertyRef Name="ExpenseStoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomExpenseCategories_ToUsers">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="CustomExpenseCategory" Type="Self.CustomExpenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CustomExpenseCategory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ToCollaborators">
+          <End Role="Collaborator" Type="Self.Collaborator" Multiplicity="1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collaborator">
+              <PropertyRef Name="CollaboratorId" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="CollaboratorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ToCustomExpenseCategories">
+          <End Role="CustomExpenseCategory" Type="Self.CustomExpenseCategory" Multiplicity="0..1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomExpenseCategory">
+              <PropertyRef Name="CustomExpenseCategoryId" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="CustomExpenseCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ToExpenseCategories">
+          <End Role="ExpenseCategory" Type="Self.ExpenseCategory" Multiplicity="0..1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseCategory">
+              <PropertyRef Name="ExpenseCategoryId" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="ExpenseCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ToExpenseStories">
+          <End Role="ExpenseStory" Type="Self.ExpenseStory" Multiplicity="1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseStory">
+              <PropertyRef Name="ExpenseStoryId" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="ExpenseStoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpenseStories_ToExpenseStoryTypes">
+          <End Role="ExpenseStoryType" Type="Self.ExpenseStoryType" Multiplicity="1" />
+          <End Role="ExpenseStory" Type="Self.ExpenseStory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseStoryType">
+              <PropertyRef Name="ExpenseStoryTypeId" />
+            </Principal>
+            <Dependent Role="ExpenseStory">
+              <PropertyRef Name="ExpenseStoryTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DollarTrackerModelStoreContainer">
+          <EntitySet Name="Collaborator" EntityType="Self.Collaborator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomExpenseCategory" EntityType="Self.CustomExpenseCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpenseCategory" EntityType="Self.ExpenseCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpenseStory" EntityType="Self.ExpenseStory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpenseStoryType" EntityType="Self.ExpenseStoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Collaborator_ToExpenseStory" Association="Self.FK_Collaborator_ToExpenseStory">
+            <End Role="ExpenseStory" EntitySet="ExpenseStory" />
+            <End Role="Collaborator" EntitySet="Collaborator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomExpenseCategories_ToUsers" Association="Self.FK_CustomExpenseCategories_ToUsers">
+            <End Role="User" EntitySet="User" />
+            <End Role="CustomExpenseCategory" EntitySet="CustomExpenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ToCollaborators" Association="Self.FK_Expenses_ToCollaborators">
+            <End Role="Collaborator" EntitySet="Collaborator" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ToCustomExpenseCategories" Association="Self.FK_Expenses_ToCustomExpenseCategories">
+            <End Role="CustomExpenseCategory" EntitySet="CustomExpenseCategory" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ToExpenseCategories" Association="Self.FK_Expenses_ToExpenseCategories">
+            <End Role="ExpenseCategory" EntitySet="ExpenseCategory" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ToExpenseStories" Association="Self.FK_Expenses_ToExpenseStories">
+            <End Role="ExpenseStory" EntitySet="ExpenseStory" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpenseStories_ToExpenseStoryTypes" Association="Self.FK_ExpenseStories_ToExpenseStoryTypes">
+            <End Role="ExpenseStoryType" EntitySet="ExpenseStoryType" />
+            <End Role="ExpenseStory" EntitySet="ExpenseStory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DollarTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Collaborator">
+          <Key>
+            <PropertyRef Name="CollaboratorId" />
+          </Key>
+          <Property Name="CollaboratorId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ExpenseStoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedUtcDt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_Collaborator_ToExpenseStory" FromRole="Collaborator" ToRole="ExpenseStory" />
+          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToCollaborators" FromRole="Collaborator" ToRole="Expense" />
+        </EntityType>
+        <EntityType Name="CustomExpenseCategory">
+          <Key>
+            <PropertyRef Name="CustomExpenseCategoryId" />
+          </Key>
+          <Property Name="CustomExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="7" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_CustomExpenseCategories_ToUsers" FromRole="CustomExpenseCategory" ToRole="User" />
+          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToCustomExpenseCategories" FromRole="CustomExpenseCategory" ToRole="Expense" />
+        </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="ExpenseId" />
+          </Key>
+          <Property Name="ExpenseId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpenseStoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CollaboratorId" Type="Guid" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Receipt" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreatedUtcDt" Type="DateTime" Precision="7" />
+          <Property Name="Comments" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
+          <Property Name="ExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Collaborator" Relationship="Self.FK_Expenses_ToCollaborators" FromRole="Expense" ToRole="Collaborator" />
+          <NavigationProperty Name="CustomExpenseCategory" Relationship="Self.FK_Expenses_ToCustomExpenseCategories" FromRole="Expense" ToRole="CustomExpenseCategory" />
+          <NavigationProperty Name="ExpenseCategory" Relationship="Self.FK_Expenses_ToExpenseCategories" FromRole="Expense" ToRole="ExpenseCategory" />
+          <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_Expenses_ToExpenseStories" FromRole="Expense" ToRole="ExpenseStory" />
+        </EntityType>
+        <EntityType Name="ExpenseCategory">
+          <Key>
+            <PropertyRef Name="ExpenseCategoryId" />
+          </Key>
+          <Property Name="ExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToExpenseCategories" FromRole="ExpenseCategory" ToRole="Expense" />
+        </EntityType>
+        <EntityType Name="ExpenseStory">
+          <Key>
+            <PropertyRef Name="ExpenseStoryId" />
+          </Key>
+          <Property Name="ExpenseStoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpenseStoryTypeId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Budget" Type="Single" />
+          <Property Name="Income" Type="Single" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="StartDt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndDt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedUtcDt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Collaborator" Relationship="Self.FK_Collaborator_ToExpenseStory" FromRole="ExpenseStory" ToRole="Collaborator" />
+          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToExpenseStories" FromRole="ExpenseStory" ToRole="Expense" />
+          <NavigationProperty Name="ExpenseStoryType" Relationship="Self.FK_ExpenseStories_ToExpenseStoryTypes" FromRole="ExpenseStory" ToRole="ExpenseStoryType" />
+        </EntityType>
+        <EntityType Name="ExpenseStoryType">
+          <Key>
+            <PropertyRef Name="ExpenseStoryTypeId" />
+          </Key>
+          <Property Name="ExpenseStoryTypeId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_ExpenseStories_ToExpenseStoryTypes" FromRole="ExpenseStoryType" ToRole="ExpenseStory" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PasswordSalt" Type="Guid" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDtUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CustomExpenseCategory" Relationship="Self.FK_CustomExpenseCategories_ToUsers" FromRole="User" ToRole="CustomExpenseCategory" />
+        </EntityType>
+        <Association Name="FK_Collaborator_ToExpenseStory">
+          <End Role="ExpenseStory" Type="Self.ExpenseStory" Multiplicity="1" />
+          <End Role="Collaborator" Type="Self.Collaborator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseStory">
+              <PropertyRef Name="ExpenseStoryId" />
+            </Principal>
+            <Dependent Role="Collaborator">
+              <PropertyRef Name="ExpenseStoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ToCollaborators">
+          <End Role="Collaborator" Type="Self.Collaborator" Multiplicity="1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collaborator">
+              <PropertyRef Name="CollaboratorId" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="CollaboratorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomExpenseCategories_ToUsers">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="CustomExpenseCategory" Type="Self.CustomExpenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CustomExpenseCategory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ToCustomExpenseCategories">
+          <End Role="CustomExpenseCategory" Type="Self.CustomExpenseCategory" Multiplicity="0..1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomExpenseCategory">
+              <PropertyRef Name="CustomExpenseCategoryId" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="CustomExpenseCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ToExpenseCategories">
+          <End Role="ExpenseCategory" Type="Self.ExpenseCategory" Multiplicity="0..1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseCategory">
+              <PropertyRef Name="ExpenseCategoryId" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="ExpenseCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenses_ToExpenseStories">
+          <End Role="ExpenseStory" Type="Self.ExpenseStory" Multiplicity="1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseStory">
+              <PropertyRef Name="ExpenseStoryId" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="ExpenseStoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpenseStories_ToExpenseStoryTypes">
+          <End Role="ExpenseStoryType" Type="Self.ExpenseStoryType" Multiplicity="1" />
+          <End Role="ExpenseStory" Type="Self.ExpenseStory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseStoryType">
+              <PropertyRef Name="ExpenseStoryTypeId" />
+            </Principal>
+            <Dependent Role="ExpenseStory">
+              <PropertyRef Name="ExpenseStoryTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DollarTrackerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Collaborator" EntityType="Self.Collaborator" />
+          <EntitySet Name="CustomExpenseCategory" EntityType="Self.CustomExpenseCategory" />
+          <EntitySet Name="Expense" EntityType="Self.Expense" />
+          <EntitySet Name="ExpenseCategory" EntityType="Self.ExpenseCategory" />
+          <EntitySet Name="ExpenseStory" EntityType="Self.ExpenseStory" />
+          <EntitySet Name="ExpenseStoryType" EntityType="Self.ExpenseStoryType" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Collaborator_ToExpenseStory" Association="Self.FK_Collaborator_ToExpenseStory">
+            <End Role="ExpenseStory" EntitySet="ExpenseStory" />
+            <End Role="Collaborator" EntitySet="Collaborator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ToCollaborators" Association="Self.FK_Expenses_ToCollaborators">
+            <End Role="Collaborator" EntitySet="Collaborator" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomExpenseCategories_ToUsers" Association="Self.FK_CustomExpenseCategories_ToUsers">
+            <End Role="User" EntitySet="User" />
+            <End Role="CustomExpenseCategory" EntitySet="CustomExpenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ToCustomExpenseCategories" Association="Self.FK_Expenses_ToCustomExpenseCategories">
+            <End Role="CustomExpenseCategory" EntitySet="CustomExpenseCategory" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ToExpenseCategories" Association="Self.FK_Expenses_ToExpenseCategories">
+            <End Role="ExpenseCategory" EntitySet="ExpenseCategory" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenses_ToExpenseStories" Association="Self.FK_Expenses_ToExpenseStories">
+            <End Role="ExpenseStory" EntitySet="ExpenseStory" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpenseStories_ToExpenseStoryTypes" Association="Self.FK_ExpenseStories_ToExpenseStoryTypes">
+            <End Role="ExpenseStoryType" EntitySet="ExpenseStoryType" />
+            <End Role="ExpenseStory" EntitySet="ExpenseStory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DollarTrackerModelStoreContainer" CdmEntityContainer="DollarTrackerEntities">
+          <EntitySetMapping Name="Collaborator">
+            <EntityTypeMapping TypeName="DollarTrackerModel.Collaborator">
+              <MappingFragment StoreEntitySet="Collaborator">
+                <ScalarProperty Name="CollaboratorId" ColumnName="CollaboratorId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ExpenseStoryId" ColumnName="ExpenseStoryId" />
+                <ScalarProperty Name="CreatedUtcDt" ColumnName="CreatedUtcDt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomExpenseCategory">
+            <EntityTypeMapping TypeName="DollarTrackerModel.CustomExpenseCategory">
+              <MappingFragment StoreEntitySet="CustomExpenseCategory">
+                <ScalarProperty Name="CustomExpenseCategoryId" ColumnName="CustomExpenseCategoryId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expense">
+            <EntityTypeMapping TypeName="DollarTrackerModel.Expense">
+              <MappingFragment StoreEntitySet="Expense">
+                <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
+                <ScalarProperty Name="ExpenseStoryId" ColumnName="ExpenseStoryId" />
+                <ScalarProperty Name="CollaboratorId" ColumnName="CollaboratorId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Receipt" ColumnName="Receipt" />
+                <ScalarProperty Name="CreatedUtcDt" ColumnName="CreatedUtcDt" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ExpenseCategoryId" ColumnName="ExpenseCategoryId" />
+                <ScalarProperty Name="CustomExpenseCategoryId" ColumnName="CustomExpenseCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenseCategory">
+            <EntityTypeMapping TypeName="DollarTrackerModel.ExpenseCategory">
+              <MappingFragment StoreEntitySet="ExpenseCategory">
+                <ScalarProperty Name="ExpenseCategoryId" ColumnName="ExpenseCategoryId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenseStory">
+            <EntityTypeMapping TypeName="DollarTrackerModel.ExpenseStory">
+              <MappingFragment StoreEntitySet="ExpenseStory">
+                <ScalarProperty Name="ExpenseStoryId" ColumnName="ExpenseStoryId" />
+                <ScalarProperty Name="ExpenseStoryTypeId" ColumnName="ExpenseStoryTypeId" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="StartDt" ColumnName="StartDt" />
+                <ScalarProperty Name="EndDt" ColumnName="EndDt" />
+                <ScalarProperty Name="CreatedUtcDt" ColumnName="CreatedUtcDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenseStoryType">
+            <EntityTypeMapping TypeName="DollarTrackerModel.ExpenseStoryType">
+              <MappingFragment StoreEntitySet="ExpenseStoryType">
+                <ScalarProperty Name="ExpenseStoryTypeId" ColumnName="ExpenseStoryTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DollarTrackerModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CreatedDtUtc" ColumnName="CreatedDtUtc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
