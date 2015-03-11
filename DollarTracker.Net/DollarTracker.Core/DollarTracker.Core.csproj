@@ -62,6 +62,7 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Managers\CollaboratorManager.cs" />
+    <Compile Include="Managers\ExpenseCategoryManager.cs" />
     <Compile Include="Managers\ExpenseManager.cs" />
     <Compile Include="Managers\ExpenseStoryManager.cs" />
     <Compile Include="Managers\UserManager.cs" />
