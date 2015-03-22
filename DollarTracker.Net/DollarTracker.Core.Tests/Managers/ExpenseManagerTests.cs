@@ -30,7 +30,6 @@ namespace DollarTracker.Core.Tests.Managers
 			new ExpenseStoryManager(new ExpenseStoryRepository(dbFactory), unitOfWork).AddExpenseStory(expenseStory);
 
 			collaborator = GetNewMockCollaborator(user.UserId, expenseStory.ExpenseStoryId);
-			//todo: replace with collaborator manager
 			dataContext.Collaborator.Add(collaborator);
 			dataContext.SaveChanges();
 			expenseRepository = new ExpenseRepository(dbFactory);
