@@ -77,6 +77,7 @@ namespace DollarTracker.Core.Tests.Managers
 			var collaborator2 = GetNewMockCollaborator(user.UserId, expenseStory1.ExpenseStoryId);
 			var collaborator3 = GetNewMockCollaborator(user.UserId, expenseStory1.ExpenseStoryId);
 			var collaboratorMgr = new CollaboratorManager(new CollaboratorRepository(dbFactory), unitOfWork);
+			new ExpenseStoryManager(new ExpenseStoryRepository(dbFactory), unitOfWork).AddExpenseStory(expenseStory1);
 			var expectedCollaboratorsCount = 3;
 
 			collaboratorMgr.AddCollaborator(collaborator1);
