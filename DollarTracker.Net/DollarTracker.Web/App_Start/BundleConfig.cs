@@ -26,6 +26,14 @@ namespace DollarTracker.Web
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
 					  "~/Content/site.css"));
+
+			bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+				"~/Scripts/angular.js",
+				"~/Scripts/angular-ui-router.js",
+				"~/Scripts/angular-mocks.js"
+				));
+			bundles.Add(new ScriptBundle("~/app/all").IncludeDirectory("~/app", "*.js", true));
+
 		}
 	}
 }

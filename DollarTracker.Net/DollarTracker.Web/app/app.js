@@ -1,11 +1,17 @@
-﻿app = angular.module('DollarTrackerApp', ['ui.router', 'ui.bootstrap']);
+﻿app = angular.module('DollarTrackerApp', ['ui.router']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     $locationProvider.html5Mode(false);
-    $urlRouterProvider.otherwise("/");
+   $urlRouterProvider.otherwise("/");
     //$httpProvider.interceptors.push('auth');
+
+    $stateProvider
+    .state('/', {
+        url: '/',
+        templateUrl: 'app/dashboard/dashboard.html?random='+RANDOM
+    });
 
 }]);
 
-app.run([]); //todo: comeback
+//app.run([''], function () { }); //todo: comeback
