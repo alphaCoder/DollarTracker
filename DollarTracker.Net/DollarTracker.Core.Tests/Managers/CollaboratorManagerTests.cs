@@ -12,13 +12,13 @@ using DollarTracker.Core.Repository;
 namespace DollarTracker.Core.Tests.Managers
 {
 	[TestFixture]
-	public class CollaborationManagerTests : TestEnvironmentBase
+	public class CollaboratorManagerTests : TestEnvironmentBase
 	{
 		private readonly User user;
 		private readonly ExpenseStory expenseStory;
 		private readonly CollaboratorManager collaboratorMgr;
 
-		public CollaborationManagerTests()
+		public CollaboratorManagerTests()
 		{
 			user = GetNewMockUser();
 			expenseStory = GetNewMockPersonalExpenseStory(user.UserId);
@@ -87,6 +87,33 @@ namespace DollarTracker.Core.Tests.Managers
 			var actualCollaboratorsCount = collaboratorMgr.GetAllCollaborators(expenseStory1.ExpenseStoryId).Count();
 
 			Assert.AreEqual(expectedCollaboratorsCount, actualCollaboratorsCount);
+		}
+
+		[Test]
+		public void GetAllCollaboratorsShouldReturnZeroWithInvalidStoryIdTest()
+		{
+			var expenseStory1 = GetNewMockPersonalExpenseStory(user.UserId);
+			var expectedCollaboratorsCount = 0;
+			
+			var actualCollaboratorsCount = collaboratorMgr.GetAllCollaborators(expenseStory1.ExpenseStoryId).Count();
+
+			Assert.AreEqual(expectedCollaboratorsCount, actualCollaboratorsCount);
+		}
+
+		[Test]
+		public void DeleteCollaboratorTest()
+		{
+			var expenseStory1 = GetNewMockPersonalExpenseStory(user.UserId);
+			var collaborator1 = GetNewMockCollaborator(user.UserId, expenseStory1.ExpenseStoryId);
+			var collaboratorMgr = new CollaboratorManager(new CollaboratorRepository(dbFactory), unitOfWork);
+			new ExpenseStoryManager(new ExpenseStoryRepository(dbFactory), unitOfWork).AddExpenseStory(expenseStory1);
+
+			collaboratorMgr.AddCollaborator(collaborator1);
+			collaboratorMgr.DeleteCollaborator(collaborator1.CollaboratorId);
+
+			var isCollaboratorExists = dataContext.Collaborator.Any(c => c.CollaboratorId == collaborator1.CollaboratorId);
+
+			Assert.IsFalse(isCollaboratorExists);
 		}
 	}
 }
