@@ -4,7 +4,6 @@
     dashboard.getExpenseStories = function () {
         var userId = '';
         var url = dolt.getApiUrl('expenseStory');
-        alert(url);
         return $http.get(url);
     }
     return dashboard;

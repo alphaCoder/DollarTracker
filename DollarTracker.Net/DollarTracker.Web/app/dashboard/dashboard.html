@@ -3,7 +3,7 @@
     <table class="table table-striped table-bordered" data-order='[[ 1, "asc" ]]' data-page-length='3' dollar-tracker-table hide-filter="true">
         <thead>
             <tr>
-                <th class="text-center">UserStoryTitle</th>
+                <th class="text-center">ExpenseStoryId</th>
                 <th class="text-center">Start Date</th>
                 <th class="text-center">End Date</th>
                 <th class="text-center">Type</th>
@@ -11,10 +11,10 @@
         </thead>
         <tbody>
             <tr ng-repeat="story in expenseStories">
-                <td>{{story.expenseStoryId}}</td>
-                <td>{{story.startDt}}</td>
-                <td>{{story.endDt}}</td>
-                <td>{{story.expenseStoryTypeId}}</td>
+                <td class="text-center">{{story.expenseStoryId}}</td>
+                <td class="text-center">{{story.startDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
+                <td class="text-center">{{story.endDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
+                <td class="text-center">{{story.expenseStoryTypeId}}</td>
             </tr>
         </tbody>
 
