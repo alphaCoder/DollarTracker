@@ -72,7 +72,10 @@ namespace DollarTracker.Web.App_Start
 			kernel.Bind<IUserRepository>().To<UserRepository>();
 			kernel.Bind<IExpenseCategoryRepository>().To<ExpenseCategoryRepository>();
 			kernel.Bind<IExpenseCategoryManager>().To<ExpenseCategoryManager>();
+			kernel.Bind<IExpenseRepository>().To<ExpenseRepository>();
 			kernel.Bind<IExpenseManager>().To<ExpenseManager>();
+			kernel.Bind<IExpenseStoryRepository>().To<ExpenseStoryRepository>();
+			kernel.Bind<IExpenseStoryManager>().To<ExpenseStoryManager>();
         }        
     }
 }
