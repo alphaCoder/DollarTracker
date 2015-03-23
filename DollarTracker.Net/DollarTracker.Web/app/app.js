@@ -1,6 +1,7 @@
 ﻿app = angular.module('DollarTrackerApp', ['ui.router']);
 
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 
+    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     $locationProvider.html5Mode(false);
    $urlRouterProvider.otherwise("/");
@@ -9,7 +10,17 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
     $stateProvider
     .state('/', {
         url: '/',
-        templateUrl: 'app/dashboard/dashboard.html?random='+RANDOM
+        templateUrl: 'app/dashboard/dashboard.html?random=' + RANDOM,
+        controller: 'dashboardCtrl',
+        resolve: {
+            expenseStories: ['dashboard',  function (dashboard) {
+                return dashboard.getExpenseStories().then(function (results) {
+                    console.log("resolve");
+                    console.log(results);
+                    return results.data;
+                });
+            }]
+        }
     });
 
 }]);
