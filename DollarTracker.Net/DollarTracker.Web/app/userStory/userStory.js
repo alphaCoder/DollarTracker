@@ -1,7 +1,9 @@
-﻿app.directive('userStory', function () {
+﻿app.directive('userStoryCard', function () {
     return {
         restrict: "E",
         templateUrl: 'app/userStory/userStory.html',
-        scope: {} //todo: need to add some stuff
+        scope: {
+            userStory: "="
+        } //todo: need to add some stuff
     };
 })

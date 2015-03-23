@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\ExpenseCategoryController.cs" />
+    <Compile Include="ApiControllers\ExpenseStoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -200,7 +201,9 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\common\dataTable.js" />
+    <Content Include="app\common\dollarTracker.Service.js" />
     <Content Include="app\dashboard\dashboard.html" />
+    <Content Include="app\dashboard\dashboard.service.js" />
     <Content Include="app\userStory\userStory.html" />
     <Content Include="app\userStory\userStory.js" />
     <Content Include="Content\bootstrap-theme.css" />
