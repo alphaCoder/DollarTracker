@@ -30,7 +30,9 @@ namespace DollarTracker.Web
 			bundles.Add(new ScriptBundle("~/bundles/angular").Include(
 				"~/Scripts/angular.js",
 				"~/Scripts/angular-ui-router.js",
-				"~/Scripts/angular-mocks.js"
+				"~/Scripts/angular-mocks.js",
+				"~/Scripts/angular-ui/ui-bootstrap.js",
+				"~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"
 				));
 			bundles.Add(new ScriptBundle("~/app/all").IncludeDirectory("~/app", "*.js", true));
 

@@ -1,4 +1,4 @@
-﻿app = angular.module('DollarTrackerApp', ['ui.router']);
+﻿app = angular.module('DollarTrackerApp', ['ui.router','ui.bootstrap']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 
     function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

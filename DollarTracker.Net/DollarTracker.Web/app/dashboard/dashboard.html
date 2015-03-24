@@ -1,22 +1,30 @@
 ﻿<!--<user-story-card userStory=""></user-story-card>-->
 <div style="padding-top:2em">
-    <table class="table table-striped table-bordered" data-order='[[ 1, "asc" ]]' data-page-length='3' dollar-tracker-table hide-filter="true">
-        <thead>
-            <tr>
-                <th class="text-center">ExpenseStoryId</th>
-                <th class="text-center">Start Date</th>
-                <th class="text-center">End Date</th>
-                <th class="text-center">Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="story in expenseStories">
-                <td class="text-center">{{story.expenseStoryId}}</td>
-                <td class="text-center">{{story.startDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
-                <td class="text-center">{{story.endDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
-                <td class="text-center">{{story.expenseStoryTypeId}}</td>
-            </tr>
-        </tbody>
+    <div class="pull-right">
+        <button class="btn btn-primary" ng-click="newExpenseStory()">New Expense Story</button>
+    </div>
+    <div>
+        <table class="table table-striped table-bordered" data-order='[[ 1, "asc" ]]' data-page-length='3' dollar-tracker-table hide-filter="true">
+            <thead>
+                <tr>
+                    <th class="text-center">ExpenseStoryId</th>
+                    <th class="text-center">Start Date</th>
+                    <th class="text-center">End Date</th>
+                    <th class="text-center">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="story in expenseStories">
+                    <td class="text-center">{{story.expenseStoryId}}</td>
+                    <td class="text-center">{{story.startDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
+                    <td class="text-center">{{story.endDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
+                    <td class="text-center">{{story.expenseStoryTypeId}}</td>
+                </tr>
+            </tbody>
 
-    </table>
+        </table>
+    </div>
+
+
+    <expense-story-card expenseStory=""></expense-story-card>
 </div>

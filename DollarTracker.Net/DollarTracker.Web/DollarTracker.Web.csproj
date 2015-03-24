@@ -205,8 +205,10 @@
     <Content Include="app\dashboard\dashboard.ctrl.js" />
     <Content Include="app\dashboard\dashboard.html" />
     <Content Include="app\dashboard\dashboard.service.js" />
-    <Content Include="app\userStory\userStory.html" />
-    <Content Include="app\userStory\userStory.js" />
+    <Content Include="app\expenseStory\createExpenseStory.ctrl.js" />
+    <Content Include="app\expenseStory\createExpenseStoryModal.html" />
+    <Content Include="app\expenseStory\expenseStory.html" />
+    <Content Include="app\expenseStory\expenseStory.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -218,6 +220,10 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
