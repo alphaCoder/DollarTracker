@@ -9,6 +9,10 @@
         { name: 'Shared', id: 'shared' }
     ];
 
+    $scope.create = function () {
+        console.log('create expense story');
+        console.log($scope.expenseStory);
+    }
     $scope.cancel = function () {
        // alert('cancel')
         $modalInstance.dismiss('cancel');

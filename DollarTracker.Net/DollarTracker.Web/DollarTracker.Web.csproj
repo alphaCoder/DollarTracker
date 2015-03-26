@@ -179,6 +179,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\DollarTrackerBaseController.cs" />
     <Compile Include="ApiControllers\ExpenseCategoryController.cs" />
     <Compile Include="ApiControllers\ExpenseStoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -293,6 +294,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DollarTracker.Common\DollarTracker.Common.csproj">
+      <Project>{27dc9fc3-3f94-40c1-89f4-f9afebf178d8}</Project>
+      <Name>DollarTracker.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DollarTracker.Core\DollarTracker.Core.csproj">
       <Project>{0221907e-897b-49b4-8afb-188a34effe46}</Project>
       <Name>DollarTracker.Core</Name>

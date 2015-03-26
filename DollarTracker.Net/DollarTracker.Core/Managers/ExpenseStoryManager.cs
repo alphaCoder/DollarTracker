@@ -30,7 +30,6 @@ namespace DollarTracker.Core.Managers
         }
 		public void AddExpenseStory(ExpenseStory story)
 		{
-			
 			if (!expenseStoryRepository.Any(x=>x.ExpenseStoryId == story.ExpenseStoryId))
 			{
 				expenseStoryRepository.Add(story);
