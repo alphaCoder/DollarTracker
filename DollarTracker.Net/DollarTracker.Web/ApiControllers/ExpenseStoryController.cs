@@ -48,6 +48,8 @@ namespace DollarTracker.Web.ApiControllers
 				story.ExpenseStoryId = UniqueKeyGenerator.DatePrefixShortKey();
 				story.CreatedBy = userId;
 				expenseStoryManager.AddExpenseStory(story); //todo: need to do validations--some design pattern
+				var stories = expenseStoryManager.GetAllExpenseStories(userId);
+				response.Data = stories.FirstOrDefault(); //todo: should be replaced with get expense story
 			}
 			catch (Exception e)
 			{

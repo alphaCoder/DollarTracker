@@ -8,7 +8,7 @@
     </div>
     <div class="form-group">
         <label>Expense Story Type</label>
-        <select class="form-control" ng-model="expenseStory.expenseStoryTypeId" ng-options=" storyType.name for storyType in storyTypes">
+        <select class="form-control" ng-model="selectedStoryType" ng-options="storyType.name for storyType in storyTypes">
             <option value="">--choose expense story type--</option>
         </select>
     </div>

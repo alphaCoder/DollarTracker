@@ -17,7 +17,7 @@ app.factory("dashboardInitialData", ['$q', 'dashboard', function ($q, dashboard)
         console.log('---results--');
         console.log(results);
         return {
-            expenseStories: results.data
+            expenseStories: results.data.data
         };
     });
 }]);

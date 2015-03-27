@@ -32,6 +32,7 @@ namespace DollarTracker.Core.Infrastructure
 		public virtual void Add(T entity)
 		{
 			dbset.Add(entity);
+			//dataContext.Entry(entity).State = EntityState.Added;
 		}
 		public virtual void Update(T entity)
 		{
@@ -41,12 +42,13 @@ namespace DollarTracker.Core.Infrastructure
 		public virtual void Delete(T entity)
 		{
 			dbset.Remove(entity);
+			//dataContext.Entry(entity).State = EntityState.Deleted;
 		}
 		public virtual void Delete(Expression<Func<T, bool>> where)
 		{
 			IEnumerable<T> objects = dbset.Where<T>(where).AsEnumerable();
 			foreach (T obj in objects)
-				dbset.Remove(obj);
+			Delete(obj);
 		}
 		public virtual T GetById(Guid id)
 		{

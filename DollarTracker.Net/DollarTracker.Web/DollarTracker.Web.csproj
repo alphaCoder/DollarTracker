@@ -208,8 +208,9 @@
     <Content Include="app\dashboard\dashboard.service.js" />
     <Content Include="app\expenseStory\createExpenseStory.ctrl.js" />
     <Content Include="app\expenseStory\createExpenseStoryModal.html" />
-    <Content Include="app\expenseStory\expenseStory.html" />
-    <Content Include="app\expenseStory\expenseStory.js" />
+    <Content Include="app\expenseStory\expenseStoryCard.html" />
+    <Content Include="app\expenseStory\expenseStory.Directives.js" />
+    <Content Include="app\expenseStory\expenseStory.Service.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

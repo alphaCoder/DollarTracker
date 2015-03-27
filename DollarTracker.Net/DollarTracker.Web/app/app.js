@@ -17,7 +17,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
                 return dashboard.getExpenseStories().then(function (results) {
                     console.log("resolve");
                     console.log(results);
-                    return results.data;
+                    return results.data.data;
                 });
             }]
         }
