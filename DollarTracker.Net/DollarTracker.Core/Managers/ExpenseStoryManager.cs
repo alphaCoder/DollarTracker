@@ -32,6 +32,7 @@ namespace DollarTracker.Core.Managers
 		{
 			if (!expenseStoryRepository.Any(x=>x.ExpenseStoryId == story.ExpenseStoryId))
 			{
+				story.CreatedUtcDt = DateTime.UtcNow;
 				expenseStoryRepository.Add(story);
 				SaveExpenseStory();
 			}

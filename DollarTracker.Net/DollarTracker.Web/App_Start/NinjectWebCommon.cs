@@ -67,15 +67,15 @@ namespace DollarTracker.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
 			kernel.Load(Assembly.GetExecutingAssembly());
-			kernel.Bind<IDbFactory>().To<DbFactory>();
-			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-			kernel.Bind<IUserRepository>().To<UserRepository>();
-			kernel.Bind<IExpenseCategoryRepository>().To<ExpenseCategoryRepository>();
-			kernel.Bind<IExpenseCategoryManager>().To<ExpenseCategoryManager>();
-			kernel.Bind<IExpenseRepository>().To<ExpenseRepository>();
-			kernel.Bind<IExpenseManager>().To<ExpenseManager>();
-			kernel.Bind<IExpenseStoryRepository>().To<ExpenseStoryRepository>();
-			kernel.Bind<IExpenseStoryManager>().To<ExpenseStoryManager>();
+			kernel.Bind<IDbFactory>().To<DbFactory>().InRequestScope();
+			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+			kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
+			kernel.Bind<IExpenseCategoryRepository>().To<ExpenseCategoryRepository>().InRequestScope();
+			kernel.Bind<IExpenseCategoryManager>().To<ExpenseCategoryManager>().InRequestScope();
+			kernel.Bind<IExpenseRepository>().To<ExpenseRepository>().InRequestScope();
+			kernel.Bind<IExpenseManager>().To<ExpenseManager>().InRequestScope();
+			kernel.Bind<IExpenseStoryRepository>().To<ExpenseStoryRepository>().InRequestScope();
+			kernel.Bind<IExpenseStoryManager>().To<ExpenseStoryManager>().InRequestScope();
         }        
     }
 }
