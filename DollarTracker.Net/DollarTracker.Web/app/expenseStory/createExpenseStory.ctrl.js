@@ -1,8 +1,9 @@
 ﻿app.controller('createExpenseStoryCtrl', ['$modalInstance', '$scope', 'expenseStory',
     function ($modalInstance, $scope, expenseStory) {
-
+    
+        var newStories = [];
     $scope.ok = function () {
-        $modalInstance.close();
+        $modalInstance.close(newStories);
     };
 
     $scope.storyTypes = [
@@ -20,6 +21,8 @@
         expenseStory.Add($scope.expenseStory).then(function (result) {
             console.log('add expenseStory success');
             console.log(result.data);
+            newStories.push(result.data);
+            $scope.ok();
         }, function (reason) {
             console.log('error create fn in createExpenseStoryCtrl');
             console.log(reason);

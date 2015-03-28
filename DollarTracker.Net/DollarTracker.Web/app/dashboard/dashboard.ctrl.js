@@ -2,16 +2,20 @@
     function ($http, $dashboard, $scope, expenseStories, $modal) {
 
     $scope.expenseStories = expenseStories;
-    console.log("--1--");
-    console.log(expenseStories);
 
     $scope.newExpenseStory = function () {
 
-        $modal.open({
+      var modalInstance =  $modal.open({
             templateUrl: 'app/expenseStory/createExpenseStoryModal.html',
             controller: 'createExpenseStoryCtrl',
             size: 'md'
-        });
-        console.log('new expense story')
+      });
+
+      modalInstance.result.then(function (stories) {
+          if (!$scope.expenseStories) stories = $scope.expenseStories;
+          $.each(stories, function (i, v) {
+              $scope.expenseStories.push(v);
+          });
+      });
     }
 }]);
