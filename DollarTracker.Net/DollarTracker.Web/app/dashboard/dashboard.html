@@ -15,7 +15,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="story in expenseStories">
-                    <td class="text-center">{{story.expenseStoryId}}</td>
+                    <td class="text-center"><a ui-sref="expenseStory({'id': story.expenseStoryId})"> {{story.expenseStoryId}}</a></td>
                     <td class="text-center">{{story.startDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
                     <td class="text-center">{{story.endDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
                     <td class="text-center">{{story.expenseStoryTypeId}}</td>
@@ -24,7 +24,4 @@
 
         </table>
     </div>
-
-
-    <expense-story-card expenseStory=""></expense-story-card>
 </div>

@@ -11,11 +11,9 @@
             size: 'md'
       });
 
-      modalInstance.result.then(function (stories) {
-          if (!$scope.expenseStories) stories = $scope.expenseStories;
-          $.each(stories, function (i, v) {
-              $scope.expenseStories.push(v);
-          });
+      modalInstance.result.then(function (story) {
+          $scope.expenseStories.push(story);
+          console.log('total expense stories:' + $scope.expenseStories.length);
       });
     }
 }]);

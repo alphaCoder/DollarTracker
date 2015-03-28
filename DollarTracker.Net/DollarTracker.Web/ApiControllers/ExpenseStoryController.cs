@@ -47,9 +47,9 @@ namespace DollarTracker.Web.ApiControllers
 				Guid userId = Guid.Parse("DB6B3AA4-8981-45D1-8E67-11B94FF0DF85");  //todo: will get from the user session
 				story.ExpenseStoryId = UniqueKeyGenerator.DatePrefixShortKey();
 				story.CreatedBy = userId;
+				story.CreatedUtcDt = DateTime.UtcNow;
 				expenseStoryManager.AddExpenseStory(story); //todo: need to do validations--some design pattern
-				var stories = expenseStoryManager.GetAllExpenseStories(userId);
-				response.Data = stories.FirstOrDefault(); //todo: should be replaced with get expense story
+				response.Data = story;
 			}
 			catch (Exception e)
 			{

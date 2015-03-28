@@ -181,6 +181,7 @@
   <ItemGroup>
     <Compile Include="ApiControllers\DollarTrackerBaseController.cs" />
     <Compile Include="ApiControllers\ExpenseCategoryController.cs" />
+    <Compile Include="ApiControllers\ExpenseController.cs" />
     <Compile Include="ApiControllers\ExpenseStoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -208,6 +209,8 @@
     <Content Include="app\dashboard\dashboard.service.js" />
     <Content Include="app\expenseStory\createExpenseStory.ctrl.js" />
     <Content Include="app\expenseStory\createExpenseStoryModal.html" />
+    <Content Include="app\expenseStory\expenseStory.dashboard.ctrl.js" />
+    <Content Include="app\expenseStory\expenseStory.dashboard.html" />
     <Content Include="app\expenseStory\expenseStoryCard.html" />
     <Content Include="app\expenseStory\expenseStory.Directives.js" />
     <Content Include="app\expenseStory\expenseStory.Service.js" />
