@@ -1,5 +1,12 @@
-﻿app.controller('expenseStoryDashboardCtrl', ['$http', function($http){
+﻿app.controller('expenseStoryDashboardCtrl', ['$http', '$modal', '$scope', function($http, $modal, $scope){
 
+    $scope.newExpense = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'app/expense/newExpenseModal.html',
+            controller: 'newExpenseCtrl',
+            size: 'sm'
+        });
+    }
 }]);
 
 app.config(['$stateProvider', function ($stateProvider) {
