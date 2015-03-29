@@ -211,8 +211,9 @@
     <Content Include="app\expenseStory\createExpenseStoryModal.html" />
     <Content Include="app\expenseStory\expenseStory.dashboard.ctrl.js" />
     <Content Include="app\expenseStory\expenseStory.dashboard.html" />
-    <Content Include="app\expenseStory\expenseStoryCard.html" />
-    <Content Include="app\expenseStory\expenseStory.Directives.js" />
+    <Content Include="app\expense\expense.Service.js" />
+    <Content Include="app\expense\expenseCard.html" />
+    <Content Include="app\expense\expenseCard.Directive.js" />
     <Content Include="app\expenseStory\expenseStory.Service.js" />
     <Content Include="app\expense\newExpense.ctrl.js" />
     <Content Include="app\expense\newExpenseModal.html" />
@@ -295,6 +296,7 @@
   <ItemGroup>
     <Folder Include="app\directives\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

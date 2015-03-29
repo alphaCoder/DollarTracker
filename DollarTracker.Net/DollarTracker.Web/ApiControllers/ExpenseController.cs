@@ -18,14 +18,14 @@ namespace DollarTracker.Web.ApiControllers
 		{
 			this.expenseManager = expenseManager;
 		}
-		[Route("api/getallexpenses")]
-		public DollarTrackerResponse<IEnumerable<Expense>> Get(string expenseStoryId)
+		//[Route("api/getallexpenses")]
+		public DollarTrackerResponse<IEnumerable<Expense>> Get(string id)
 		{
 			var response = new DollarTrackerResponse<IEnumerable<Expense>>();
 			try
 			{
 				Guid userId = Guid.Parse("DB6B3AA4-8981-45D1-8E67-11B94FF0DF85");  //todo: will get from the user session
-				var expenses = expenseManager.GetAllExpenses(expenseStoryId);
+				var expenses = expenseManager.GetAllExpenses(id);
 				response.Data = expenses;
 				response.Success = true;
 			}
@@ -49,6 +49,7 @@ namespace DollarTracker.Web.ApiControllers
 				expense.CreatedUtcDt = DateTime.UtcNow;
 				expense.CollaboratorId = userId; //todo: this need to be replaced by calling a method.
 				expenseManager.AddExpense(expense); //todo: need to validate the expense content
+				response.Data = expense;
 			}
 			catch (Exception e)
 			{

@@ -1,29 +1,36 @@
-﻿app.controller('newExpenseCtrl', ['$modalInstance', '$scope', 
-    function ($modalInstance, $scope) {
-
+﻿app.controller('newExpenseCtrl', ['$modalInstance', '$scope', 'expenseService', 'expenseStoryId',
+    function ($modalInstance, $scope, expenseService, expenseStoryId) {
+        $scope.expense = {};
+        $scope.expense.title = 'Walmart';
+        $scope.expense.amount = 100;
+        $scope.expense.comments = 'Test 123';
+        $scope.expense.expenseStoryId = expenseStoryId;
+        
         $scope.ok = function (expense) {
             $modalInstance.close(expense);
         };
 
         $scope.expenseCategories = [
-            { name: 'Meals', id: 'Meals' },
-            { name: 'Taxi', id: 'Taxi' }
+            { name: 'Gas', id: 'Gas' },
+            { name: 'Groceries', id: 'Groceries' }
         ];
 
-        $scope.expense = {};
         $scope.selectedExpenseCategory = $scope.expenseCategories[0];
+       
         $scope.create = function () {
-            //expenseStory.Add($scope.expenseStory).then(function (result) {
-            //    console.log('add expenseStory success');
-            //    console.log(result.data);
-            //    $scope.ok(result.data);
-            //}, function (reason) {
-            //    console.log('error create fn in createExpenseStoryCtrl');
-            //    console.log(reason);
-            //});
+            
+            $scope.expense.expenseCategoryId = $scope.selectedExpenseCategory.id;
+            console.log('create expense:');
+            console.log($scope.expense);
+            expenseService.addExpense($scope.expense).then(function (result) {
+                console.log(result.data);
+                $scope.ok(result.data);
+            }, function (reason) {
+                console.log('error create fn in newExpenseCtrl');
+                console.log(reason);
+            });
         }
         $scope.cancel = function () {
-            // alert('cancel')
             $modalInstance.dismiss('cancel');
         };
     }]);
