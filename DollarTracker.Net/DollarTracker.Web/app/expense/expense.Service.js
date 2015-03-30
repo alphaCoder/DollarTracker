@@ -6,5 +6,9 @@
         return $http.post(url, expense);
     }
 
+    expenseService.deleteExpense = function (expenseId) {
+        var url = dolt.getApiUrl('deleteExpense') + '/' + expenseId;
+        return $http.delete(url);
+    }
     return expenseService;
 }]);

@@ -20,11 +20,8 @@
         $scope.create = function () {
             
             $scope.expense.expenseCategoryId = $scope.selectedExpenseCategory.id;
-            console.log('create expense:');
-            console.log($scope.expense);
             expenseService.addExpense($scope.expense).then(function (result) {
-                console.log(result.data);
-                $scope.ok(result.data);
+                $scope.ok(result.data.data);
             }, function (reason) {
                 console.log('error create fn in newExpenseCtrl');
                 console.log(reason);

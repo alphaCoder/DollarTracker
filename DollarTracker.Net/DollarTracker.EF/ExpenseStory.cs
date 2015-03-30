@@ -28,6 +28,7 @@ namespace DollarTracker.EF
         public System.DateTime StartDt { get; set; }
         public System.DateTime EndDt { get; set; }
         public System.DateTime CreatedUtcDt { get; set; }
+        public string Title { get; set; }
     
         public virtual ICollection<Collaborator> Collaborator { get; set; }
         public virtual ICollection<Expense> Expense { get; set; }

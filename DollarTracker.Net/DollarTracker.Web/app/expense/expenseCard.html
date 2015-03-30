@@ -2,15 +2,22 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">
-                {{expense.comments}}
+                {{expense.title}}
                 <span class="pull-right">
                     <i class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="edit()"></i>
                     <i class="glyphicon glyphicon-trash" style="cursor:pointer"></i>
                 </span>
             </h3>
         </div>
-        <div class="panel-body">
-            <p>Expense Category: "Gas"</p>
-        </div>
+      
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item"><span class="text-left text-primary">Expense Category:</span> <span class="text-right text-success pull-right" ng-bind="expense.expenseCategoryId"></span></li>
+                <li class="list-group-item"><span class="text-left text-primary">Amount:</span> <span class="text-right text-success pull-right" ng-bind="expense.amount"></span></li>
+                <li class="list-group-item"><span class="text-left text-primary">Created Dt:</span> <span class="text-right text-success pull-right">{{ expense.createdUtcDt|date:"MM/dd/yyyy 'at' h:mma"}}</span></li>
+                <li class="list-group-item"><span class="text-left text-primary">Comments:</span> <span class="text-right text-success pull-right" ng-bind="expense.comments"></span></li>
+                <li class="list-group-item"><span class="text-left text-primary">Receipt:</span> <span class="text-right text-success pull-right"><a href="">Receipt 1.jpg</a></span></li>
+            </ul>
+       
     </div>
 </div>

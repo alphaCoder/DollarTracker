@@ -23,6 +23,7 @@ namespace DollarTracker.EF
         public string Comments { get; set; }
         public string ExpenseCategoryId { get; set; }
         public string CustomExpenseCategoryId { get; set; }
+        public string Title { get; set; }
     
         public virtual Collaborator Collaborator { get; set; }
         public virtual CustomExpenseCategory CustomExpenseCategory { get; set; }

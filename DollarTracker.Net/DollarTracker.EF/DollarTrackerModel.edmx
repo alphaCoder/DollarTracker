@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DollarTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DollarTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Collaborator">
           <Key>
             <PropertyRef Name="CollaboratorId" />
@@ -38,6 +38,7 @@
           <Property Name="Comments" Type="varchar" MaxLength="140" />
           <Property Name="ExpenseCategoryId" Type="varchar" MaxLength="20" />
           <Property Name="CustomExpenseCategoryId" Type="varchar" MaxLength="20" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ExpenseCategory">
           <Key>
@@ -58,6 +59,7 @@
           <Property Name="StartDt" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="EndDt" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedUtcDt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ExpenseStoryType">
           <Key>
@@ -199,8 +201,7 @@
             <End Role="ExpenseStory" EntitySet="ExpenseStory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DollarTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -245,6 +246,7 @@
           <NavigationProperty Name="CustomExpenseCategory" Relationship="Self.FK_Expenses_ToCustomExpenseCategories" FromRole="Expense" ToRole="CustomExpenseCategory" />
           <NavigationProperty Name="ExpenseCategory" Relationship="Self.FK_Expenses_ToExpenseCategories" FromRole="Expense" ToRole="ExpenseCategory" />
           <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_Expenses_ToExpenseStories" FromRole="Expense" ToRole="ExpenseStory" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ExpenseCategory">
           <Key>
@@ -269,6 +271,7 @@
           <NavigationProperty Name="Collaborator" Relationship="Self.FK_Collaborator_ToExpenseStory" FromRole="ExpenseStory" ToRole="Collaborator" />
           <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToExpenseStories" FromRole="ExpenseStory" ToRole="Expense" />
           <NavigationProperty Name="ExpenseStoryType" Relationship="Self.FK_ExpenseStories_ToExpenseStoryTypes" FromRole="ExpenseStory" ToRole="ExpenseStoryType" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ExpenseStoryType">
           <Key>
@@ -443,6 +446,7 @@
           <EntitySetMapping Name="Expense">
             <EntityTypeMapping TypeName="DollarTrackerModel.Expense">
               <MappingFragment StoreEntitySet="Expense">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
                 <ScalarProperty Name="ExpenseStoryId" ColumnName="ExpenseStoryId" />
                 <ScalarProperty Name="CollaboratorId" ColumnName="CollaboratorId" />
@@ -466,6 +470,7 @@
           <EntitySetMapping Name="ExpenseStory">
             <EntityTypeMapping TypeName="DollarTrackerModel.ExpenseStory">
               <MappingFragment StoreEntitySet="ExpenseStory">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ExpenseStoryId" ColumnName="ExpenseStoryId" />
                 <ScalarProperty Name="ExpenseStoryTypeId" ColumnName="ExpenseStoryTypeId" />
                 <ScalarProperty Name="Budget" ColumnName="Budget" />
