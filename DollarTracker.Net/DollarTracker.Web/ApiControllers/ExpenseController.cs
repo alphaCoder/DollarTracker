@@ -60,6 +60,24 @@ namespace DollarTracker.Web.ApiControllers
 			return response;
 		}
 
+		[HttpDelete]
+		public DollarTrackerResponse<Expense> Delete(string id)
+		{
+			var response = new DollarTrackerResponse<Expense>();
+			try
+			{
+				expenseManager.DeleteExpense(id);
+				response.Success = true;
+			}
+			catch (Exception e)
+			{
+				//todo: log the server error
+				response.Success = false;
+				response.Message = "Unknown Server error";
+			}
+			return response;
+		}
+
 		//todo: delete, update an expense
 	}
 }

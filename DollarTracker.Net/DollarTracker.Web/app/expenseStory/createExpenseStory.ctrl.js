@@ -24,7 +24,6 @@
         });
     }
     $scope.cancel = function () {
-       // alert('cancel')
         $modalInstance.dismiss('cancel');
     };
 }]);

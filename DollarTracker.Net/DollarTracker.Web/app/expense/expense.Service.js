@@ -7,7 +7,7 @@
     }
 
     expenseService.deleteExpense = function (expenseId) {
-        var url = dolt.getApiUrl('deleteExpense') + '/' + expenseId;
+        var url = dolt.getApiUrl('expense') + '/' + expenseId;
         return $http.delete(url);
     }
     return expenseService;

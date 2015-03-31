@@ -4,6 +4,6 @@
     </div>
 
     <div ng-repeat="expense in expenses">
-        <expense-card expense="expense"></expense-card>
+        <expense-card expense="expense" delete-expense="deleteExpense(expense)"></expense-card>
     </div>
 </div>

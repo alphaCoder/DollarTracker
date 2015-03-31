@@ -1,7 +1,24 @@
-﻿app.controller('expenseStoryDashboardCtrl', ['$http', '$modal', '$scope', 'expenses', '$stateParams',
-    function ($http, $modal, $scope, expenses, $stateParams) {
+﻿app.controller('expenseStoryDashboardCtrl', ['$http', '$modal', '$scope', 'expenses', '$stateParams', 'expenseService',
+    function ($http, $modal, $scope, expenses, $stateParams, expenseService) {
 
     $scope.expenses = expenses;
+
+    //$scope.deleteExp = function () {
+    //    alert('delete:');
+    //}
+
+    $scope.deleteExpense = function (expense) {
+        
+      expenseService.deleteExpense(expense.expenseId)
+        .then(function (result) {
+            var idx = $scope.expenses.indexOf(expense);
+            $scope.expenses.splice(idx, 1);
+            console.log('deleted successfully');
+        }, function (reason) {
+            console.log('error in expense card directive');
+            console.log(reason);
+        });
+    }
     $scope.newExpense = function () {
         var modalInstance = $modal.open({
             templateUrl: 'app/expense/newExpenseModal.html',

@@ -11,6 +11,7 @@
         console.log(url);
         return $http.get(url);
     }
+
     return expenseStory;
 
 }]);
