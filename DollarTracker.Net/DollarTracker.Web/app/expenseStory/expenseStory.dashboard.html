@@ -1,8 +1,7 @@
-﻿<div style="padding-top:2em">
-    <div class="pull-right">
-        <button class="btn btn-primary" ng-click="newExpense()">New Expense</button>
-    </div>
-
+﻿<div class="pull-right">
+    <button class="btn btn-primary" ng-click="newExpense()">New Expense</button>
+</div>
+<div style="padding-top:3em">
     <div ng-repeat="expense in expenses">
         <expense-card expense="expense" delete-expense="deleteExpense(expense)"></expense-card>
     </div>
