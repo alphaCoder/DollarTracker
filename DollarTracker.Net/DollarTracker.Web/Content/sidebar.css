@@ -110,7 +110,7 @@ nav.sidebar, .main {
 
         /* Move nav to full on mouse over*/
         nav.sidebar:hover {
-            margin-left: 0px;
+            margin-left: -160px;
         }
     /*for hiden things when navbar hidden*/
     .forAnimate {
@@ -123,7 +123,7 @@ nav.sidebar, .main {
 @media (min-width: 1330px) {
 
     /*Allow main to be next to Nav*/
-    .main {
+   .main {
         width: calc(100% - 200px); /*keeps 100% minus nav size*/
         margin-left: 200px;
     }
