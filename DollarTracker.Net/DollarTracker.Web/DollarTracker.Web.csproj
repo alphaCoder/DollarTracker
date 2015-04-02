@@ -217,6 +217,7 @@
     <Content Include="app\expenseStory\expenseStory.Service.js" />
     <Content Include="app\expense\newExpense.ctrl.js" />
     <Content Include="app\expense\newExpenseModal.html" />
+    <Content Include="Content\bootstrap-superhero.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -295,6 +296,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\directives\" />
+    <Folder Include="app\lib\" />
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
