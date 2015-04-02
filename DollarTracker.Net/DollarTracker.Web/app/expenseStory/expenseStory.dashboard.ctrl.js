@@ -33,6 +33,11 @@
             $scope.expenses.push(expense);
         })
     }
+    
+    $scope.addCollaborator = function () {
+        alert('add collaborator');
+    }
+
 }]);
 
 app.config(['$stateProvider', function ($stateProvider) {
