@@ -1,9 +1,21 @@
-﻿<div class="pull-right">
-    <button class="btn btn-primary" ng-click="newExpense()">New Expense</button>
-    <button class="btn btn-primary" ng-click="addCollaborator()">Add Collaborator</button>
-</div>
-<div style="padding-top:3em">
-    <div ng-repeat="expense in expenses">
-        <expense-card expense="expense" delete-expense="deleteExpense(expense)"></expense-card>
+﻿<div class="row" style="padding-top:4px">
+    <div class="pull-right">
+        <button class="btn btn-primary" ng-click="newExpense()">New Expense</button>
+        <button class="btn btn-primary" ng-click="addCollaborator()"><i class="glyphicon glyphicon-plus"></i>Add Collaborator</button>
+    </div>
+    <div class="">
+        <div class="progress" style="width:50%">
+            <div class="progress-bar progress-bar-success" style="width: 50%">
+                <span class="sr-only">35% Complete (success)</span>
+            </div>
+            <div class="progress-bar progress-bar-warning" style="width: 50%">
+                <span class="sr-only">20% Complete (warning)</span>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top:4em">
+        <div ng-repeat="expense in expenses">
+            <expense-card expense="expense" delete-expense="deleteExpense(expense)"></expense-card>
+        </div>
     </div>
 </div>
