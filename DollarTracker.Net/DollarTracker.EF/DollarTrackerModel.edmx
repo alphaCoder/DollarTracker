@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DollarTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AppSetting">
+          <Key>
+            <PropertyRef Name="AppSettingId" />
+          </Key>
+          <Property Name="AppSettingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Collaborator">
           <Key>
             <PropertyRef Name="CollaboratorId" />
@@ -165,6 +173,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DollarTrackerModelStoreContainer">
+          <EntitySet Name="AppSetting" EntityType="Self.AppSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Collaborator" EntityType="Self.Collaborator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomExpenseCategory" EntityType="Self.CustomExpenseCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
@@ -414,7 +423,16 @@
             <End Role="ExpenseStoryType" EntitySet="ExpenseStoryType" />
             <End Role="ExpenseStory" EntitySet="ExpenseStory" />
           </AssociationSet>
+          <EntitySet Name="AppSetting" EntityType="DollarTrackerModel.AppSetting" />
         </EntityContainer>
+        <EntityType Name="AppSetting">
+          <Key>
+            <PropertyRef Name="AppSettingId" />
+          </Key>
+          <Property Name="AppSettingId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -500,6 +518,15 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="CreatedDtUtc" ColumnName="CreatedDtUtc" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppSetting">
+            <EntityTypeMapping TypeName="DollarTrackerModel.AppSetting">
+              <MappingFragment StoreEntitySet="AppSetting">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AppSettingId" ColumnName="AppSettingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

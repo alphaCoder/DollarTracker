@@ -39,5 +39,6 @@ namespace DollarTracker.EF
         public virtual DbSet<ExpenseStory> ExpenseStory { get; set; }
         public virtual DbSet<ExpenseStoryType> ExpenseStoryType { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<AppSetting> AppSetting { get; set; }
     }
 }

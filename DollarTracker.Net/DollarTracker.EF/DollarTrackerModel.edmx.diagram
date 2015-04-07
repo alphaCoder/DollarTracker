@@ -19,6 +19,7 @@
         <AssociationConnector Association="DollarTrackerModel.FK_Expenses_ToExpenseCategories" ManuallyRouted="false" />
         <AssociationConnector Association="DollarTrackerModel.FK_Expenses_ToExpenseStories" ManuallyRouted="false" />
         <AssociationConnector Association="DollarTrackerModel.FK_ExpenseStories_ToExpenseStoryTypes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DollarTrackerModel.AppSetting" Width="1.5" PointX="7.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

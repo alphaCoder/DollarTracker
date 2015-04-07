@@ -57,6 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSetting.cs">
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Collaborator.cs">
       <DependentUpon>DollarTrackerModel.tt</DependentUpon>
     </Compile>
