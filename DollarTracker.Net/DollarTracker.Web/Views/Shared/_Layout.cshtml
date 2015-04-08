@@ -19,42 +19,7 @@
     <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Dollar Tracker</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a ui-sref="login">Login</a></li>
-                    <li><a ui-sref="register">Register</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" id="pin"><i class="glyphicon glyphicon-menu-hamburger"></i></a></li>
-                </ul>
-                <div class="col-sm-3 col-md-3 pull-right">
-                    <form class="navbar-form" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="q">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="navbar navbar-default navbar-fixed-top" ng-include="'app/common/preLoginHeaders.html'"></div>
 
     <!-- Side bar-->
     <nav class="navbar navbar-inverse sidebar" role="navigation">
