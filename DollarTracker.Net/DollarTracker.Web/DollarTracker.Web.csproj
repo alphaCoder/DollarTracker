@@ -227,6 +227,9 @@
     <Content Include="app\expenseStory\expenseStory.Service.js" />
     <Content Include="app\expense\newExpense.ctrl.js" />
     <Content Include="app\expense\newExpenseModal.html" />
+    <Content Include="app\home\home.html" />
+    <Content Include="app\user\login.html" />
+    <Content Include="app\user\register.html" />
     <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-simplex.css" />
     <Content Include="Content\bootstrap-superhero.css" />
