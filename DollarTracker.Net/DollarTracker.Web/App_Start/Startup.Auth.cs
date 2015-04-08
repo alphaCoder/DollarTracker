@@ -6,12 +6,14 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using DollarTracker.Web.Models;
+using Ninject;
 
 namespace DollarTracker.Web
 {
 	public partial class Startup
 	{
 		// For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
+
 		public void ConfigureAuth(IAppBuilder app)
 		{
 			// Configure the db context, user manager and signin manager to use a single instance per request
@@ -58,11 +60,15 @@ namespace DollarTracker.Web
 			//   appId: "",
 			//   appSecret: "");
 
-			//app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-			//{
-			//	ClientId = "",
-			//	ClientSecret = ""
-			//});
+			var mgr = DollarTracker.Web.App_Start.NinjectWebCommon.Kernel.Get<DollarTracker.Core.Managers.IAppSettingManager>();
+			var clientId = mgr.Get("Google-ClientId");
+			var clientSecret = mgr.Get("Google-ClientSecret");
+
+			app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+			{
+				ClientId = clientId,
+				ClientSecret = clientSecret
+			});
 		}
 	}
 }

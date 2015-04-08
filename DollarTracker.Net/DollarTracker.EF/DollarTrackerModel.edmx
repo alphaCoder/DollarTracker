@@ -12,6 +12,7 @@
           <Property Name="AppSettingId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Value" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Collaborator">
           <Key>
@@ -432,6 +433,7 @@
           <Property Name="AppSettingId" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -524,6 +526,7 @@
           <EntitySetMapping Name="AppSetting">
             <EntityTypeMapping TypeName="DollarTrackerModel.AppSetting">
               <MappingFragment StoreEntitySet="AppSetting">
+                <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="AppSettingId" ColumnName="AppSettingId" />

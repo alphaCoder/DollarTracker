@@ -37,6 +37,11 @@ namespace DollarTracker.Web.App_Start
         {
             bootstrapper.ShutDown();
         }
+
+		/// <summary>
+		/// Creates an instance of IKernal
+		/// </summary>
+		public static IKernel Kernel { get; private set; }
         
         /// <summary>
         /// Creates the kernel that will manage your application.
@@ -44,18 +49,18 @@ namespace DollarTracker.Web.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            Kernel = new StandardKernel();
             try
             {
-                kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
-                kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+                Kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+                Kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
-                RegisterServices(kernel);
-                return kernel;
+                RegisterServices(Kernel);
+                return Kernel;
             }
             catch
             {
-                kernel.Dispose();
+                Kernel.Dispose();
                 throw;
             }
         }
@@ -76,6 +81,7 @@ namespace DollarTracker.Web.App_Start
 			kernel.Bind<IExpenseManager>().To<ExpenseManager>().InRequestScope();
 			kernel.Bind<IExpenseStoryRepository>().To<ExpenseStoryRepository>().InRequestScope();
 			kernel.Bind<IExpenseStoryManager>().To<ExpenseStoryManager>().InRequestScope();
+			kernel.Bind<IAppSettingManager>().To<AppSettingManager>().InSingletonScope();
         }        
     }
 }

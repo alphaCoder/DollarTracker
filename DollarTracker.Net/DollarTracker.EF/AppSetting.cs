@@ -17,5 +17,6 @@ namespace DollarTracker.EF
         public System.Guid AppSettingId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Value { get; set; }
     }
 }

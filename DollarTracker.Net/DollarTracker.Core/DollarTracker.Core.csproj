@@ -61,6 +61,7 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Managers\AppSettingManager.cs" />
     <Compile Include="Managers\CollaboratorManager.cs" />
     <Compile Include="Managers\ExpenseCategoryManager.cs" />
     <Compile Include="Managers\ExpenseManager.cs" />
