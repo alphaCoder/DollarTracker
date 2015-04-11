@@ -1,7 +1,11 @@
-﻿<!--<user-story-card userStory=""></user-story-card>-->
-<div class="pull-right">
-    <button class="btn btn-primary" ng-click="newExpenseStory()"><i class="glyphicon glyphicon-plus"></i>New Expense Story</button>
+﻿
+<div class="container-fluid pull-right">
+    <ul class="nav nav-pills">
+        <li>Availabe Stories ({{expenseStories.length}})</li>
+        <li style="padding-left:10px"><button class="btn btn-primary" ng-click="newExpenseStory()"><i class="glyphicon glyphicon-plus"></i>New Expense Story</button></li>
+    </ul>
 </div>
+
 <div style="padding-top:3em" class="col-md-8">
     <div>
         <table class="table table-striped table-hover">

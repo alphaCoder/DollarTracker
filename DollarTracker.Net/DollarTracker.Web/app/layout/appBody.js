@@ -9,5 +9,5 @@
 .controller('appBodyCtrl', ['$scope', 'authTokenService', function ($scope, authTokenService) {
     $scope.user = {};
     $scope.user.isLoggedIn = authTokenService.isAuthenticated();
-    $scope.user.isLoggedIn = true; // time being for debugging
+   // $scope.user.isLoggedIn = true; // time being for debugging
 }])
