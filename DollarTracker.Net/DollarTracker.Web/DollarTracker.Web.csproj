@@ -211,7 +211,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.config.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\common\auth.service.js" />
+    <Content Include="app\common\authInterceptor.js" />
     <Content Include="app\common\authToken.service.js" />
     <Content Include="app\common\dataTable.js" />
     <Content Include="app\common\dollarTracker.service.js" />
@@ -235,6 +238,9 @@
     <Content Include="app\expense\newExpenseModal.html" />
     <Content Include="app\home\home.html" />
     <Content Include="app\layout\sidebar.js" />
+    <Content Include="app\lib\satellizer.js" />
+    <Content Include="app\lib\satellizer.min.js" />
+    <Content Include="app\user\login.controller.js" />
     <Content Include="app\user\login.html" />
     <Content Include="app\user\register.html" />
     <Content Include="Content\bootstrap-lumen.css" />
@@ -317,7 +323,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\lib\" />
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>

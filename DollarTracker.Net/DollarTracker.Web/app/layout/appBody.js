@@ -6,8 +6,8 @@
         controller: 'appBodyCtrl'
     }
 })
-.controller('appBodyCtrl', ['$scope', 'authTokenService', function ($scope, authTokenService) {
+.controller('appBodyCtrl', ['$scope', 'authToken', function ($scope, authToken) {
     $scope.user = {};
-    $scope.user.isLoggedIn = authTokenService.isAuthenticated();
+   // $scope.user.isLoggedIn = authToken.isAuthenticated();
    // $scope.user.isLoggedIn = true; // time being for debugging
 }])

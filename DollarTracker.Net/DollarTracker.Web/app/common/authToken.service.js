@@ -1,23 +1,31 @@
 ﻿'use strict';
 
-app.factory('authTokenService', function ($window) {
-
+app.factory('authToken',['$window', function ($window) {
     var storage = $window.localStorage;
     var cachedToken;
-    return {
+    var userToken = 'userToken';
+    var isAuthenticated = false;
+    var authToken = {
         setToken: function (token) {
             cachedToken = token;
-            storage.setItem('userToken', token);
+            storage.setItem(userToken, token);
+            isAuthenticated = true;
         },
         getToken: function () {
-            if (!cachedToken) {
-                cachedToken = storage.getItem('userToken');
+            if (!cachedToken)
+                cachedToken = storage.getItem(userToken);
 
-                return cachedToken;
-            }
+            return cachedToken;
         },
         isAuthenticated: function () {
-            return !!this.getToken();
+            return !!authToken.getToken();
+        },
+        removeToken: function () {
+            cachedToken = null;
+            storage.removeItem(userToken);
+            isAuthenticated = false;
         }
     }
-})
+
+    return authToken;
+}]);
