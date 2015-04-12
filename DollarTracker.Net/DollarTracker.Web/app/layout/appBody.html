@@ -1,2 +1,3 @@
-﻿
-<side-bar ng-if="user.isLoggedIn"></side-bar>
+﻿<div ng-if="isAuthenticated()">
+    <side-bar></side-bar>
+</div>

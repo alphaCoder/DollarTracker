@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.controller('loginCtrl', ['$scope','auth', '$auth', function ($scope, auth, $auth) {
+app.controller('loginCtrl', ['$scope', '$auth', function ($scope, $auth) {
     $scope.submit = function () {
         $auth.login({
             email: $scope.email,

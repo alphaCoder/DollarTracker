@@ -213,11 +213,11 @@
   <ItemGroup>
     <Content Include="app\app.config.js" />
     <Content Include="app\app.js" />
-    <Content Include="app\common\auth.service.js" />
     <Content Include="app\common\authInterceptor.js" />
-    <Content Include="app\common\authToken.service.js" />
+    <Content Include="app\common\authToken.js" />
     <Content Include="app\common\dataTable.js" />
     <Content Include="app\common\dollarTracker.service.js" />
+    <Content Include="app\common\header.controller.js" />
     <Content Include="app\common\header.html" />
     <Content Include="app\common\includeReplace.directive.js" />
     <Content Include="app\layout\appBody.html" />
@@ -242,6 +242,7 @@
     <Content Include="app\lib\satellizer.min.js" />
     <Content Include="app\user\login.controller.js" />
     <Content Include="app\user\login.html" />
+    <Content Include="app\user\logout.controller.js" />
     <Content Include="app\user\register.html" />
     <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-simplex.css" />

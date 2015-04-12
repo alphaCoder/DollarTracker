@@ -6,8 +6,11 @@
         controller: 'appBodyCtrl'
     }
 })
-.controller('appBodyCtrl', ['$scope', 'authToken', function ($scope, authToken) {
-    $scope.user = {};
-   // $scope.user.isLoggedIn = authToken.isAuthenticated();
+.controller('appBodyCtrl', ['$scope', '$auth', function ($scope, $auth) {
+   $scope.user = {};
+   //$scope.user.isLoggedIn = $auth.isAuthenticated;
+
+   $scope.isAuthenticated = $auth.isAuthenticated;
+    console.log('isLoggedIn:appbody--->', $auth.isAuthenticated());
    // $scope.user.isLoggedIn = true; // time being for debugging
 }])

@@ -9,6 +9,6 @@
         }
     }
 })
-.controller('sideBarCtrl', ['$scope', function ($scope) {
-
+.controller('sideBarCtrl', ['$scope', '$auth', function ($scope, $auth) {
+    $scope.isAuthenticated = $auth.isAuthenticated;
 }])

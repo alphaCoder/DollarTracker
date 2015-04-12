@@ -31,7 +31,7 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$
         })
         .state('logout', {
             url: '/logout',
-            controller: 'LogoutCtrl'
+            controller: 'logoutCtrl'
         });
 
         $authProvider.loginUrl = API_URL + 'auth/login';
