@@ -10,7 +10,7 @@ namespace DollarTracker.Core.Managers
 {
 	public interface IAppSettingManager
 	{
-		string Get(string key);
+		string GetByName(string key);
 		IEnumerable<AppSetting> GetAll();
 	}
 	public class AppSettingManager : IAppSettingManager
@@ -21,7 +21,7 @@ namespace DollarTracker.Core.Managers
 			this.dbFactory = dbFactory;
 		}
 
-		public string Get(string key)
+		public string GetByName(string key)
 		{
 			var setting = dbFactory.Get().AppSetting.FirstOrDefault(app => app.Name == key);
 			var settingValue = (setting != null) ? setting.Value : null;

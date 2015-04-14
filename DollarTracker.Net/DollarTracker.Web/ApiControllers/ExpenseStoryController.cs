@@ -11,11 +11,11 @@ using System.Web.Http;
 
 namespace DollarTracker.Web.ApiControllers
 {
-    public class ExpenseStoryController : ApiController
+	public class ExpenseStoryController : DollarTrackerBaseController
     {
 		private readonly IExpenseStoryManager expenseStoryManager;
 
-		public ExpenseStoryController(IExpenseStoryManager esm)
+		public ExpenseStoryController(IExpenseStoryManager esm, IAppSettingManager appSettingManager): base(appSettingManager)
 		{
 			this.expenseStoryManager = esm;
 		}

@@ -83,8 +83,8 @@
           </Key>
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="PasswordSalt" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="40" />
+          <Property Name="PasswordSalt" Type="uniqueidentifier" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDtUtc" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
@@ -297,8 +297,8 @@
           </Key>
           <Property Name="UserId" Type="Guid" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PasswordSalt" Type="Guid" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordSalt" Type="Guid" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedDtUtc" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Status" Type="Boolean" Nullable="false" />

@@ -61,8 +61,8 @@ namespace DollarTracker.Web
 			//   appSecret: "");
 
 			var mgr = DollarTracker.Web.App_Start.NinjectWebCommon.Kernel.Get<DollarTracker.Core.Managers.IAppSettingManager>();
-			var clientId = mgr.Get("Google-ClientId");
-			var clientSecret = mgr.Get("Google-ClientSecret");
+			var clientId = mgr.GetByName("Google-ClientId");
+			var clientSecret = mgr.GetByName("Google-ClientSecret");
 
 			app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
 			{

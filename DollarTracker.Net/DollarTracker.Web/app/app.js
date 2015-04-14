@@ -38,7 +38,7 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$
         $authProvider.signupUrl = API_URL + 'auth/register';
 
         $authProvider.google({
-            clientId: '',
+            clientId: '603422408309-rinan2timml0ufbbp0qi9jmnjf6n9bkl.apps.googleusercontent.com',
             url: API_URL + 'auth/google'
         })
 

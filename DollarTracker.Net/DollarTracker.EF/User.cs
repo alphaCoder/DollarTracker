@@ -22,7 +22,7 @@ namespace DollarTracker.EF
         public System.Guid UserId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public System.Guid PasswordSalt { get; set; }
+        public Nullable<System.Guid> PasswordSalt { get; set; }
         public string Email { get; set; }
         public System.DateTime CreatedDtUtc { get; set; }
         public bool Status { get; set; }
