@@ -212,6 +212,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\DTJwtApiAuthorization.cs" />
+    <Compile Include="Utils\JwtHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.config.js" />

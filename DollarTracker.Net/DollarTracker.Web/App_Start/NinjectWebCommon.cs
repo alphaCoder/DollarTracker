@@ -81,7 +81,7 @@ namespace DollarTracker.Web.App_Start
 			kernel.Bind<IExpenseManager>().To<ExpenseManager>().InRequestScope();
 			kernel.Bind<IExpenseStoryRepository>().To<ExpenseStoryRepository>().InRequestScope();
 			kernel.Bind<IExpenseStoryManager>().To<ExpenseStoryManager>().InRequestScope();
-			kernel.Bind<IAppSettingManager>().To<AppSettingManager>().InSingletonScope();
+			kernel.Bind<IAppSettingManager>().To<AppSettingManager>().InRequestScope();
         }        
     }
 }

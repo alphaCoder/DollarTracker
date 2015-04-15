@@ -2,6 +2,7 @@
 using DollarTracker.Core.Managers;
 using DollarTracker.Core.Utils;
 using DollarTracker.EF;
+using DollarTracker.Web.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Web.Http;
 
 namespace DollarTracker.Web.ApiControllers
 {
+	[DTJwtApiAuthorization]
 	public class ExpenseStoryController : DollarTrackerBaseController
     {
 		private readonly IExpenseStoryManager expenseStoryManager;
