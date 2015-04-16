@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Ninject;
 
 namespace DollarTracker.Web.Utils
 {
@@ -11,9 +12,15 @@ namespace DollarTracker.Web.Utils
 		public string sub { get; set; }
 		public string exp { get; set; }
 	}
-	public class JwtHelper
+
+	public interface IJwtHelper
 	{
-		public static SimpleJwt ExtractJwtFromBearerLine(string bearerTokenLine)
+		SimpleJwt ExtractJwtFromBearerLine(string bearerTokenLine);
+		bool IsValid(SimpleJwt simpleJtw);
+	}
+	public class JwtHelper : IJwtHelper
+	{
+		public SimpleJwt ExtractJwtFromBearerLine(string bearerTokenLine)
 		{
 			SimpleJwt jwt = default(SimpleJwt);
 			try
@@ -24,7 +31,14 @@ namespace DollarTracker.Web.Utils
 				}
 				if (!string.IsNullOrEmpty(bearerTokenLine))
 				{
-					jwt = JsonConvert.DeserializeObject<SimpleJwt>(bearerTokenLine);	
+					var kernel = DollarTracker.Web.App_Start.NinjectWebCommon.Kernel;
+					var appSettingMgr = kernel.Get<DollarTracker.Core.Managers.IAppSettingManager>();
+					var jwtSecret = appSettingMgr.GetByName("JwtSecret");
+					var decodedJwt = JWT.JsonWebToken.Decode(bearerTokenLine, jwtSecret); //currently hard coding.
+					if (decodedJwt != null)
+					{
+						jwt = JsonConvert.DeserializeObject<SimpleJwt>(decodedJwt);
+					}
 				}
 				
 			}
@@ -33,25 +47,25 @@ namespace DollarTracker.Web.Utils
 			}
 			return jwt;
 		}
-		public static bool IsValid(SimpleJwt simpleJwt, out string errorMsg)
+		public bool IsValid(SimpleJwt simpleJwt)
 		{
-			errorMsg = "";
+			bool isValidJwt = false;
 			try
 			{
 				System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
 				dtDateTime = dtDateTime.AddSeconds(int.Parse(simpleJwt.exp)).ToUniversalTime();
 				if (dtDateTime <= DateTime.UtcNow)
 				{
-					errorMsg = "Token Expired";
+					isValidJwt = true;
 				}
 
 			}
 			catch (Exception e)
 			{
-				errorMsg = "Unknown Error";
+				isValidJwt = false;
 			}
 
-			return string.IsNullOrEmpty(errorMsg);
+			return isValidJwt;
 		}
 	}
 }

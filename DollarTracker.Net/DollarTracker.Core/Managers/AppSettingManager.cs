@@ -16,14 +16,16 @@ namespace DollarTracker.Core.Managers
 	public class AppSettingManager : IAppSettingManager
 	{
 		private readonly IDbFactory dbFactory;
+		private static List<AppSetting> appSettings; 
 		public AppSettingManager(IDbFactory dbFactory)
 		{
 			this.dbFactory = dbFactory;
+			appSettings = dbFactory.Get().AppSetting.ToList();
 		}
 
 		public string GetByName(string key)
 		{
-			var setting = dbFactory.Get().AppSetting.FirstOrDefault(app => app.Name == key);
+			var setting = appSettings.FirstOrDefault(app => app.Name == key);
 			var settingValue = (setting != null) ? setting.Value : null;
 			return settingValue;
 		}
@@ -31,7 +33,7 @@ namespace DollarTracker.Core.Managers
 
 		public IEnumerable<AppSetting> GetAll()
 		{
-			return dbFactory.Get().AppSetting.Select(ap => ap).ToArray();
+			return appSettings;
 		}
 	}
 }

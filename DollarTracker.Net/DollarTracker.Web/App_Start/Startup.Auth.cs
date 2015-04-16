@@ -59,8 +59,8 @@ namespace DollarTracker.Web
 			//app.UseFacebookAuthentication(
 			//   appId: "",
 			//   appSecret: "");
-
-			var mgr = DollarTracker.Web.App_Start.NinjectWebCommon.Kernel.Get<DollarTracker.Core.Managers.IAppSettingManager>();
+			var kernel = new StandardKernel();
+			var mgr = kernel.Get<DollarTracker.Core.Managers.IAppSettingManager>();
 			var clientId = mgr.GetByName("Google-ClientId");
 			var clientSecret = mgr.GetByName("Google-ClientSecret");
 
