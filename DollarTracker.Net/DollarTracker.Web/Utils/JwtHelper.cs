@@ -54,7 +54,7 @@ namespace DollarTracker.Web.Utils
 			{
 				System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
 				dtDateTime = dtDateTime.AddSeconds(int.Parse(simpleJwt.exp)).ToUniversalTime();
-				if (dtDateTime <= DateTime.UtcNow)
+				if (dtDateTime >= DateTime.UtcNow)
 				{
 					isValidJwt = true;
 				}

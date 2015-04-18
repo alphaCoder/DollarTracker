@@ -37,15 +37,19 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$
 
         $authProvider.loginUrl = API_URL + 'login';
         $authProvider.signupUrl = API_URL + 'register';
+        $authProvider.httpInterceptor = true;
 
         $authProvider.google({
             clientId: '603422408309-rinan2timml0ufbbp0qi9jmnjf6n9bkl.apps.googleusercontent.com',
             url: API_URL + 'auth/google'
         })
 
-        $httpProvider.interceptors.push('authInterceptor');
+       // $httpProvider.interceptors.push('authInterceptor');
     }])
 .constant('API_URL', 'http://localhost:3000/')
+.controller('appCtrl', ['$scope', '$auth', function ($scope, $auth) {
+    $scope.isAuthenticated = $auth.isAuthenticated;
+}])
 .run(function ($window) {
     var params = $window.location.search.substring(1);
 

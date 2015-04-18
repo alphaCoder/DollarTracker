@@ -379,8 +379,6 @@
     <Content Include="AdminLTE\plugins\icheck\skins\square\_all.css" />
     <Content Include="app\app.config.js" />
     <Content Include="app\app.js" />
-    <Content Include="app\common\authInterceptor.js" />
-    <Content Include="app\common\authToken.js" />
     <Content Include="app\common\dataTable.js" />
     <Content Include="app\common\dollarTracker.service.js" />
     <Content Include="app\common\header.controller.js" />

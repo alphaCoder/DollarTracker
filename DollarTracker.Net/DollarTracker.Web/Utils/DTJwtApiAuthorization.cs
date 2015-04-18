@@ -29,7 +29,6 @@ namespace DollarTracker.Web.Utils
 
 		protected override bool IsAuthorized(HttpActionContext actionContext)
 		{
-			return true;
 			IEnumerable<string> authHeaders = null;
 
 			actionContext.Request.Headers.TryGetValues(AuthHeaderName, out authHeaders); 
