@@ -27,15 +27,16 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$
         })
         .state('register', {
             url: '/register',
-            templateUrl: 'app/user/register.html?random=' + RANDOM
+            templateUrl: 'app/user/register.html?random=' + RANDOM,
+            controller: 'registerCtrl'
         })
         .state('logout', {
             url: '/logout',
             controller: 'logoutCtrl'
         });
 
-        $authProvider.loginUrl = API_URL + 'auth/login';
-        $authProvider.signupUrl = API_URL + 'auth/register';
+        $authProvider.loginUrl = API_URL + 'login';
+        $authProvider.signupUrl = API_URL + 'register';
 
         $authProvider.google({
             clientId: '603422408309-rinan2timml0ufbbp0qi9jmnjf6n9bkl.apps.googleusercontent.com',
