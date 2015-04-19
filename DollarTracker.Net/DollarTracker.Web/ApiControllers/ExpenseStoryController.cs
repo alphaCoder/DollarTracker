@@ -16,18 +16,18 @@ namespace DollarTracker.Web.ApiControllers
 	public class ExpenseStoryController : DollarTrackerBaseController
     {
 		private readonly IExpenseStoryManager expenseStoryManager;
-
-		public ExpenseStoryController(IExpenseStoryManager esm, IAppSettingManager appSettingManager): base(appSettingManager)
+		private readonly ICollaboratorManager collaboratorManager;
+		public ExpenseStoryController(IExpenseStoryManager esm, ICollaboratorManager collaboratorManager)
 		{
 			this.expenseStoryManager = esm;
+			this.collaboratorManager = collaboratorManager;
 		}
 		public DollarTrackerResponse<IEnumerable<ExpenseStory>> Get()
 		{
 			var response = new DollarTrackerResponse<IEnumerable<ExpenseStory>>();
 			try
 			{
-				Guid userId = Guid.Parse("DB6B3AA4-8981-45D1-8E67-11B94FF0DF85");  //todo: will get from the user session
-				var stories = expenseStoryManager.GetAllExpenseStories(userId.ToString());
+				var stories = expenseStoryManager.GetAllExpenseStories(UserClaim.UserId);
 				response.Data = stories;
 				response.Success = true;
 			}
@@ -46,11 +46,21 @@ namespace DollarTracker.Web.ApiControllers
 			var response = new DollarTrackerResponse<ExpenseStory>();
 			try
 			{
-				Guid userId = Guid.Parse("DB6B3AA4-8981-45D1-8E67-11B94FF0DF85");  //todo: will get from the user session
 				story.ExpenseStoryId = UniqueKeyGenerator.DatePrefixShortKey();
-				story.CreatedBy = userId.ToString();
+				story.CreatedBy = UserClaim.UserId;
 				story.CreatedUtcDt = DateTime.UtcNow;
 				expenseStoryManager.AddExpenseStory(story); //todo: need to do validations--some design pattern
+
+				var collaborator = new Collaborator
+				{
+					CollaboratorId = Guid.NewGuid(),
+					ExpenseStoryId = story.ExpenseStoryId,
+					UserId = UserClaim.UserId,
+					Status = true,
+					CreatedUtcDt = DateTime.UtcNow
+				};
+				collaboratorManager.AddCollaborator(collaborator);
+				story.Collaborator = null; //for time being
 				response.Data = story;
 			}
 			catch (Exception e)

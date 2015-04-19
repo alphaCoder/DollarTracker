@@ -14,6 +14,7 @@ namespace DollarTracker.Core.Managers
 		void AddCollaborator(Collaborator collaborator);
 		void UpdateCollaborator(Collaborator collaborator);
 		IEnumerable<Collaborator> GetAllCollaborators(string expenseStoryId);
+		Collaborator GetCollaborator(string userId, string expenseStoryId);
 		void DeleteCollaborator(Guid collaboratorId);
 		void SaveCollaborator();
 	}
@@ -64,6 +65,12 @@ namespace DollarTracker.Core.Managers
 		public void SaveCollaborator()
 		{
 			unitOfWork.Save();
+		}
+
+
+		public Collaborator GetCollaborator(string userId, string expenseStoryId)
+		{
+			return collaboratorRepository.Get(c => c.UserId == userId && c.ExpenseStoryId == expenseStoryId);
 		}
 	}
 }

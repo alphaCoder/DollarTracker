@@ -73,17 +73,35 @@ namespace DollarTracker.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
 			kernel.Load(Assembly.GetExecutingAssembly());
+
+			//dbfactory, unitofwork
 			kernel.Bind<IDbFactory>().To<DbFactory>().InRequestScope();
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
-			kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
+			
+			//expense category
 			kernel.Bind<IExpenseCategoryRepository>().To<ExpenseCategoryRepository>().InRequestScope();
 			kernel.Bind<IExpenseCategoryManager>().To<ExpenseCategoryManager>().InRequestScope();
+			
+			//expense
 			kernel.Bind<IExpenseRepository>().To<ExpenseRepository>().InRequestScope();
 			kernel.Bind<IExpenseManager>().To<ExpenseManager>().InRequestScope();
+			
+			//expensestory
 			kernel.Bind<IExpenseStoryRepository>().To<ExpenseStoryRepository>().InRequestScope();
 			kernel.Bind<IExpenseStoryManager>().To<ExpenseStoryManager>().InRequestScope();
+			
 			kernel.Bind<IAppSettingManager>().To<AppSettingManager>().InRequestScope();
+			
+			//collaboration
+			kernel.Bind<ICollaboratorManager>().To<CollaboratorManager>().InRequestScope();
+			kernel.Bind<ICollaboratorRepository>().To<CollaboratorRepository>().InRequestScope();
+		
+			//user
+			kernel.Bind<IUserManager>().To<UserManager>().InRequestScope();
+			kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
+
 			kernel.Bind<IJwtHelper>().To<JwtHelper>().InSingletonScope();
+
         }        
     }
 }

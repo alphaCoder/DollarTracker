@@ -194,6 +194,7 @@
     <Compile Include="ApiControllers\ExpenseCategoryController.cs" />
     <Compile Include="ApiControllers\ExpenseController.cs" />
     <Compile Include="ApiControllers\ExpenseStoryController.cs" />
+    <Compile Include="ApiControllers\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
