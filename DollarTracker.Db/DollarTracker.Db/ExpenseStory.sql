@@ -5,7 +5,7 @@
 	[Title] VARCHAR(50) NULL, 
 	[Budget] FLOAT(7) NULL, 
     [Income] FLOAT(7) NULL, 
-	[CreatedBy] UNIQUEIDENTIFIER NOT NULL, 
+	[CreatedBy] VARCHAR(50) NOT NULL, 
     [StartDt] DATETIME2 NOT NULL, 
     [EndDt] DATETIME2 NOT NULL, 
     [CreatedUtcDt] DATETIME2 NOT NULL 
