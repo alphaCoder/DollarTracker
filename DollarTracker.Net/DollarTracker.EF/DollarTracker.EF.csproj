@@ -57,11 +57,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSetting.cs">
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Collaborator.cs">
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomExpenseCategory.cs">
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DollarTrackerModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DollarTrackerModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DollarTrackerModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DollarTrackerModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DollarTrackerModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Expense.cs">
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpenseCategory.cs">
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpenseStory.cs">
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpenseStoryType.cs">
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>DollarTrackerModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="DollarTrackerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DollarTrackerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DollarTrackerModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DollarTrackerModel.edmx</DependentUpon>
+      <LastGenOutput>DollarTrackerModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DollarTrackerModel.edmx.diagram">
+      <DependentUpon>DollarTrackerModel.edmx</DependentUpon>
+    </None>
+    <None Include="DollarTrackerModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DollarTrackerModel.edmx</DependentUpon>
+      <LastGenOutput>DollarTrackerModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

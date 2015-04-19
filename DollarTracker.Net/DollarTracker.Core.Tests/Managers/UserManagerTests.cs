@@ -37,7 +37,7 @@ namespace DollarTracker.Core.Tests.Managers
 			int expectedCount = 1;
 			
 			userManager.AddUser(user);
-			user.UserId = Guid.NewGuid();
+			user.UserId = Guid.NewGuid().ToString("N");
 			user.Username = Guid.NewGuid().ToString("N").Substring(0, 10);
 			userManager.AddUser(user);
 			int actualCount = dataContext.User.Where(x => x.Email == user.Email).Count();
@@ -52,7 +52,7 @@ namespace DollarTracker.Core.Tests.Managers
 			int expectedCount = 1;
 
 			userManager.AddUser(user);
-			user.UserId = Guid.NewGuid();
+			user.UserId = Guid.NewGuid().ToString("N");
 			user.Email = Guid.NewGuid().ToString("N").Substring(0, 10) + "@test.com";
 			userManager.AddUser(user);
 			int actualCount = dataContext.User.Where(x => x.Username == user.Username).Count();
@@ -75,7 +75,7 @@ namespace DollarTracker.Core.Tests.Managers
 		[TestMethod]
 		public void GetUserViaUserIdNotExistsTests()
 		{
-			var inValidUserId = Guid.NewGuid();
+			var inValidUserId = Guid.NewGuid().ToString("N");
 
 			var actualUser = userManager.GetUserViaUserId(inValidUserId);
 			Assert.IsNull(actualUser);

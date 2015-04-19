@@ -13,9 +13,9 @@ namespace DollarTracker.Core.Managers
 	{
 		void AddExpenseStory(ExpenseStory story);
 		void UpdateExpenseStory(ExpenseStory story);
-		IEnumerable<ExpenseStory> GetAllExpenseStories(Guid userId);
-		IEnumerable<ExpenseStory> GetTopNExpenseStories(Guid userId, int n);
-		IEnumerable<ExpenseStory> GetAllExpenseStoryWithInDtRange(Guid userId, DateTime startDt, DateTime endDt);
+		IEnumerable<ExpenseStory> GetAllExpenseStories(string userId);
+		IEnumerable<ExpenseStory> GetTopNExpenseStories(string userId, int n);
+		IEnumerable<ExpenseStory> GetAllExpenseStoryWithInDtRange(string userId, DateTime startDt, DateTime endDt);
 		void DeleteExpenseStory(string storyId);
 		void SaveExpenseStory();
 	}
@@ -56,17 +56,17 @@ namespace DollarTracker.Core.Managers
 			}
 		}
 
-		public IEnumerable<ExpenseStory> GetAllExpenseStories(Guid userId)
+		public IEnumerable<ExpenseStory> GetAllExpenseStories(string userId)
 		{
 			return expenseStoryRepository.GetMany(x => x.CreatedBy == userId);
 		}
 
-		public IEnumerable<ExpenseStory> GetTopNExpenseStories(Guid userId, int n)
+		public IEnumerable<ExpenseStory> GetTopNExpenseStories(string userId, int n)
 		{
 			return expenseStoryRepository.Get(x => x.CreatedBy == userId, take: n);
 		}
 
-		public IEnumerable<ExpenseStory> GetAllExpenseStoryWithInDtRange(Guid userId, DateTime startDt, DateTime endDt)
+		public IEnumerable<ExpenseStory> GetAllExpenseStoryWithInDtRange(string userId, DateTime startDt, DateTime endDt)
 		{
 			return expenseStoryRepository.Get(x => x.CreatedBy == userId && (x.StartDt >= startDt && x.EndDt <= endDt), orderBy: (z => z.OrderByDescending(y => y.StartDt)));
 		}

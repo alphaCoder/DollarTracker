@@ -14,7 +14,7 @@ namespace DollarTracker.Core.Managers
 	{
 		void AddUser(User user);
 		void UpdateUser(User user);
-		User GetUserViaUserId(Guid userId);
+		User GetUserViaUserId(string userId);
 		User GetUserViaEmail(string email);
 		User GetUserViaUsername(string username);
 		void SaveUser();
@@ -48,7 +48,7 @@ namespace DollarTracker.Core.Managers
 			};
 		}
 
-		public User GetUserViaUserId(Guid userId)
+		public User GetUserViaUserId(string userId)
 		{
 			return userRepository.GetById(userId);
 		}
