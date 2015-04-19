@@ -1,8 +1,11 @@
-﻿app.controller("dashboardCtrl", ['$http', 'dashboard', '$scope', 'expenseStories','$modal',
-    function ($http, $dashboard, $scope, expenseStories, $modal) {
+﻿app.controller("dashboardCtrl", ['$http', 'dashboard', '$scope', 'expenseStories','$modal', 'user',
+    function ($http, $dashboard, $scope, expenseStories, $modal, user) {
 
     $scope.expenseStories = expenseStories;
+    $scope.user = user.getUser();
 
+    console.log('dashboard scope');
+    console.log($scope);
     $scope.newExpenseStory = function () {
 
       var modalInstance =  $modal.open({

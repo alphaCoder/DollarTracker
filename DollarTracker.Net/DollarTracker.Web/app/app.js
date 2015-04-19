@@ -37,7 +37,11 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$
 
         $authProvider.loginUrl = API_URL + 'login';
         $authProvider.signupUrl = API_URL + 'register';
+        $authProvider.loginRedirect = '/';
+        $authProvider.logoutRedirect = 'login';
         $authProvider.httpInterceptor = true;
+        $authProvider.signupRedirect = '/login';
+        $authProvider.loginOnSignup = false;
 
         $authProvider.google({
             clientId: '603422408309-rinan2timml0ufbbp0qi9jmnjf6n9bkl.apps.googleusercontent.com',
@@ -47,10 +51,20 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$
        // $httpProvider.interceptors.push('authInterceptor');
     }])
 .constant('API_URL', 'http://localhost:3000/')
-.controller('appCtrl', ['$scope', '$auth', function ($scope, $auth) {
+.controller('appCtrl', ['$scope', '$auth', 'user', function ($scope, $auth, user) {
     $scope.isAuthenticated = $auth.isAuthenticated;
 }])
-.run(function ($window) {
+.run(['$window', '$rootScope', '$auth', '$state', 'user', function ($window, $rootScope, $auth, $state, user) {
+
+    $rootScope.user = JSON.parse(user.getUser());
+
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        if ($auth.isAuthenticated() &&( toState.name ==='login' || toState.name === 'register')) {
+            console.log(toState.name);
+            event.preventDefault();
+            $state.go('/');
+        }
+    });
     var params = $window.location.search.substring(1);
 
     if (params && $window.opener && $window.opener.location.origin === $window.location.origin) {
@@ -59,4 +73,4 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$
 
         $window.opener.postMessage(code, $window.location.origin);
     }
-});
+}]);

@@ -3,10 +3,6 @@
 
     $scope.expenses = expenses;
 
-    //$scope.deleteExp = function () {
-    //    alert('delete:');
-    //}
-
     $scope.deleteExpense = function (expense) {
         
       expenseService.deleteExpense(expense.expenseId)
