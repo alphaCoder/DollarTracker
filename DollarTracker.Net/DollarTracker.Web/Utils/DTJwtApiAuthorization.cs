@@ -6,6 +6,7 @@ using System.Web.Http.Controllers;
 using System.Web.Mvc;
 using System.Net.Http;
 using Ninject;
+using DollarTracker.Core.Managers;
 namespace DollarTracker.Web.Utils
 {
 	[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
@@ -52,12 +53,27 @@ namespace DollarTracker.Web.Utils
 					if (jwtHelper.IsValid(simpleJwt))
 					{
 						authenticated = true;
+
+						var userManager = kernel.Get<IUserManager>();
+						if (userManager != null)
+						{
+							if (userManager.GetUserViaEmail(simpleJwt.UserInfo.Email) == null)
+							{
+								var user = new DollarTracker.EF.User
+								{
+									Email = simpleJwt.UserInfo.Email,
+									//  UserId = 
+								};
+							} 
+
+						}
 					}
 				}
+
 			}
 			catch (Exception e)
 			{
-
+				return false;
 			}
 			if (!authenticated) return false;
 			//todo: how do we check teh authrization of this access? we need to know the role and the closing diclosedId

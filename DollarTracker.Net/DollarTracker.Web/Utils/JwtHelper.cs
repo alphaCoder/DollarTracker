@@ -7,10 +7,16 @@ using Ninject;
 
 namespace DollarTracker.Web.Utils
 {
+	public class UserInfo
+	{
+		public string Email { get; set; }
+		public string DisplayName { get; set; }
+	}
 	public class SimpleJwt
 	{
-		public string sub { get; set; }
-		public string exp { get; set; }
+		public string Sub { get; set; }
+		public string Exp { get; set; }
+		public UserInfo UserInfo { get; set; }
 	}
 
 	public interface IJwtHelper
@@ -53,7 +59,7 @@ namespace DollarTracker.Web.Utils
 			try
 			{
 				System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-				dtDateTime = dtDateTime.AddSeconds(int.Parse(simpleJwt.exp)).ToUniversalTime();
+				dtDateTime = dtDateTime.AddSeconds(int.Parse(simpleJwt.Exp)).ToUniversalTime();
 				if (dtDateTime >= DateTime.UtcNow)
 				{
 					isValidJwt = true;

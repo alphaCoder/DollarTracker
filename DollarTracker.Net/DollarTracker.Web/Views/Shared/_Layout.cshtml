@@ -198,7 +198,9 @@
                 </div>
             </nav>
         </header>
-        <side-bar></side-bar>
+        <div ng-show="isAuthenticated()">
+            <side-bar></side-bar>
+        </div>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->

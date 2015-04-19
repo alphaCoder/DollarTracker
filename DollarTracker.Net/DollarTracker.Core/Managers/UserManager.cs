@@ -42,7 +42,6 @@ namespace DollarTracker.Core.Managers
 			var existingUser = userRepository.Get(x => x.Email == user.Email);
 			if (existingUser != null)
 			{
-				existingUser.Password = user.Password;
 				existingUser.Status = user.Status;
 				userRepository.Add(existingUser);
 				SaveUser();
