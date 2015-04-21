@@ -25,13 +25,12 @@ namespace DollarTracker.Web.Utils
 		protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
 		{
 			HttpContext.Current.Response.AddHeader("AuthenticationStatus", "NotAuthorized");
-			actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Forbidden);
+			actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Unauthorized);
 		}
 
 		protected override bool IsAuthorized(HttpActionContext actionContext)
 		{
 			IEnumerable<string> authHeaders = null;
-
 			actionContext.Request.Headers.TryGetValues(AuthHeaderName, out authHeaders); 
 
 			if (authHeaders == null || !authHeaders.Any())
