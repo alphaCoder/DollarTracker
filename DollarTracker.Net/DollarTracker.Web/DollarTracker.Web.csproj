@@ -385,7 +385,7 @@
     <Content Include="app\common\header.controller.js" />
     <Content Include="app\common\header.html" />
     <Content Include="app\common\includeReplace.directive.js" />
-    <Content Include="app\common\user.service.js" />
+    <Content Include="app\services\user.service.js" />
     <Content Include="app\layout\appBody.html" />
     <Content Include="app\layout\appBody.js" />
     <Content Include="app\layout\sidebar.html" />

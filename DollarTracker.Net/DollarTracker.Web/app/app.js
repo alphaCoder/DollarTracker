@@ -71,10 +71,9 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, 
 .constant('API_URL', 'http://localhost:3000/')
 .controller('appCtrl', ['$scope', '$auth', 'user', function ($scope, $auth, user) {
     $scope.isAuthenticated = $auth.isAuthenticated;
+    $scope.user = user.getUser();
 }])
 .run(['$window', '$rootScope', '$auth', '$state', 'user', function ($window, $rootScope, $auth, $state, user) {
-
-    $rootScope.user = JSON.parse(user.getUser());
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if ($auth.isAuthenticated() && (toState.name === 'login' || toState.name === 'register')) {

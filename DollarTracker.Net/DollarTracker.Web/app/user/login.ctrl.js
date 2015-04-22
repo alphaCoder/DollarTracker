@@ -10,7 +10,7 @@ app.controller('loginCtrl', ['$scope', '$auth', 'user', '$rootScope', function (
         }).then(function (res) {
             var message = 'Thanks for coming back ' + res.data.user.email + '!';
             user.setUser(res.data.user);
-            $rootScope.user = res.data.user;
+            //   $rootScope.user = res.data.user;
             if (!res.data.user.active)
                 message = 'Just a reminder, please activate your account soon :)';
 
@@ -21,7 +21,7 @@ app.controller('loginCtrl', ['$scope', '$auth', 'user', '$rootScope', function (
     $scope.authenticate = function (provider) {
         $auth.authenticate(provider).then(function (res) {
             user.setUser(user);
-            $rootScope.user = res.da.user;
+          //  $rootScope.user = res.da.user;
 
             console.log('success', 'Welcome', 'Thanks for coming back ' + res.data.user.displayName + '!');
         }, handleError);

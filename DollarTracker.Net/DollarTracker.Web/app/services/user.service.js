@@ -2,6 +2,7 @@
     var storage = $window.localStorage;
     var cachedUser;
     var userKey = "dollarTrackerUser";
+
     var userProfile = {
         setUser: function (user) {
             cachedUser = user;
@@ -10,7 +11,7 @@
         getUser: function () {
             console.log('called user service:');
             if (!cachedUser) {
-                cachedUser = storage.getItem(userKey);
+                cachedUser = JSON.parse(storage.getItem(userKey));
             }
             console.log(cachedUser);
             return cachedUser;
@@ -18,7 +19,8 @@
         removeUser: function(){
             cachedUser = null;
             storage.removeItem(userKey);
-        }
+        },
+        
     }
     return userProfile;
 }])
