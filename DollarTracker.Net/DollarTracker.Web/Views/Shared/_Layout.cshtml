@@ -200,7 +200,7 @@
         </header>
 
         <div ng-show="isAuthenticated()">
-            <side-bar></side-bar>
+            <side-bar user="user"></side-bar>
         </div>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -237,6 +237,9 @@
     @RenderSection("scripts", required: false)
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
     <script src="~/app/lib/satellizer.min.js"></script>
+
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/angular-moment.min.js"></script>
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()

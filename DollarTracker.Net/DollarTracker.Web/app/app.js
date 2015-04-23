@@ -1,4 +1,5 @@
-﻿app = angular.module('DollarTrackerApp', ['ui.router', 'ui.bootstrap', 'ng-bootstrap-datepicker', 'satellizer']);
+﻿app = angular.module('DollarTrackerApp', ['ui.router', 'ui.bootstrap', 'ng-bootstrap-datepicker',
+    'satellizer', 'angularMoment']);
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider', 'API_URL',
 function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider, API_URL) {
 
@@ -72,6 +73,9 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, 
 .controller('appCtrl', ['$scope', '$auth', 'user', function ($scope, $auth, user) {
     $scope.isAuthenticated = $auth.isAuthenticated;
     $scope.user = user.getUser();
+    $scope.$watch(user.getUser, function (newUser) {
+        $scope.user = newUser;
+    });
 }])
 .run(['$window', '$rootScope', '$auth', '$state', 'user', function ($window, $rootScope, $auth, $state, user) {
 

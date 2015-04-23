@@ -385,6 +385,9 @@
     <Content Include="app\common\header.controller.js" />
     <Content Include="app\common\header.html" />
     <Content Include="app\common\includeReplace.directive.js" />
+    <Content Include="app\expenseStory\expenseStoryInfo.Directive.js" />
+    <Content Include="app\expenseStory\expenseStoryInfo.html" />
+    <Content Include="app\lib\Chart.min.js" />
     <Content Include="app\services\user.service.js" />
     <Content Include="app\layout\appBody.html" />
     <Content Include="app\layout\appBody.js" />
@@ -426,6 +429,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-moment.js" />
+    <Content Include="Scripts\angular-moment.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
@@ -445,6 +450,7 @@
     <Content Include="app\lib\satellizer.min.js.map">
       <DependentUpon>satellizer.min.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\angular-moment.min.js.map" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -457,6 +463,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

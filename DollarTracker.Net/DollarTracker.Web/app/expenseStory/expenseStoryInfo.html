@@ -1,0 +1,98 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Expense Story Report: <strong>{{expenseStory.startDt | amDateFormat:'MMMM Do, YYYY'}} - {{expenseStory.endDt | amDateFormat:'MMMM Do, YYYY'}} </strong> </h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <div class="btn-group">
+                        <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench"></i></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p class="text-center">
+                            <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                        </p>
+                        <div class="text-center chart-responsive">
+                            <img src="" width="300" height="300" />
+                            <!-- Sales Chart Canvas -->
+                            <!--<canvas id="salesChart" height="180"></canvas>-->
+                        </div><!-- /.chart-responsive -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-4">
+                        <p class="text-center">
+                            <strong>Top 4 Expense Categories</strong>
+                        </p>
+                        <div class="progress-group">
+                            <span class="progress-text">Groceries</span>
+                            <span class="progress-number"><b>80</b>/200</span>
+                            <div class="progress sm">
+                                <div class="progress-bar progress-bar-aqua" style="width: 40%"></div>
+                            </div>
+                        </div><!-- /.progress-group -->
+                        <div class="progress-group">
+                            <span class="progress-text">Gas</span>
+                            <span class="progress-number"><b>60</b>/200</span>
+                            <div class="progress sm">
+                                <div class="progress-bar progress-bar-red" style="width: 30%"></div>
+                            </div>
+                        </div><!-- /.progress-group -->
+                        <div class="progress-group">
+                            <span class="progress-text">Clothese</span>
+                            <span class="progress-number"><b>40</b>/200</span>
+                            <div class="progress sm">
+                                <div class="progress-bar progress-bar-green" style="width: 20%"></div>
+                            </div>
+                        </div><!-- /.progress-group -->
+                        <div class="progress-group">
+                            <span class="progress-text">Others</span>
+                            <span class="progress-number"><b>20</b>/200</span>
+                            <div class="progress sm">
+                                <div class="progress-bar progress-bar-yellow" style="width: 20%"></div>
+                            </div>
+                        </div><!-- /.progress-group -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- ./box-body -->
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="description-block border-right">
+                            <h5 class="description-header">{{expenseStory.startDt |date:"MM/dd/yyyy"}}</h5>
+                            <span class="description-text">START DATE</span>
+                        </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="description-block border-right">
+                            <h5 class="description-header">{{expenseStory.endDt |date:"MM/dd/yyyy"}}</h5>
+                            <span class="description-text">END DATE</span>
+                        </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="description-block border-right">
+                            <h5 class="description-header">${{expenseStory.budget}}</h5>
+                            <span class="description-text">TOTAL BUDGET</span>
+                        </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="description-block">
+                            <h5 class="description-header">1200</h5>
+                            <span class="description-text">TOTAL EXPENSES</span>
+                        </div><!-- /.description-block -->
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.box-footer -->
+        </div><!-- /.box -->
+    </div><!-- /.col -->
+</div><!-- /.row -->
