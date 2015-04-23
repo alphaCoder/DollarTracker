@@ -2,7 +2,7 @@
 
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active"><a ui-sref='/'>Dashboard</a></li>
     </ol>
 </section>
 <!--
@@ -41,6 +41,10 @@
 
 </section>-->
 <div style="margin-left:5px">
+    <ul class="nav nav-pills">
+        <li>Availabe Stories ({{expenseStories.length}})</li>
+        <li style="padding-left:10px"><button class="btn btn-primary" ng-click="newExpenseStory()"><i class="glyphicon glyphicon-plus"></i>New Expense Story</button></li>
+    </ul>
     <ul id="myTab" class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
             <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true" class="no-padding">

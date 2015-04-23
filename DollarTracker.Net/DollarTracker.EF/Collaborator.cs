@@ -14,18 +14,10 @@ namespace DollarTracker.EF
     
     public partial class Collaborator
     {
-        public Collaborator()
-        {
-            this.Expense = new HashSet<Expense>();
-        }
-    
         public System.Guid CollaboratorId { get; set; }
         public string UserId { get; set; }
         public string ExpenseStoryId { get; set; }
         public System.DateTime CreatedUtcDt { get; set; }
         public bool Status { get; set; }
-    
-        public virtual ExpenseStory ExpenseStory { get; set; }
-        public virtual ICollection<Expense> Expense { get; set; }
     }
 }

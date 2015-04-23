@@ -77,7 +77,9 @@
     <Compile Include="Utils\DataMock.cs" />
     <Compile Include="Utils\UniqueKeyGenerator.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DollarTracker.EF\DollarTracker.EF.csproj">
       <Project>{2af15f94-1258-4160-a9dd-6160b8ade053}</Project>

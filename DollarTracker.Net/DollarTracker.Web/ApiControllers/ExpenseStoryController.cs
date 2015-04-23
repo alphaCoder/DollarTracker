@@ -60,7 +60,6 @@ namespace DollarTracker.Web.ApiControllers
 					CreatedUtcDt = DateTime.UtcNow
 				};
 				collaboratorManager.AddCollaborator(collaborator);
-				story.Collaborator = null; //for time being
 				response.Data = story;
 			}
 			catch (Exception e)

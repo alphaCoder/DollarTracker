@@ -233,8 +233,6 @@
           <Property Name="ExpenseStoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedUtcDt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_Collaborator_ToExpenseStory" FromRole="Collaborator" ToRole="ExpenseStory" />
-          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToCollaborators" FromRole="Collaborator" ToRole="Expense" />
         </EntityType>
         <EntityType Name="CustomExpenseCategory">
           <Key>
@@ -245,8 +243,6 @@
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedDt" Type="DateTime" Precision="7" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_CustomExpenseCategories_ToUsers" FromRole="CustomExpenseCategory" ToRole="User" />
-          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToCustomExpenseCategories" FromRole="CustomExpenseCategory" ToRole="Expense" />
         </EntityType>
         <EntityType Name="Expense">
           <Key>
@@ -262,10 +258,6 @@
           <Property Name="Comments" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
           <Property Name="ExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CustomExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Collaborator" Relationship="Self.FK_Expenses_ToCollaborators" FromRole="Expense" ToRole="Collaborator" />
-          <NavigationProperty Name="CustomExpenseCategory" Relationship="Self.FK_Expenses_ToCustomExpenseCategories" FromRole="Expense" ToRole="CustomExpenseCategory" />
-          <NavigationProperty Name="ExpenseCategory" Relationship="Self.FK_Expenses_ToExpenseCategories" FromRole="Expense" ToRole="ExpenseCategory" />
-          <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_Expenses_ToExpenseStories" FromRole="Expense" ToRole="ExpenseStory" />
         </EntityType>
         <EntityType Name="ExpenseCategory">
           <Key>
@@ -273,7 +265,6 @@
           </Key>
           <Property Name="ExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToExpenseCategories" FromRole="ExpenseCategory" ToRole="Expense" />
         </EntityType>
         <EntityType Name="ExpenseStory">
           <Key>
@@ -288,9 +279,6 @@
           <Property Name="StartDt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="EndDt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CreatedUtcDt" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Collaborator" Relationship="Self.FK_Collaborator_ToExpenseStory" FromRole="ExpenseStory" ToRole="Collaborator" />
-          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToExpenseStories" FromRole="ExpenseStory" ToRole="Expense" />
-          <NavigationProperty Name="ExpenseStoryType" Relationship="Self.FK_ExpenseStories_ToExpenseStoryTypes" FromRole="ExpenseStory" ToRole="ExpenseStoryType" />
         </EntityType>
         <EntityType Name="ExpenseStoryType">
           <Key>
@@ -298,7 +286,6 @@
           </Key>
           <Property Name="ExpenseStoryTypeId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_ExpenseStories_ToExpenseStoryTypes" FromRole="ExpenseStoryType" ToRole="ExpenseStory" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -310,7 +297,6 @@
           <Property Name="CreatedDtUtc" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CustomExpenseCategory" Relationship="Self.FK_CustomExpenseCategories_ToUsers" FromRole="User" ToRole="CustomExpenseCategory" />
         </EntityType>
         <Association Name="FK_Collaborator_ToExpenseStory">
           <End Role="ExpenseStory" Type="Self.ExpenseStory" Multiplicity="1" />
