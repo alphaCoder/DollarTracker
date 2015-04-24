@@ -40,11 +40,11 @@
   </div>
 
 </section>-->
+<ul class="nav nav-pills">
+    <li><button class="btn btn-primary" ng-click="newExpenseStory()"><i class="glyphicon glyphicon-plus"></i>New Expense Story</button></li>
+</ul>
 <div style="margin-left:5px">
-    <ul class="nav nav-pills">
-        <li>Availabe Stories ({{expenseStories.length}})</li>
-        <li style="padding-left:10px"><button class="btn btn-primary" ng-click="newExpenseStory()"><i class="glyphicon glyphicon-plus"></i>New Expense Story</button></li>
-    </ul>
+   
     <ul id="myTab" class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
             <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true" class="no-padding">
@@ -69,35 +69,15 @@
             </a>
         </li>
     </ul>
-
 </div>
 <div style="margin-left:5px" id="myTabContent" class="tab-content">
     <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
         <div ng-repeat="story in expenseStories">
             <expense-story-info expense-Story="story"></expense-story-info>
         </div>
-
     </div>
     <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+        <p class="text-bold">No Content is available</p>
        
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th class="text-center">ExpenseStoryId</th>
-                    <th class="text-center">Start Date</th>
-                    <th class="text-center">End Date</th>
-                    <th class="text-center">Type</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="story in expenseStories">
-                    <td class="text-center"><a ui-sref="expenseStory({'id': story.expenseStoryId})"> {{story.expenseStoryId}}</a></td>
-                    <td class="text-center">{{story.startDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
-                    <td class="text-center">{{story.endDt |date:"MM/dd/yyyy 'at' h:mma"}}</td> <!--todo: fix utc time issues-->
-                    <td class="text-center">{{story.expenseStoryTypeId}}</td>
-                </tr>
-            </tbody>
-
-        </table>
     </div>
 </div>

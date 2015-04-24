@@ -15,6 +15,7 @@ namespace DollarTracker.Core.Managers
 		void UpdateExpense(Expense e);
 		IEnumerable<Expense> GetAllExpenses(string storyId);
 		IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId);
+		IEnumerable<Expense> GetTopNExpense(string storyId, int n);
 		void DeleteExpense(string expenseId);
 		void SaveExpense();
 	}
@@ -60,6 +61,11 @@ namespace DollarTracker.Core.Managers
 		public IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId)
 		{
 			return expenseRepository.GetMany(x => x.ExpenseStoryId == storyId && x.CollaboratorId == collaboratorId);
+		}
+
+		public IEnumerable<Expense> GetTopNExpense(string storyId, int n)
+		{
+			return expenseRepository.GetMany(x => x.ExpenseStoryId == storyId).Take(n);
 		}
 
 		public void DeleteExpense(string expenseId)
