@@ -9,9 +9,13 @@ namespace DollarTracker.Core.Models
 {
 	public class ExpenseStorySummary
 	{
+		public ExpenseStorySummary()
+		{
+			ExpenseCategorByCount = new Dictionary<string, int>();
+		}
 		public int TotalExpenseCount { get; set; }
 		public ExpenseStory ExpenseStory { get; set; }
-		public IEnumerable<Expense> Expenses { get; set; } //usually top x
 		public Dictionary<string, double> ExpensesByCategory { get; set; } //using it for charts
+		public Dictionary<string, int> ExpenseCategorByCount { get; set; } 
 	}
 }

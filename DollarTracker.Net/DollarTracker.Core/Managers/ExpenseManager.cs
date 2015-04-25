@@ -13,9 +13,11 @@ namespace DollarTracker.Core.Managers
 	{
 		void AddExpense(Expense e);
 		void UpdateExpense(Expense e);
+		
 		IEnumerable<Expense> GetAllExpenses(string storyId);
 		IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId);
 		IEnumerable<Expense> GetTopNExpense(string storyId, int n);
+		
 		void DeleteExpense(string expenseId);
 		void SaveExpense();
 	}
