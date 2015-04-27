@@ -11,11 +11,10 @@ namespace DollarTracker.Core.Models
 	{
 		public ExpenseStorySummary()
 		{
-			ExpenseCategorByCount = new Dictionary<string, int>();
+			ExpensesStatsByCategory = new Dictionary<string, double>();
 		}
 		public int TotalExpenseCount { get; set; }
 		public ExpenseStory ExpenseStory { get; set; }
-		public Dictionary<string, double> ExpensesByCategory { get; set; } //using it for charts
-		public Dictionary<string, int> ExpenseCategorByCount { get; set; } 
+		public Dictionary<string, double> ExpensesStatsByCategory { get; set; } //using it for charts
 	}
 }

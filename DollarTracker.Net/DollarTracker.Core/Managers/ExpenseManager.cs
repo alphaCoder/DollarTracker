@@ -17,6 +17,7 @@ namespace DollarTracker.Core.Managers
 		IEnumerable<Expense> GetAllExpenses(string storyId);
 		IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId);
 		IEnumerable<Expense> GetTopNExpense(string storyId, int n);
+		Dictionary<string, double> GetExpensesStats(string storyId);
 		
 		void DeleteExpense(string expenseId);
 		void SaveExpense();
@@ -81,6 +82,18 @@ namespace DollarTracker.Core.Managers
 		public void SaveExpense()
 		{
 			unitOfWork.Save();
+		}
+
+
+		public Dictionary<string, double> GetExpensesStats(string storyId)
+		{
+			var stats = GetAllExpenses(storyId).GroupBy(e => e.ExpenseCategoryId).Select(c => new
+			{
+				key = c.Key,
+				value = c.Sum(x=>x.Amount)
+			}).ToDictionary(pair=>pair.key, pair=>pair.value);
+
+			return stats;
 		}
 	}
 }

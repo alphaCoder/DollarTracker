@@ -34,7 +34,8 @@ namespace DollarTracker.Core.Services
 		{
 			var expenseStorySummary = new ExpenseStorySummary();
 
-			//expenseStorySummary.TotalExpenseCount = 
+			expenseStorySummary.ExpensesStatsByCategory = expenseManager.GetExpensesStats(expenseStoryId);
+			
 			return expenseStorySummary;
 		}
 	}
