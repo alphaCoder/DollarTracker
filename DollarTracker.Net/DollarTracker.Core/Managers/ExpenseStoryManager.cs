@@ -16,6 +16,8 @@ namespace DollarTracker.Core.Managers
 		IEnumerable<ExpenseStory> GetAllExpenseStories(string userId);
 		IEnumerable<ExpenseStory> GetTopNExpenseStories(string userId, int n);
 		IEnumerable<ExpenseStory> GetAllExpenseStoryWithInDtRange(string userId, DateTime startDt, DateTime endDt);
+		ExpenseStory GetExpenseStory(string storyId);
+		
 		void DeleteExpenseStory(string storyId);
 		void SaveExpenseStory();
 	}
@@ -40,7 +42,6 @@ namespace DollarTracker.Core.Managers
 		public void UpdateExpenseStory(ExpenseStory story)
 		{
 			var existingExpenseStory = expenseStoryRepository.Get(x => x.ExpenseStoryId == story.ExpenseStoryId);
-			//? todo need to determine if I need to update other fields as well.
 			if (existingExpenseStory != null)
 			{
 				if (story.Income.HasValue)
@@ -70,6 +71,12 @@ namespace DollarTracker.Core.Managers
 		{
 			return expenseStoryRepository.Get(x => x.CreatedBy == userId && (x.StartDt >= startDt && x.EndDt <= endDt), orderBy: (z => z.OrderByDescending(y => y.StartDt)));
 		}
+
+		public ExpenseStory GetExpenseStory(string storyId)
+		{
+			return expenseStoryRepository.Get(e => e.ExpenseStoryId == storyId);
+		}
+
 		public void DeleteExpenseStory(string storyId)
 		{
 			expenseStoryRepository.Delete(x => x.ExpenseStoryId == storyId);

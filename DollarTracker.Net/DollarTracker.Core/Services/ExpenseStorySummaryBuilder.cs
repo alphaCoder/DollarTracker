@@ -1,6 +1,5 @@
 ﻿using DollarTracker.Core.Managers;
 using DollarTracker.Core.Models;
-using DollarTracker.Core.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,32 +8,24 @@ using System.Threading.Tasks;
 
 namespace DollarTracker.Core.Services
 {
-	public interface IExpenseStoryAnalyzer
+	public interface IExpenseStorySummaryBuilder
 	{
-
+		ExpenseStorySummary Build(string expenseStoryId);
 	}
-
-	public abstract class ExpenseStoryAnalyzerBase: IExpenseStoryAnalyzer
+	public class ExpenseStorySummaryBuilder : IExpenseStorySummaryBuilder
 	{
-		public abstract ExpenseStorySummary Build(string expenseStoryId);
-	}
-
-	public class ExpenseStoryAnalyzerBuilder : ExpenseStoryAnalyzerBase
-	{
-		private readonly IExpenseStoryManager expenseStoryManager;
 		private readonly IExpenseManager expenseManager;
 
-		public ExpenseStoryAnalyzerBuilder(IExpenseStoryManager expenseStoryManager, IExpenseManager expenseManager)
+		public ExpenseStorySummaryBuilder(IExpenseManager expenseManager)
 		{
-			this.expenseStoryManager = expenseStoryManager;
 			this.expenseManager = expenseManager;
 		}
 
 		public override ExpenseStorySummary Build(string expenseStoryId)
 		{
 			var expenseStorySummary = new ExpenseStorySummary();
-
 			expenseStorySummary.ExpensesStatsByCategory = expenseManager.GetExpensesStats(expenseStoryId);
+			expenseStorySummary.TotalExpenseCount = expenseManager.TotalExpenseCount(expenseStoryId);
 			
 			return expenseStorySummary;
 		}

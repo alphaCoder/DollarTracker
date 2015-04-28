@@ -107,5 +107,10 @@ namespace DollarTracker.Core.Infrastructure
 		{
 			return dbset.Any(predicate);
 		}
+
+		public virtual int Count(Expression<Func<T, bool>> predicate)
+		{
+			return dbset.Count(predicate);
+		}
 	}
 }

@@ -18,7 +18,8 @@ namespace DollarTracker.Core.Managers
 		IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId);
 		IEnumerable<Expense> GetTopNExpense(string storyId, int n);
 		Dictionary<string, double> GetExpensesStats(string storyId);
-		
+		int TotalExpenseCount(string storyId);
+				
 		void DeleteExpense(string expenseId);
 		void SaveExpense();
 	}
@@ -53,7 +54,6 @@ namespace DollarTracker.Core.Managers
 				}
 				expenseRepository.Update(existingExpense);
 				SaveExpense();
-				//? todo: need to determine if modify any other fields.
 			}
 		}
 
@@ -69,6 +69,11 @@ namespace DollarTracker.Core.Managers
 		public IEnumerable<Expense> GetTopNExpense(string storyId, int n)
 		{
 			return expenseRepository.GetMany(x => x.ExpenseStoryId == storyId).Take(n);
+		}
+
+		public int TotalExpenseCount(string storyId)
+		{
+			return expenseRepository.Count(e => e.ExpenseStoryId == storyId);
 		}
 
 		public void DeleteExpense(string expenseId)

@@ -24,5 +24,6 @@ namespace DollarTracker.Core.Infrastructure
 			string includeProperties = "",
 			int? take=null);
 		bool Any(Expression<Func<T, bool>> predicate);
+		int Count(Expression<Func<T,bool>> predicate);
 	}
 }

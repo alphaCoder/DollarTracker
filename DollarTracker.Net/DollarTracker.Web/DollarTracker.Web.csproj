@@ -190,6 +190,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\DashboardController.cs" />
     <Compile Include="ApiControllers\DollarTrackerBaseController.cs" />
     <Compile Include="ApiControllers\ExpenseCategoryController.cs" />
     <Compile Include="ApiControllers\ExpenseController.cs" />
