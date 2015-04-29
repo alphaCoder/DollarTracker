@@ -16,6 +16,7 @@ namespace DollarTracker.Web.App_Start
 	using DollarTracker.Core.Repository;
 	using DollarTracker.Core.Managers;
 	using DollarTracker.Web.Utils;
+	using DollarTracker.Core.Services;
 
 	public static class NinjectWebCommon 
     {
@@ -89,7 +90,7 @@ namespace DollarTracker.Web.App_Start
 			//expensestory
 			kernel.Bind<IExpenseStoryRepository>().To<ExpenseStoryRepository>().InRequestScope();
 			kernel.Bind<IExpenseStoryManager>().To<ExpenseStoryManager>().InRequestScope();
-			
+		
 			kernel.Bind<IAppSettingManager>().To<AppSettingManager>().InRequestScope();
 			
 			//collaboration
@@ -102,6 +103,9 @@ namespace DollarTracker.Web.App_Start
 
 			kernel.Bind<IJwtHelper>().To<JwtHelper>().InSingletonScope();
 
+			//dashboard
+			kernel.Bind<IExpenseStorySummaryBuilder>().To<ExpenseStorySummaryBuilder>().InRequestScope();
+			kernel.Bind<IDashboardSummaryBuilder>().To<DashboardSummaryBuilder>().InRequestScope();
         }        
     }
 }

@@ -21,7 +21,7 @@ namespace DollarTracker.Core.Services
 			this.expenseManager = expenseManager;
 		}
 
-		public override ExpenseStorySummary Build(string expenseStoryId)
+		public ExpenseStorySummary Build(string expenseStoryId)
 		{
 			var expenseStorySummary = new ExpenseStorySummary();
 			expenseStorySummary.ExpensesStatsByCategory = expenseManager.GetExpensesStats(expenseStoryId);
