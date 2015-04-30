@@ -18,6 +18,13 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, 
                     console.log(results);
                     return results.data.data;
                 });
+            }],
+            summary: ['dashboard', function (dashboard) {
+                return dashboard.summary().then(function (results) {
+                    console.log("resolve -summary");
+                    console.log(results);
+                    return results.data.data;
+                });
             }]
         }
     })

@@ -2,22 +2,14 @@
 
     var dashboard = {};
     dashboard.getExpenseStories = function () {
-        var userId = '';
         var url = dolt.getApiUrl('expenseStory');
+        return $http.get(url);
+    }
+
+    dashboard.summary = function () {
+        var url = dolt.getApiUrl('dashboard');
         return $http.get(url);
     }
     return dashboard;
 
-}]);
-
-app.factory("dashboardInitialData", ['$q', 'dashboard', function ($q, dashboard) {
-
-    var expenseStories = dashboard.getExpenseStories();
-    return $q.all([expenseStories]).then(function (results) {
-        console.log('---results--');
-        console.log(results);
-        return {
-            expenseStories: results.data.data
-        };
-    });
 }]);
