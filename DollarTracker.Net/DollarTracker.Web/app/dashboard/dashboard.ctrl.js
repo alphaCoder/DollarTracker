@@ -1,9 +1,10 @@
-﻿app.controller("dashboardCtrl", ['$http', 'dashboard', '$scope', 'expenseStories','$modal', 'user',
-    function ($http, $dashboard, $scope, expenseStories, $modal, user) {
+﻿app.controller("dashboardCtrl", ['$http', 'dashboard', '$scope', 'expenseStories','$modal', 'user', 'summary',
+    function ($http, $dashboard, $scope, expenseStories, $modal, user, summary) {
 
     $scope.expenseStories = expenseStories;
     $scope.user = user.getUser();
 
+    $scope.summary = summary;
     console.log('dashboard scope');
     console.log($scope);
     $scope.newExpenseStory = function () {

@@ -386,6 +386,8 @@
     <Content Include="app\common\header.controller.js" />
     <Content Include="app\common\header.html" />
     <Content Include="app\common\includeReplace.directive.js" />
+    <Content Include="app\expenseStory\expenseStoryCategoryGraph.Directive.js" />
+    <Content Include="app\expenseStory\expenseStoryCategoryGraph.html" />
     <Content Include="app\expenseStory\expenseStoryInfo.Directive.js" />
     <Content Include="app\expenseStory\expenseStoryInfo.html" />
     <Content Include="app\services\user.service.js" />

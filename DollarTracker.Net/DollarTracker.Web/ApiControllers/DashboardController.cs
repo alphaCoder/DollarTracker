@@ -22,7 +22,7 @@ namespace DollarTracker.Web.ApiControllers
 
 		public DollarTrackerResponse<DashboardSummary> Get()
 		{
-			var response = new DollarTrackerResponse<DashboardSummary>();
+			var response = new DollarTrackerResponse<DashboardSummary>(); 
 			try
 			{
 				var summary = dashboardSummaryBuilder.Build(UserClaim.UserId);
