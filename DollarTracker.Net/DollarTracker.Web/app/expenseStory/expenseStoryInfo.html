@@ -29,36 +29,9 @@
                     </div><!-- /.col -->
                     <div class="col-sm-4">
                         <p class="text-center">
-                            <strong>Top 4 Expense Categories</strong>
-                        </p>
-                        <div class="progress-group">
-                            <span class="progress-text">Groceries</span>
-                            <span class="progress-number"><b>80</b>/200</span>
-                            <div class="progress sm">
-                                <div class="progress-bar progress-bar-aqua" style="width: 40%"></div>
-                            </div>
-                        </div><!-- /.progress-group -->
-                        <div class="progress-group">
-                            <span class="progress-text">Gas</span>
-                            <span class="progress-number"><b>60</b>/200</span>
-                            <div class="progress sm">
-                                <div class="progress-bar progress-bar-red" style="width: 30%"></div>
-                            </div>
-                        </div><!-- /.progress-group -->
-                        <div class="progress-group">
-                            <span class="progress-text">Clothes</span>
-                            <span class="progress-number"><b>40</b>/200</span>
-                            <div class="progress sm">
-                                <div class="progress-bar progress-bar-green" style="width: 20%"></div>
-                            </div>
-                        </div><!-- /.progress-group -->
-                        <div class="progress-group">
-                            <span class="progress-text">Others</span>
-                            <span class="progress-number"><b>20</b>/200</span>
-                            <div class="progress sm">
-                                <div class="progress-bar progress-bar-yellow" style="width: 10%"></div>
-                            </div>
-                        </div><!-- /.progress-group -->
+                            <strong>Top {{expensesStatsByCategory.length}} Expense Categories</strong>
+                         </p>
+                        <expense-story-category-graph expenses-stats-by-category="expensesStatsByCategory" total-expenses="totalExpenses"></expense-story-category-graph>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- ./box-body -->
@@ -66,7 +39,7 @@
                 <div class="row">
                     <div class="col-sm-3 col-xs-6">
                         <div class="description-block border-right">
-                            <h5 class="description-header">$2000</h5>
+                            <h5 class="description-header">{{expenseStory.income}}</h5>
                             <span class="description-text">TOTAL INCOME</span>
                         </div><!-- /.description-block -->
                     </div><!-- /.col -->
@@ -79,7 +52,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-3 col-xs-6">
                         <div class="description-block">
-                            <h5 class="description-header">1200</h5>
+                            <h5 class="description-header">{{totalExpenses}}</h5>
                             <span class="description-text">TOTAL EXPENSES</span>
                         </div><!-- /.description-block -->
                     </div>

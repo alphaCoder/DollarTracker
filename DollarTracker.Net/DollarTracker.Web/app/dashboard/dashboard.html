@@ -43,7 +43,11 @@
         </div>
     </div>
     <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-        <p class="text-bold">No Content is available</p>
-       
+        <!--<p class="text-bold">No Content is available</p>-->
+        <div ng-repeat="story in summary.expenseStorySummaries">
+            <expense-story-info total-expenses="story.totalExpenses" expense-story="story.expenseStory" expenses-stats-by-category="story.expensesStats"></expense-story-info>
+            
+          <!--<textarea>{{story|json}}</textarea>-->
+        </div>
     </div>
 </div>

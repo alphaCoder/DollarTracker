@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DollarTrackerResponse.cs" />
+    <Compile Include="ExpensesStat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserClaim.cs" />
   </ItemGroup>

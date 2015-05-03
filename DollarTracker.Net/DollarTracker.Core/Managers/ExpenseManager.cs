@@ -1,4 +1,5 @@
-﻿using DollarTracker.Core.Infrastructure;
+﻿using DollarTracker.Common;
+using DollarTracker.Core.Infrastructure;
 using DollarTracker.Core.Repository;
 using DollarTracker.EF;
 using System;
@@ -17,7 +18,7 @@ namespace DollarTracker.Core.Managers
 		IEnumerable<Expense> GetAllExpenses(string storyId);
 		IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId);
 		IEnumerable<Expense> GetTopNExpense(string storyId, int n);
-		Dictionary<string, double> GetExpensesStats(string storyId);
+		List<ExpensesStat> GetExpensesStats(string storyId);
 		int TotalExpenseCount(string storyId);
 				
 		void DeleteExpense(string expenseId);
@@ -71,6 +72,18 @@ namespace DollarTracker.Core.Managers
 			return expenseRepository.GetMany(x => x.ExpenseStoryId == storyId).Take(n);
 		}
 
+		public List<ExpensesStat> GetExpensesStats(string storyId)
+		{
+			var stats = GetAllExpenses(storyId).GroupBy(e => e.ExpenseCategoryId).Select(c => new
+			ExpensesStat
+			{
+				Label = c.Key,
+				Value = c.Sum(x => x.Amount)
+			}).ToList();
+
+			return stats;
+		}
+
 		public int TotalExpenseCount(string storyId)
 		{
 			return expenseRepository.Count(e => e.ExpenseStoryId == storyId);
@@ -87,18 +100,6 @@ namespace DollarTracker.Core.Managers
 		public void SaveExpense()
 		{
 			unitOfWork.Save();
-		}
-
-
-		public Dictionary<string, double> GetExpensesStats(string storyId)
-		{
-			var stats = GetAllExpenses(storyId).GroupBy(e => e.ExpenseCategoryId).Select(c => new
-			{
-				key = c.Key,
-				value = c.Sum(x=>x.Amount)
-			}).ToDictionary(pair=>pair.key, pair=>pair.value);
-
-			return stats;
 		}
 	}
 }

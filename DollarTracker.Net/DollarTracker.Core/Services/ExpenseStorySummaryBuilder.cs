@@ -15,7 +15,7 @@ namespace DollarTracker.Core.Services
 	public class ExpenseStorySummaryBuilder : IExpenseStorySummaryBuilder
 	{
 		private readonly IExpenseManager expenseManager;
-
+		
 		public ExpenseStorySummaryBuilder(IExpenseManager expenseManager)
 		{
 			this.expenseManager = expenseManager;
@@ -24,9 +24,9 @@ namespace DollarTracker.Core.Services
 		public ExpenseStorySummary Build(string expenseStoryId)
 		{
 			var expenseStorySummary = new ExpenseStorySummary();
-			expenseStorySummary.ExpensesStatsByCategory = expenseManager.GetExpensesStats(expenseStoryId);
+			expenseStorySummary.ExpensesStats = expenseManager.GetExpensesStats(expenseStoryId);
 			expenseStorySummary.TotalExpenseCount = expenseManager.TotalExpenseCount(expenseStoryId);
-			
+			expenseStorySummary.TotalExpenses = expenseStorySummary.ExpensesStats.Sum(x=>x.Value);
 			return expenseStorySummary;
 		}
 	}

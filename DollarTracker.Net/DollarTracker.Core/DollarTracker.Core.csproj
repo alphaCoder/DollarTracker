@@ -83,6 +83,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\DollarTracker.Common\DollarTracker.Common.csproj">
+      <Project>{27dc9fc3-3f94-40c1-89f4-f9afebf178d8}</Project>
+      <Name>DollarTracker.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DollarTracker.EF\DollarTracker.EF.csproj">
       <Project>{2af15f94-1258-4160-a9dd-6160b8ade053}</Project>
       <Name>DollarTracker.EF</Name>

@@ -9,11 +9,11 @@
             storage.setItem(userKey,JSON.stringify( cachedUser))
         },
         getUser: function () {
-            console.log('called user service:');
+          // console.log('called user service:');
             if (!cachedUser) {
                 cachedUser = JSON.parse(storage.getItem(userKey));
             }
-            console.log(cachedUser);
+          //  console.log(cachedUser);
             return cachedUser;
         },
         removeUser: function(){

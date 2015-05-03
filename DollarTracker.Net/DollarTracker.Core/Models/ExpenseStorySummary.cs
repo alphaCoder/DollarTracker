@@ -1,4 +1,5 @@
-﻿using DollarTracker.EF;
+﻿using DollarTracker.Common;
+using DollarTracker.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,11 @@ namespace DollarTracker.Core.Models
 	{
 		public ExpenseStorySummary()
 		{
-			ExpensesStatsByCategory = new Dictionary<string, double>();
+			ExpensesStats = new List<ExpensesStat>();
 		}
 		public int TotalExpenseCount { get; set; }
 		public ExpenseStory ExpenseStory { get; set; }
-		public Dictionary<string, double> ExpensesStatsByCategory { get; set; } //using it for charts
+		public List<ExpensesStat> ExpensesStats { get; set; } //using it for charts
+		public double TotalExpenses { get; set; }
 	}
 }
