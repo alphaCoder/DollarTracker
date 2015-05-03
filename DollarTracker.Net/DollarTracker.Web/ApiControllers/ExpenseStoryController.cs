@@ -1,5 +1,7 @@
 ﻿using DollarTracker.Common;
 using DollarTracker.Core.Managers;
+using DollarTracker.Core.Models;
+using DollarTracker.Core.Services;
 using DollarTracker.Core.Utils;
 using DollarTracker.EF;
 using DollarTracker.Web.Utils;
@@ -17,10 +19,12 @@ namespace DollarTracker.Web.ApiControllers
     {
 		private readonly IExpenseStoryManager expenseStoryManager;
 		private readonly ICollaboratorManager collaboratorManager;
-		public ExpenseStoryController(IExpenseStoryManager esm, ICollaboratorManager collaboratorManager)
+		private readonly IExpenseStorySummaryBuilder expenseStorySummaryBuilder;
+		public ExpenseStoryController(IExpenseStoryManager esm, ICollaboratorManager collaboratorManager, IExpenseStorySummaryBuilder expenseStorySummaryBuilder)
 		{
 			this.expenseStoryManager = esm;
 			this.collaboratorManager = collaboratorManager;
+			this.expenseStorySummaryBuilder = expenseStorySummaryBuilder;
 		}
 		public DollarTrackerResponse<IEnumerable<ExpenseStory>> Get()
 		{
@@ -41,9 +45,9 @@ namespace DollarTracker.Web.ApiControllers
 		}
 
 		[Route("api/addExpenseStory")]
-		public DollarTrackerResponse<ExpenseStory> Post(ExpenseStory story)
+		public DollarTrackerResponse<ExpenseStorySummary> Post(ExpenseStory story)
 		{
-			var response = new DollarTrackerResponse<ExpenseStory>();
+			var response = new DollarTrackerResponse<ExpenseStorySummary>();
 			try
 			{
 				story.ExpenseStoryId = UniqueKeyGenerator.DatePrefixShortKey();
@@ -60,11 +64,31 @@ namespace DollarTracker.Web.ApiControllers
 					CreatedUtcDt = DateTime.UtcNow
 				};
 				collaboratorManager.AddCollaborator(collaborator);
-				response.Data = story;
+				response.Data = expenseStorySummaryBuilder.Build(story.ExpenseStoryId);
+				response.Data.ExpenseStory = story;
 			}
 			catch (Exception e)
 			{
 				//todo: log the server error
+				response.Success = false;
+				response.Message = "Unknown Server error";
+			}
+			return response;
+		}
+
+		[Route("api/deleteExpenseStory/{storyId}")]
+		[HttpDelete]
+		public DollarTrackerResponse<IEnumerable<ExpenseStory>> Delete(string storyId)
+		{
+			var response = new DollarTrackerResponse<IEnumerable<ExpenseStory>>();
+			try
+			{
+				expenseStoryManager.DeleteExpenseStory(storyId);
+				response.Success = true;
+				response.Data = expenseStoryManager.GetAllExpenseStories(UserClaim.UserId);
+			}
+			catch (Exception e)
+			{
 				response.Success = false;
 				response.Message = "Unknown Server error";
 			}

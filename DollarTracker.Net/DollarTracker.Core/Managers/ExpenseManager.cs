@@ -14,14 +14,15 @@ namespace DollarTracker.Core.Managers
 	{
 		void AddExpense(Expense e);
 		void UpdateExpense(Expense e);
-		
+
 		IEnumerable<Expense> GetAllExpenses(string storyId);
 		IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId);
 		IEnumerable<Expense> GetTopNExpense(string storyId, int n);
 		List<ExpensesStat> GetExpensesStats(string storyId);
 		int TotalExpenseCount(string storyId);
-				
+
 		void DeleteExpense(string expenseId);
+		void DeleteAllExpenses(string expenseStoryId);
 		void SaveExpense();
 	}
 	public class ExpenseManager : IExpenseManager
@@ -50,7 +51,8 @@ namespace DollarTracker.Core.Managers
 			if (existingExpense != null)
 			{
 				existingExpense.Amount = e.Amount;
-				if(!string.IsNullOrEmpty(e.CustomExpenseCategoryId)) {
+				if (!string.IsNullOrEmpty(e.CustomExpenseCategoryId))
+				{
 					existingExpense.CustomExpenseCategoryId = e.CustomExpenseCategoryId;
 				}
 				expenseRepository.Update(existingExpense);
@@ -91,10 +93,14 @@ namespace DollarTracker.Core.Managers
 
 		public void DeleteExpense(string expenseId)
 		{
-			if(expenseRepository.Any(x=>x.ExpenseId == expenseId)){
-				expenseRepository.Delete(x=>x.ExpenseId == expenseId);
-				SaveExpense();
-			}
+			expenseRepository.Delete(x => x.ExpenseId == expenseId);
+			SaveExpense();
+		}
+
+		public void DeleteAllExpenses(string expenseStoryId)
+		{
+			expenseRepository.Delete(x => x.ExpenseStoryId == expenseStoryId);
+			SaveExpense();
 		}
 
 		public void SaveExpense()

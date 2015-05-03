@@ -25,10 +25,15 @@ namespace DollarTracker.Core.Managers
 	{
 		private readonly IExpenseStoryRepository expenseStoryRepository;
         private readonly IUnitOfWork unitOfWork;
-		public ExpenseStoryManager(IExpenseStoryRepository expenseStoryRepository, IUnitOfWork unitOfWork)
+		private readonly IExpenseManager expenseManager;
+		private readonly ICollaboratorManager collaboratorManager;
+		public ExpenseStoryManager(IExpenseStoryRepository expenseStoryRepository, IUnitOfWork unitOfWork, 
+			IExpenseManager expenseManager, ICollaboratorManager collaboratorManager)
         {
 			this.expenseStoryRepository = expenseStoryRepository;
             this.unitOfWork = unitOfWork;
+			this.expenseManager = expenseManager;
+			this.collaboratorManager = collaboratorManager;
         }
 		public void AddExpenseStory(ExpenseStory story)
 		{
@@ -79,6 +84,8 @@ namespace DollarTracker.Core.Managers
 
 		public void DeleteExpenseStory(string storyId)
 		{
+			expenseManager.DeleteAllExpenses(storyId);
+			collaboratorManager.DeleteAllCollaborators(storyId);
 			expenseStoryRepository.Delete(x => x.ExpenseStoryId == storyId);
 			SaveExpenseStory();
 		}

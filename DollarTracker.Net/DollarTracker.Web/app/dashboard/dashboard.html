@@ -18,7 +18,7 @@
                     <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Individual</span>
-                        <span class="info-box-number">{{expenseStories.length}}</span>
+                        <span class="info-box-number">{{summary.expenseStorySummaries.length}}</span>
                     </div><!-- /.info-box-content -->
                 </div><!-- /.info-box -->
             </a>
@@ -38,16 +38,16 @@
 </div>
 <div style="margin-left:5px" id="myTabContent" class="tab-content">
     <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
-        <div ng-repeat="story in expenseStories">
-            <expense-story-info expense-Story="story"></expense-story-info>
+        <div ng-repeat="story in summary.expenseStorySummaries">
+            <expense-story-info total-expenses="story.totalExpenses" expense-story="story.expenseStory"
+                                delete-expense-story-summary="handleDeletedExpenseStorySummary(story.expenseStory)" expenses-stats-by-category="story.expensesStats"></expense-story-info>
         </div>
     </div>
     <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-        <!--<p class="text-bold">No Content is available</p>-->
-        <div ng-repeat="story in summary.expenseStorySummaries">
+        <p class="text-bold" xng-show="summary.expenseStorySummaries.length==0">No Content is available</p>
+        <!--<div ng-repeat="story in summary.expenseStorySummaries">
             <expense-story-info total-expenses="story.totalExpenses" expense-story="story.expenseStory" expenses-stats-by-category="story.expensesStats"></expense-story-info>
-            
-          <!--<textarea>{{story|json}}</textarea>-->
-        </div>
+        </div>-->
+
     </div>
 </div>

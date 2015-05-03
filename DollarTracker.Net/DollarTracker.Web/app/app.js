@@ -12,13 +12,6 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, 
         templateUrl: 'app/dashboard/dashboard.html?random=' + RANDOM,
         controller: 'dashboardCtrl',
         resolve: {
-            expenseStories: ['dashboard', function (dashboard) {
-                return dashboard.getExpenseStories().then(function (results) {
-                    console.log("resolve");
-                    console.log(results);
-                    return results.data.data;
-                });
-            }],
             summary: ['dashboard', function (dashboard) {
                 return dashboard.summary().then(function (results) {
                     console.log("resolve -summary");

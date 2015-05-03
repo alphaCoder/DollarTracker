@@ -16,6 +16,7 @@ namespace DollarTracker.Core.Managers
 		IEnumerable<Collaborator> GetAllCollaborators(string expenseStoryId);
 		Collaborator GetCollaborator(string userId, string expenseStoryId);
 		void DeleteCollaborator(Guid collaboratorId);
+		void DeleteAllCollaborators(string expenseStoryId);
 		void SaveCollaborator();
 	}
 	public class CollaboratorManager : ICollaboratorManager
@@ -54,23 +55,25 @@ namespace DollarTracker.Core.Managers
 
 		public void DeleteCollaborator(Guid collaboratorId)
 		{
-			if (collaboratorRepository.Any(c => c.CollaboratorId == collaboratorId))
-			{
-				collaboratorRepository.Delete(x => x.CollaboratorId == collaboratorId);
-				SaveCollaborator();
-			}
+			collaboratorRepository.Delete(x => x.CollaboratorId == collaboratorId);
+			SaveCollaborator();
 		}
 
+		public Collaborator GetCollaborator(string userId, string expenseStoryId)
+		{
+			return collaboratorRepository.Get(c => c.UserId == userId && c.ExpenseStoryId == expenseStoryId);
+		}
+
+		public void DeleteAllCollaborators(string expenseStoryId)
+		{
+			collaboratorRepository.Delete(x => x.ExpenseStoryId == expenseStoryId);
+			SaveCollaborator();
+		}
 
 		public void SaveCollaborator()
 		{
 			unitOfWork.Save();
 		}
 
-
-		public Collaborator GetCollaborator(string userId, string expenseStoryId)
-		{
-			return collaboratorRepository.Get(c => c.UserId == userId && c.ExpenseStoryId == expenseStoryId);
-		}
 	}
 }

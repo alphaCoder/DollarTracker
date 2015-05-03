@@ -22,7 +22,7 @@ namespace DollarTracker.Core.Tests.Managers
 		{
 			user = GetNewMockUser();
 			expenseStory = GetNewMockPersonalExpenseStory(user.UserId);
-			new ExpenseStoryManager(new ExpenseStoryRepository(dbFactory), unitOfWork).AddExpenseStory(expenseStory);
+			new ExpenseStoryManager(new ExpenseStoryRepository(dbFactory), unitOfWork, null,null).AddExpenseStory(expenseStory);
 			collaboratorMgr = new CollaboratorManager(new CollaboratorRepository(dbFactory), unitOfWork);
 		}
 

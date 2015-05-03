@@ -37,6 +37,12 @@
                     </div>
                 </div>
                 <div class="box-body">
+                    <div ng-show="expenses.length==0">
+                        <p class="text-bold">No Expenses are added, Please add one</p>
+                        <div>
+                            <button class="btn btn-primary" ng-click="newExpense()"><i class="glyphicon glyphicon-plus"></i>Add Expense</button>
+                        </div>
+                    </div>
                     <div ng-repeat="expense in expenses">
                         <expense-card expense="expense" delete-expense="deleteExpense(expense)"></expense-card>
                     </div>
