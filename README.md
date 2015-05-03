@@ -9,6 +9,9 @@ DollarTracker is an expense manager tool
 * Sql Server as backend
 * Ninject
 * NUnit
+* Redis
+* NodeJS
+* MongoDB
 
 #Tutorial
 
