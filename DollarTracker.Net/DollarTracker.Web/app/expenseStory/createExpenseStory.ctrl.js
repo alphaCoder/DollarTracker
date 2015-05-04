@@ -11,8 +11,6 @@
     ];
 
     $scope.expenseStory = {};
-    $scope.expenseStory.startDt = new Date(2015, 5, 1);
-    $scope.expenseStory.endDt = new Date(2015, 6, 1);
     $scope.selectedStoryType = $scope.storyTypes[0];
     $scope.expenseStory.expenseStoryTypeId = $scope.selectedStoryType.id;
     $scope.create = function () {
