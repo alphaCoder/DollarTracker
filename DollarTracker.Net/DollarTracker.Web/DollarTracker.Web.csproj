@@ -393,6 +393,9 @@
     <Content Include="app\expenseStory\expenseStoryCategoryGraph.html" />
     <Content Include="app\expenseStory\expenseStoryInfo.Directive.js" />
     <Content Include="app\expenseStory\expenseStoryInfo.html" />
+    <Content Include="app\notification\messageInfo.ctrl.js" />
+    <Content Include="app\notification\messageInfo.html" />
+    <Content Include="app\notification\messageInfo.js" />
     <Content Include="app\services\user.service.js" />
     <Content Include="app\layout\appBody.html" />
     <Content Include="app\layout\appBody.js" />
