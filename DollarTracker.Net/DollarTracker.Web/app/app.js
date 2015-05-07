@@ -1,4 +1,4 @@
-﻿app = angular.module('DollarTrackerApp', ['ui.router', 'ui.bootstrap', 'ng-bootstrap-datepicker',
+﻿app = angular.module('DollarTrackerApp', ['chart.js','ui.router', 'ui.bootstrap', 'ng-bootstrap-datepicker',
     'satellizer', 'angularMoment']);
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$authProvider', 'API_URL',
 function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $authProvider, API_URL) {
