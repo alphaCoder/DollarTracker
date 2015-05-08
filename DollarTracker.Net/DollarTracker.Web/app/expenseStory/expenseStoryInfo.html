@@ -4,17 +4,15 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Expense Story Report: <strong>{{expenseStory.startDt | amDateFormat:'MMMM Do, YYYY'}} - {{expenseStory.endDt | amDateFormat:'MMMM Do, YYYY'}} </strong> </h3>
                 <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-toggle="tooltip" title="Add Collaborators" xdata-placement="right"><i class="fa fa-group"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove" ng-click="deleteExpenseStory(expenseStory)"><i class="glyphicon glyphicon-trash"></i></button>
+                    <button class="btn btn-box-tool" tooltip="Add Collaborators"><i class="fa fa-group"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" tooltip="delete" ng-click="deleteExpenseStory(expenseStory)"><i class="glyphicon glyphicon-trash"></i></button>
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body">
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="text-center chart-responsive">
-                            <img src="http://orm-chimera-prod.s3.amazonaws.com/1230000000345/images/idvw_1101.png" width="300" height="300" />
-                            <!-- Sales Chart Canvas -->
-                            <!--<canvas id="salesChart" height="180"></canvas>-->
+                            <expense-story-info-chart expenses-stats-by-category="expensesStatsByCategory"></expense-story-info-chart>
                         </div><!-- /.chart-responsive -->
                     </div><!-- /.col -->
                     <div class="col-sm-4">

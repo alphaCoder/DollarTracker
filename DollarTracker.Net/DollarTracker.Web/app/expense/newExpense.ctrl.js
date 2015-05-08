@@ -1,5 +1,5 @@
 ﻿app.controller('newExpenseCtrl', ['$modalInstance', '$scope', 'expenseService', 'expenseStoryId',
-    function ($modalInstance, $scope, expenseService, expenseStoryId) {
+function ($modalInstance, $scope, expenseService, expenseStoryId) {
         $scope.expense = {};
         $scope.expense.title = 'Walmart';
         $scope.expense.amount = 100;
@@ -10,11 +10,8 @@
             $modalInstance.close(expense);
         };
 
-        $scope.expenseCategories = [
-            { name: 'Gas', id: 'Gas' },
-            { name: 'Groceries', id: 'Groceries' }
-        ];
-
+        $scope.expenseCategories = expenseService.expenseCategories();
+           
         $scope.selectedExpenseCategory = $scope.expenseCategories[0];
        
         $scope.create = function () {

@@ -6,7 +6,7 @@
             totalExpenses: '='
         },
         templateUrl: 'app/expenseStory/expenseStoryCategoryGraph.html?random=' + RANDOM
-     }
+    }
 }])
 
 app.directive('progressBarColor', ['$parse', function ($parse) {
@@ -30,9 +30,6 @@ app.directive('progressBarColor', ['$parse', function ($parse) {
                     el.addClass('progress-bar-aqua')
                     break;
             }
-
         }
-
     }
-}
-]);
+}]);
