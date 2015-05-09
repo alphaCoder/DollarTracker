@@ -1,4 +1,4 @@
-﻿app.factory('expenseService', ['$http','dolt', function ($http, dolt) {
+﻿app.factory('expenseService', ['$http', 'dolt', '$timeout', function ($http, dolt) {
     var expenseService = {};
     var cachedExpenseCategories;
     expenseService.addExpense = function (expense) {
@@ -16,21 +16,19 @@
             var url = dolt.getApiUrl('expenseCategory');
             $http.get(url).then(function (result) {
                 cachedExpenseCategories = [];
-                console.log('data from server');
-                console.log(result.data);
                 angular.forEach(result.data, function (obj, v) {
-                    cachedExpenseCategories.push({ name: obj.description, id: obj.ExpenseCategoryId });
+                    cachedExpenseCategories.push({ name: obj.description, id: obj.expenseCategoryId });
                 });
                 console.log("categories");
                 console.log(JSON.stringify(cachedExpenseCategories));
-
+                return cachedExpenseCategories;
             }, function (err) {
                 console.log("error");
                 console.log(err);
             });
+
         }
         return cachedExpenseCategories;
     }
-
     return expenseService;
 }]);

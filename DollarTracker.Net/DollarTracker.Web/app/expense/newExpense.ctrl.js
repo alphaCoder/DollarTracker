@@ -11,11 +11,10 @@ function ($modalInstance, $scope, expenseService, expenseStoryId) {
         };
 
         $scope.expenseCategories = expenseService.expenseCategories();
-           
-        $scope.selectedExpenseCategory = $scope.expenseCategories[0];
+        
+        //$scope.selectedExpenseCategory = $scope.expenseCategories[0];
        
         $scope.create = function () {
-            
             $scope.expense.expenseCategoryId = $scope.selectedExpenseCategory.id;
             expenseService.addExpense($scope.expense).then(function (result) {
                 $scope.ok(result.data.data);
