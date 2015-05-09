@@ -6,4 +6,5 @@
     [CreatedDtUtc] DATETIME2 NOT NULL, 
     [Status] BIT NOT NULL, 
     [DisplayName] VARCHAR(50) NULL, 
+    [ProfilePic] VARCHAR(MAX) NULL, 
 )
