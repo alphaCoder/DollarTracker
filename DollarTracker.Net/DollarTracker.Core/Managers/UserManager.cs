@@ -43,7 +43,8 @@ namespace DollarTracker.Core.Managers
 			if (existingUser != null)
 			{
 				existingUser.Status = user.Status;
-				userRepository.Add(existingUser);
+				existingUser.ProfilePic = user.ProfilePic;
+				userRepository.Update(existingUser);
 				SaveUser();
 			};
 		}

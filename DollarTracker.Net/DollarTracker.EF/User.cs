@@ -20,5 +20,6 @@ namespace DollarTracker.EF
         public System.DateTime CreatedDtUtc { get; set; }
         public bool Status { get; set; }
         public string DisplayName { get; set; }
+        public string ProfilePic { get; set; }
     }
 }

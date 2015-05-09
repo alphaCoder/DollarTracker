@@ -399,6 +399,7 @@
     <Content Include="app\notification\messageInfo.ctrl.js" />
     <Content Include="app\notification\messageInfo.html" />
     <Content Include="app\notification\messageInfo.js" />
+    <Content Include="app\services\imageUpload.service.js" />
     <Content Include="app\services\user.service.js" />
     <Content Include="app\layout\appBody.html" />
     <Content Include="app\layout\appBody.js" />
@@ -425,6 +426,8 @@
     <Content Include="app\user\login.ctrl.js" />
     <Content Include="app\user\login.html" />
     <Content Include="app\user\logout.ctrl.js" />
+    <Content Include="app\user\profile\profile.html" />
+    <Content Include="app\user\profile\profile.ctrl.js" />
     <Content Include="app\user\register.ctrl.js" />
     <Content Include="app\user\register.html" />
     <Content Include="Content\angular-chart.css" />
@@ -449,6 +452,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\default_user_icon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="npmPlaceholder.txt" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-moment.js" />

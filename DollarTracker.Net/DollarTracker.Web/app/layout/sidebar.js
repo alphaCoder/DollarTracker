@@ -13,7 +13,6 @@
 })
 .controller('sideBarCtrl', ['$scope', '$auth', 'user', function ($scope, $auth, user) {
     $scope.isAuthenticated = $auth.isAuthenticated;
-    //$scope.currentUser = user.getUser();
+    $scope.user = user;
     console.log('current user sidebar:');
-    console.log($scope.currentUser);
 }])

@@ -21,6 +21,15 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, 
             }]
         }
     })
+    .state('profile', {
+        url: '/profile',
+        templateUrl: 'app/user/profile/profile.html?random=' + RANDOM,
+        controller: 'profileCtrl'
+    })
+     .state('settings', {
+         url: '/settings',
+         template: '<h1>Settings Page is Coming Soon</h1>'
+     })
     .state('login', {
         url: '/login',
         templateUrl: 'app/user/login.html?random=' + RANDOM,
@@ -72,13 +81,13 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, 
 .constant('API_URL', 'http://localhost:3000/')
 .controller('appCtrl', ['$scope', '$auth', 'user', function ($scope, $auth, user) {
     $scope.isAuthenticated = $auth.isAuthenticated;
-    $scope.user = user.getUser();
-    $scope.$watch(user.getUser, function (newUser) {
-        $scope.user = newUser;
-    });
+    $scope.user = user;
+    //$scope.$watch(user.getUser, function (newUser) {
+    //    $scope.user = newUser;
+    //});
 }])
 .run(['$window', '$rootScope', '$auth', '$state', 'user', function ($window, $rootScope, $auth, $state, user) {
-
+    user.autoLogin();
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if ($auth.isAuthenticated() && (toState.name === 'login' || toState.name === 'register')) {
             console.log(toState.name);

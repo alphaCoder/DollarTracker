@@ -1,11 +1,11 @@
 ﻿app.controller("dashboardCtrl", ['$http', 'dashboard', '$scope', '$modal', 'user', 'summary',
     function ($http, $dashboard, $scope, $modal, user, summary) {
 
-    $scope.user = user.getUser();
+    $scope.user = user;
 
     $scope.summary = summary;
-    console.log('summary:');
-    console.log(JSON.stringify(summary));
+    console.log('dashboar user:');
+    console.log(JSON.stringify(user));
     console.log('dashboard scope');
    // console.log($scope);
     $scope.newExpenseStory = function () {
@@ -17,9 +17,6 @@
       });
 
       modalInstance.result.then(function (result) {
-
-          console.log('added new story successfully:');
-          console.log(JSON.stringify(result.data));
           $scope.summary.expenseStorySummaries.push(result.data);
       });
     }
