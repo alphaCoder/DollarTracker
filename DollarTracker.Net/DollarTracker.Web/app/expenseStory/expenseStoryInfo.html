@@ -1,0 +1,56 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Expense Story Report: <strong>{{expenseStory.startDt | amDateFormat:'MMMM Do, YYYY'}} - {{expenseStory.endDt | amDateFormat:'MMMM Do, YYYY'}} </strong> </h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" tooltip="Add Collaborators"><i class="fa fa-group"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" tooltip="delete" ng-click="deleteExpenseStory(expenseStory)"><i class="glyphicon glyphicon-trash"></i></button>
+                </div>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="text-center chart-responsive">
+                            <expense-story-info-chart expenses-stats-by-category="expensesStatsByCategory"></expense-story-info-chart>
+                        </div><!-- /.chart-responsive -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-4">
+                        <p class="text-center">
+                            <strong>Top {{expensesStatsByCategory.length}} Expense Categories</strong>
+                        </p>
+                        <expense-story-category-graph expenses-stats-by-category="expensesStatsByCategory" total-expenses="totalExpenses"></expense-story-category-graph>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- ./box-body -->
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="description-block border-right">
+                            <h5 class="description-header">${{expenseStory.income}}</h5>
+                            <span class="description-text">TOTAL INCOME</span>
+                        </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="description-block border-right">
+                            <h5 class="description-header">${{expenseStory.budget}}</h5>
+                            <span class="description-text">TOTAL BUDGET</span>
+                        </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="description-block">
+                            <h5 class="description-header">${{totalExpenses}}</h5>
+                            <span class="description-text">TOTAL EXPENSES</span>
+                        </div><!-- /.description-block -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="description-block border-right">
+                            <a class="btn btn-primary" ui-sref="expenseStory({'id': expenseStory.expenseStoryId})">View All Expenses</a>
+                        </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.box-footer -->
+        </div><!-- /.box -->
+    </div><!-- /.col -->
+</div><!-- /.row -->

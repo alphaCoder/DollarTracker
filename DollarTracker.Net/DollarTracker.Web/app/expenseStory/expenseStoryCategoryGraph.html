@@ -1,0 +1,7 @@
+﻿<div class="progress-group" ng-repeat="stat in expensesStatsByCategory">
+    <span class="progress-text">{{stat.label}}</span>
+    <span class="progress-number"><b>{{stat.value}}</b>/{{totalExpenses}}</span>
+    <div class="progress sm">
+        <div class="progress-bar" progress-bar-color="{{$index}}" style="width: {{(stat.value/totalExpenses)*100}}%"></div>
+    </div>
+</div><!-- /.progress-group -->

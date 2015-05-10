@@ -17,16 +17,12 @@ namespace DollarTracker.EF
         public string ExpenseId { get; set; }
         public string ExpenseStoryId { get; set; }
         public System.Guid CollaboratorId { get; set; }
+        public string Title { get; set; }
         public double Amount { get; set; }
         public byte[] Receipt { get; set; }
         public Nullable<System.DateTime> CreatedUtcDt { get; set; }
         public string Comments { get; set; }
         public string ExpenseCategoryId { get; set; }
         public string CustomExpenseCategoryId { get; set; }
-    
-        public virtual Collaborator Collaborator { get; set; }
-        public virtual CustomExpenseCategory CustomExpenseCategory { get; set; }
-        public virtual ExpenseCategory ExpenseCategory { get; set; }
-        public virtual ExpenseStory ExpenseStory { get; set; }
     }
 }

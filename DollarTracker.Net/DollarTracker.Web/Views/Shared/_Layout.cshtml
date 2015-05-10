@@ -2,56 +2,211 @@
 <html ng-app="DollarTrackerApp">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title>Dollar Tracker</title>
     <script>
         var app;
         var RANDOM = Math.random();
-       // var baseApi = "http://localhost:54973/";
+        // var baseApi = "http://localhost:54973/";
     </script>
     @Styles.Render("~/Content/css")
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css" />
 
     @Scripts.Render("~/bundles/modernizr")
 
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <br />
-        @*<hr />
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>*@
-    </div>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    @*<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/Content/ionicons.min.css" rel="stylesheet" />
+    <link href="~/AdminLTE/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/AdminLTE/css/skins/skin-green.min.css" rel="stylesheet" />
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link href="~/Content/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="~/Content/angular-chart.css" rel="stylesheet" />
+</head>
+<body class="skin-green" ng-class="{'sidebar-collapse': !isAuthenticated()}" ng-controller="appCtrl">
+
+    <div class="wrapper">
+        <!-- Main Header -->
+
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="" class="logo"><b>DollarTracker</b></a>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a ng-show="isAuthenticated()" href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="sidebar-menu" ng-show="isAuthenticated()">
+                            <form class="navbar-form" role="search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search" name="q">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu" ng-show="isAuthenticated()">
+                            <!-- Menu toggle button -->
+                            <message-info></message-info>
+                        </li><!-- /.messages-menu -->
+                        <!-- Notifications Menu -->
+                        <li class="dropdown notifications-menu" ng-show="isAuthenticated()">
+                            <!-- Menu toggle button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">10</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- Inner Menu: contains the notifications -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- start notification -->
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                            </a>
+                                        </li><!-- end notification -->
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Tasks Menu -->
+                        <li class="dropdown tasks-menu" ng-show="isAuthenticated()">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-flag-o"></i>
+                                <span class="label label-danger">9</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 9 tasks</li>
+                                <li>
+                                    <!-- Inner menu: contains the tasks -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <!-- Task title and progress text -->
+                                                <h3>
+                                                    Design some buttons
+                                                    <small class="pull-right">20%</small>
+                                                </h3>
+                                                <!-- The progress bar -->
+                                                <div class="progress xs">
+                                                    <!-- Change the css width attribute to simulate progress -->
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu" ng-show="isAuthenticated()">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img ng-src="{{user.avatarUrl}}" class="user-image" alt="User Image" />
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">{{user.displayName}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img ng-src="{{user.avatarUrl}}" class="img-circle" alt="User Image" />
+                                    <p>
+                                        {{user.displayName}}
+                                        <small>Member since Nov. 2012</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    @*<div class="col-xs-4 text-center">
+                                            <a href="#">Sales</a>
+                                        </div>*@
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a ui-sref="profile" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a ui-sref="logout" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li ng-hide="isAuthenticated()" class="user user-menu"><a ui-sref="login">Login</a></li>
+                        <li ng-hide="isAuthenticated()" class="user user-menu"><a ui-sref="register">Register</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div ng-show="isAuthenticated()">
+            <side-bar user="user"></side-bar>
+        </div>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header"></section>
+            <!-- Main content -->
+            @RenderBody()
+            <!-- Your Page Content Here -->
+            <!-- /.content -->
+        </div><!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+
+            <!-- Default to the left -->
+            <div class="text-center">
+                <i class="glyphicon glyphicon-heart"></i> <b>Dollar</b> <span class="text-muted">Tracker</span> 2015
+            </div>
+        </footer>
+    </div><!-- ./wrapper -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/adminLTE/all")
     @Scripts.Render("~/app/all")
+
     @RenderSection("scripts", required: false)
-
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+    <script src="~/app/lib/satellizer.min.js"></script>
 
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/angular-moment.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/app/lib/angular-chart.js"></script>
 </body>
+
 </html>

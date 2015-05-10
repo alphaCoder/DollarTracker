@@ -24,15 +24,25 @@ namespace DollarTracker.Web
 					  "~/Scripts/respond.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
-					  "~/Content/bootstrap.css",
-					  "~/Content/site.css"));
+					  "~/Content/bootstrap.css"));//,
+					  //"~/Content/site.css"));
+			//bundles.Add(new StyleBundle("~/bundles/adminLTE").Include(
+			//	"~/AdminLTE/css/AdminLTE.min.css",	
+			//	"~/AdminLTE/css/skins/skin-blue.min.css"
+			//	));
 
 			bundles.Add(new ScriptBundle("~/bundles/angular").Include(
 				"~/Scripts/angular.js",
 				"~/Scripts/angular-ui-router.js",
-				"~/Scripts/angular-mocks.js"
+				"~/Scripts/angular-mocks.js",
+				"~/Scripts/angular-ui/ui-bootstrap.js",
+				"~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"
 				));
 			bundles.Add(new ScriptBundle("~/app/all").IncludeDirectory("~/app", "*.js", true));
+			bundles.Add(new ScriptBundle("~/adminLTE/all").Include(
+				"~/AdminLTE/js/app.min.js"
+				));
+
 
 		}
 	}

@@ -1,0 +1,53 @@
+﻿<section class="content-header">
+    <h1>
+        Expenses
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref='/'>Dashboard</a></li>
+        <li class="active">Expenses</li>
+    </ol>
+</section>
+<section style="margin-left:5px" class="content">
+    <div class="row" style="padding-top:4px">
+        <!-- apply any bg-* class to to the info-box to color it -->
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="info-box bg-red">
+                    <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Expenses</span>
+                        <span class="info-box-number">{{expenses.length}}</span>
+                    </div><!-- /.info-box-content -->
+                </div>
+            </div><!-- /.info-box -->
+        </div>
+        <div class="row" style="padding-top:4em; margin-left:4px; margin-right:4px">
+            <div class="box col-sm-8">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Expense Story</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-toggle="tooltip" title="New Expense" ng-click="newExpense()"><i class="fa fa-usd"></i></button>
+                        <div class="btn-group">
+                            <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gear"></i></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="javascript:void(0)" ng-click="addCollaborator()">Add Collaborator</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div ng-show="expenses.length==0">
+                        <p class="text-bold">No Expenses are added, Please add one</p>
+                        <div>
+                            <button class="btn btn-primary" ng-click="newExpense()"><i class="glyphicon glyphicon-plus"></i>Add Expense</button>
+                        </div>
+                    </div>
+                    <div ng-repeat="expense in expenses">
+                        <expense-card expense="expense" delete-expense="deleteExpense(expense)"></expense-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

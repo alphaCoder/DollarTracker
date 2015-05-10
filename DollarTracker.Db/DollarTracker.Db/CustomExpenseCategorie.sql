@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[CustomExpenseCategory]
 (
 	[CustomExpenseCategoryId] VARCHAR(20) NOT NULL PRIMARY KEY, 
-    [UserId] UNIQUEIDENTIFIER NOT NULL, 
+    [UserId] VARCHAR(50) NOT NULL, 
     [Description] VARCHAR(50) NOT NULL, 
     [CreatedDt] DATETIME2 NULL, 
     [Status] BIT NOT NULL DEFAULT 0, 

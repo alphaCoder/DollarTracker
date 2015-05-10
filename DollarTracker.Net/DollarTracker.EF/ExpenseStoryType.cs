@@ -14,14 +14,7 @@ namespace DollarTracker.EF
     
     public partial class ExpenseStoryType
     {
-        public ExpenseStoryType()
-        {
-            this.ExpenseStory = new HashSet<ExpenseStory>();
-        }
-    
         public string ExpenseStoryTypeId { get; set; }
         public string Description { get; set; }
-    
-        public virtual ICollection<ExpenseStory> ExpenseStory { get; set; }
     }
 }

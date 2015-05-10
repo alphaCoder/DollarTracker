@@ -61,6 +61,7 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Managers\AppSettingManager.cs" />
     <Compile Include="Managers\CollaboratorManager.cs" />
     <Compile Include="Managers\ExpenseCategoryManager.cs" />
     <Compile Include="Managers\ExpenseManager.cs" />
@@ -73,11 +74,17 @@
     <Compile Include="Repository\ExpenseStoryRepository.cs" />
     <Compile Include="Repository\ExpenseStoryTypeRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Services\DashboardSummaryBuilder.cs" />
+    <Compile Include="Services\ExpenseStorySummaryBuilder.cs" />
     <Compile Include="Utils\DataMock.cs" />
     <Compile Include="Utils\UniqueKeyGenerator.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\DollarTracker.Common\DollarTracker.Common.csproj">
+      <Project>{27dc9fc3-3f94-40c1-89f4-f9afebf178d8}</Project>
+      <Name>DollarTracker.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DollarTracker.EF\DollarTracker.EF.csproj">
       <Project>{2af15f94-1258-4160-a9dd-6160b8ade053}</Project>
       <Name>DollarTracker.EF</Name>

@@ -16,10 +16,11 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <NuGetPackageImportStamp>0f940aa5</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,7 +48,42 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="JWT">
+      <HintPath>..\packages\JWT.1.3.2\lib\3.5\JWT.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -138,38 +174,14 @@
     <Reference Include="System.Web.Http.WebHost">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Owin">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin">
-      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security">
-      <HintPath>..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Owin.Security.Facebook">
       <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Google">
-      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Twitter">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
@@ -179,13 +191,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\DashboardController.cs" />
+    <Compile Include="ApiControllers\DollarTrackerBaseController.cs" />
     <Compile Include="ApiControllers\ExpenseCategoryController.cs" />
+    <Compile Include="ApiControllers\ExpenseController.cs" />
     <Compile Include="ApiControllers\ExpenseStoryController.cs" />
+    <Compile Include="ApiControllers\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -197,27 +214,258 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utils\DTJwtApiAuthorization.cs" />
+    <Compile Include="Utils\JwtHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminLTE\css\AdminLTE.css" />
+    <Content Include="AdminLTE\css\AdminLTE.min.css" />
+    <Content Include="AdminLTE\css\skins\skin-black.css" />
+    <Content Include="AdminLTE\css\skins\skin-black.min.css" />
+    <Content Include="AdminLTE\css\skins\skin-blue.css" />
+    <Content Include="AdminLTE\css\skins\skin-blue.min.css" />
+    <Content Include="AdminLTE\css\skins\skin-green.css" />
+    <Content Include="AdminLTE\css\skins\skin-green.min.css" />
+    <Content Include="AdminLTE\css\skins\skin-purple.css" />
+    <Content Include="AdminLTE\css\skins\skin-purple.min.css" />
+    <Content Include="AdminLTE\css\skins\skin-red.css" />
+    <Content Include="AdminLTE\css\skins\skin-red.min.css" />
+    <Content Include="AdminLTE\css\skins\skin-yellow.css" />
+    <Content Include="AdminLTE\css\skins\skin-yellow.min.css" />
+    <Content Include="AdminLTE\css\skins\_all-skins.css" />
+    <Content Include="AdminLTE\css\skins\_all-skins.min.css" />
+    <Content Include="AdminLTE\img\avatar.png" />
+    <Content Include="AdminLTE\img\avatar04.png" />
+    <Content Include="AdminLTE\img\avatar2.png" />
+    <Content Include="AdminLTE\img\avatar3.png" />
+    <Content Include="AdminLTE\img\avatar5.png" />
+    <Content Include="AdminLTE\img\boxed-bg.jpg" />
+    <Content Include="AdminLTE\img\boxed-bg.png" />
+    <Content Include="AdminLTE\img\credit\american-express.png" />
+    <Content Include="AdminLTE\img\credit\cirrus.png" />
+    <Content Include="AdminLTE\img\credit\mastercard.png" />
+    <Content Include="AdminLTE\img\credit\mestro.png" />
+    <Content Include="AdminLTE\img\credit\paypal.png" />
+    <Content Include="AdminLTE\img\credit\paypal2.png" />
+    <Content Include="AdminLTE\img\credit\visa.png" />
+    <Content Include="AdminLTE\img\default-50x50.gif" />
+    <Content Include="AdminLTE\img\icons.png" />
+    <Content Include="AdminLTE\img\photo1.png" />
+    <Content Include="AdminLTE\img\photo2.png" />
+    <Content Include="AdminLTE\img\user1-128x128.jpg" />
+    <Content Include="AdminLTE\img\user2-160x160.jpg" />
+    <Content Include="AdminLTE\img\user3-128x128.jpg" />
+    <Content Include="AdminLTE\img\user4-128x128.jpg" />
+    <Content Include="AdminLTE\img\user5-128x128.jpg" />
+    <Content Include="AdminLTE\img\user6-128x128.jpg" />
+    <Content Include="AdminLTE\img\user7-128x128.jpg" />
+    <Content Include="AdminLTE\img\user8-128x128.jpg" />
+    <Content Include="AdminLTE\js\app.js" />
+    <Content Include="AdminLTE\js\app.min.js" />
+    <Content Include="AdminLTE\js\demo.js" />
+    <Content Include="AdminLTE\js\pages\dashboard.js" />
+    <Content Include="AdminLTE\js\pages\dashboard2.js" />
+    <Content Include="AdminLTE\plugins\icheck\icheck.min.js" />
+    <Content Include="AdminLTE\plugins\icheck\skins\all.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\aero%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\aero.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\aero.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\blue%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\blue.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\blue.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\flat%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\flat.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\flat.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\green%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\green.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\green.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\grey%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\grey.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\grey.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\orange%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\orange.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\orange.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\pink%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\pink.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\pink.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\purple%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\purple.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\purple.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\red%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\red.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\red.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\yellow%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\yellow.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\yellow.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\flat\_all.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\futurico\futurico%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\futurico\futurico.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\futurico\futurico.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\aero.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\blue.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\green.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\grey.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\line%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\line.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\line.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\orange.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\pink.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\purple.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\red.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\yellow.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\line\_all.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\aero%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\aero.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\aero.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\blue%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\blue.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\blue.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\green%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\green.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\green.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\grey%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\grey.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\grey.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\minimal%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\minimal.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\minimal.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\orange%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\orange.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\orange.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\pink%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\pink.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\pink.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\purple%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\purple.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\purple.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\red%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\red.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\red.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\yellow%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\yellow.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\yellow.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\minimal\_all.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\polaris\polaris%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\polaris\polaris.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\polaris\polaris.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\aero%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\aero.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\aero.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\blue%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\blue.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\blue.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\green%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\green.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\green.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\grey%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\grey.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\grey.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\orange%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\orange.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\orange.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\pink%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\pink.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\pink.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\purple%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\purple.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\purple.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\red%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\red.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\red.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\square%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\square.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\square.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\yellow%402x.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\yellow.css" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\yellow.png" />
+    <Content Include="AdminLTE\plugins\icheck\skins\square\_all.css" />
+    <Content Include="app\app.config.js" />
     <Content Include="app\app.js" />
     <Content Include="app\common\dataTable.js" />
-    <Content Include="app\common\dollarTracker.Service.js" />
+    <Content Include="app\common\dollarTracker.service.js" />
+    <Content Include="app\common\header.controller.js" />
+    <Content Include="app\common\header.html" />
+    <Content Include="app\common\includeReplace.directive.js" />
+    <Content Include="app\expenseStory\deleteExpenseStory.ctrl.js" />
+    <Content Include="app\expenseStory\deleteExpenseStoryModal.html" />
+    <Content Include="app\expenseStory\expenseStoryCategoryGraph.Directive.js" />
+    <Content Include="app\expenseStory\expenseStoryCategoryGraph.html" />
+    <Content Include="app\expenseStory\expenseStoryInfoChart.Directive.js" />
+    <Content Include="app\expenseStory\expenseStoryInfo.Directive.js" />
+    <Content Include="app\expenseStory\expenseStoryInfo.html" />
+    <Content Include="app\expenseStory\expenseStoryInfoChart.html" />
+    <Content Include="app\lib\angular-chart.js" />
+    <Content Include="app\notification\messageInfo.ctrl.js" />
+    <Content Include="app\notification\messageInfo.html" />
+    <Content Include="app\notification\messageInfo.js" />
+    <Content Include="app\services\imageUpload.service.js" />
+    <Content Include="app\services\user.service.js" />
+    <Content Include="app\layout\appBody.html" />
+    <Content Include="app\layout\appBody.js" />
+    <Content Include="app\layout\sidebar.html" />
     <Content Include="app\dashboard\dashboard.ctrl.js" />
     <Content Include="app\dashboard\dashboard.html" />
     <Content Include="app\dashboard\dashboard.service.js" />
-    <Content Include="app\userStory\userStory.html" />
-    <Content Include="app\userStory\userStory.js" />
+    <Content Include="app\expenseStory\createExpenseStory.ctrl.js" />
+    <Content Include="app\expenseStory\createExpenseStoryModal.html" />
+    <Content Include="app\expenseStory\expenseStory.dashboard.ctrl.js" />
+    <Content Include="app\expenseStory\expenseStory.dashboard.html" />
+    <Content Include="app\expense\expense.Service.js" />
+    <Content Include="app\expense\expenseCard.html" />
+    <Content Include="app\expense\expenseCard.Directive.js" />
+    <Content Include="app\expenseStory\expenseStory.Service.js" />
+    <Content Include="app\expense\newExpense.ctrl.js" />
+    <Content Include="app\expense\newExpenseModal.html" />
+    <Content Include="app\home\home.html" />
+    <Content Include="app\layout\sidebar.js" />
+    <Content Include="app\lib\satellizer.js" />
+    <Content Include="app\lib\satellizer.min.js" />
+    <Content Include="app\services\authInterceptor.js" />
+    <Content Include="app\services\dataCleanup.js" />
+    <Content Include="app\user\login.ctrl.js" />
+    <Content Include="app\user\login.html" />
+    <Content Include="app\user\logout.ctrl.js" />
+    <Content Include="app\user\profile\profile.html" />
+    <Content Include="app\user\profile\profile.ctrl.js" />
+    <Content Include="app\user\profile\profile.route.js" />
+    <Content Include="app\user\register.ctrl.js" />
+    <Content Include="app\user\register.html" />
+    <Content Include="Content\angular-chart.css" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-simplex.css" />
+    <Content Include="Content\bootstrap-superhero.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ionicons.min.css" />
+    <Content Include="Content\sidebar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\default_user_icon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="npmPlaceholder.txt" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-moment.js" />
+    <Content Include="Scripts\angular-moment.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -227,9 +475,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="AdminLTE\LICENSE" />
+    <Content Include="app\lib\satellizer.min.js.map">
+      <DependentUpon>satellizer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\angular-moment.min.js.map" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
@@ -238,7 +495,72 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -279,14 +601,18 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\directives\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DollarTracker.Common\DollarTracker.Common.csproj">
+      <Project>{27dc9fc3-3f94-40c1-89f4-f9afebf178d8}</Project>
+      <Name>DollarTracker.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DollarTracker.Core\DollarTracker.Core.csproj">
       <Project>{0221907e-897b-49b4-8afb-188a34effe46}</Project>
       <Name>DollarTracker.Core</Name>
@@ -324,6 +650,15 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\Npm.js.1.3.15.4\build\npm.js.targets" Condition="Exists('..\packages\Npm.js.1.3.15.4\build\npm.js.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Npm.js.1.3.15.4\build\npm.js.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Npm.js.1.3.15.4\build\npm.js.targets'))" />
+    <Error Condition="!Exists('..\packages\Grunt.js.0.4.2.6\build\grunt.js.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grunt.js.0.4.2.6\build\grunt.js.targets'))" />
+  </Target>
+  <Import Project="..\packages\Grunt.js.0.4.2.6\build\grunt.js.targets" Condition="Exists('..\packages\Grunt.js.0.4.2.6\build\grunt.js.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

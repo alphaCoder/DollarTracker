@@ -41,12 +41,13 @@ namespace DollarTracker.Core.Infrastructure
 		public virtual void Delete(T entity)
 		{
 			dbset.Remove(entity);
+			//dataContext.Entry(entity).State = EntityState.Deleted;
 		}
 		public virtual void Delete(Expression<Func<T, bool>> where)
 		{
 			IEnumerable<T> objects = dbset.Where<T>(where).AsEnumerable();
 			foreach (T obj in objects)
-				dbset.Remove(obj);
+			Delete(obj);
 		}
 		public virtual T GetById(Guid id)
 		{
@@ -105,6 +106,11 @@ namespace DollarTracker.Core.Infrastructure
 		public virtual bool Any(Expression<Func<T, bool>> predicate)
 		{
 			return dbset.Any(predicate);
+		}
+
+		public virtual int Count(Expression<Func<T, bool>> predicate)
+		{
+			return dbset.Count(predicate);
 		}
 	}
 }

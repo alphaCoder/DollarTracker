@@ -14,19 +14,12 @@ namespace DollarTracker.EF
     
     public partial class User
     {
-        public User()
-        {
-            this.CustomExpenseCategory = new HashSet<CustomExpenseCategory>();
-        }
-    
-        public System.Guid UserId { get; set; }
+        public string UserId { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; }
-        public System.Guid PasswordSalt { get; set; }
         public string Email { get; set; }
         public System.DateTime CreatedDtUtc { get; set; }
         public bool Status { get; set; }
-    
-        public virtual ICollection<CustomExpenseCategory> CustomExpenseCategory { get; set; }
+        public string DisplayName { get; set; }
+        public string ProfilePic { get; set; }
     }
 }

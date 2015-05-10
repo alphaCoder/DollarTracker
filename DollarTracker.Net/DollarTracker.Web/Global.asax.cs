@@ -23,7 +23,6 @@ namespace DollarTracker.Web
 			var formatters = GlobalConfiguration.Configuration.Formatters;
 			var jsonFormatter = formatters.JsonFormatter;
 			var settings = jsonFormatter.SerializerSettings;
-			settings.DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore;
 			settings.Formatting = Newtonsoft.Json.Formatting.Indented;
 			settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }

@@ -15,6 +15,8 @@ namespace DollarTracker.Web.App_Start
 	using DollarTracker.Core.Infrastructure;
 	using DollarTracker.Core.Repository;
 	using DollarTracker.Core.Managers;
+	using DollarTracker.Web.Utils;
+	using DollarTracker.Core.Services;
 
 	public static class NinjectWebCommon 
     {
@@ -37,6 +39,11 @@ namespace DollarTracker.Web.App_Start
         {
             bootstrapper.ShutDown();
         }
+
+		/// <summary>
+		/// Creates an instance of IKernal
+		/// </summary>
+		public static IKernel Kernel { get; private set; }
         
         /// <summary>
         /// Creates the kernel that will manage your application.
@@ -44,18 +51,18 @@ namespace DollarTracker.Web.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            Kernel = new StandardKernel();
             try
             {
-                kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
-                kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+                Kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+                Kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
-                RegisterServices(kernel);
-                return kernel;
+                RegisterServices(Kernel);
+                return Kernel;
             }
             catch
             {
-                kernel.Dispose();
+                Kernel.Dispose();
                 throw;
             }
         }
@@ -67,15 +74,38 @@ namespace DollarTracker.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
 			kernel.Load(Assembly.GetExecutingAssembly());
-			kernel.Bind<IDbFactory>().To<DbFactory>();
-			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-			kernel.Bind<IUserRepository>().To<UserRepository>();
-			kernel.Bind<IExpenseCategoryRepository>().To<ExpenseCategoryRepository>();
-			kernel.Bind<IExpenseCategoryManager>().To<ExpenseCategoryManager>();
-			kernel.Bind<IExpenseRepository>().To<ExpenseRepository>();
-			kernel.Bind<IExpenseManager>().To<ExpenseManager>();
-			kernel.Bind<IExpenseStoryRepository>().To<ExpenseStoryRepository>();
-			kernel.Bind<IExpenseStoryManager>().To<ExpenseStoryManager>();
+
+			//dbfactory, unitofwork
+			kernel.Bind<IDbFactory>().To<DbFactory>().InRequestScope();
+			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+			
+			//expense category
+			kernel.Bind<IExpenseCategoryRepository>().To<ExpenseCategoryRepository>().InRequestScope();
+			kernel.Bind<IExpenseCategoryManager>().To<ExpenseCategoryManager>().InRequestScope();
+			
+			//expense
+			kernel.Bind<IExpenseRepository>().To<ExpenseRepository>().InRequestScope();
+			kernel.Bind<IExpenseManager>().To<ExpenseManager>().InRequestScope();
+			
+			//expensestory
+			kernel.Bind<IExpenseStoryRepository>().To<ExpenseStoryRepository>().InRequestScope();
+			kernel.Bind<IExpenseStoryManager>().To<ExpenseStoryManager>().InRequestScope();
+		
+			kernel.Bind<IAppSettingManager>().To<AppSettingManager>().InRequestScope();
+			
+			//collaboration
+			kernel.Bind<ICollaboratorManager>().To<CollaboratorManager>().InRequestScope();
+			kernel.Bind<ICollaboratorRepository>().To<CollaboratorRepository>().InRequestScope();
+		
+			//user
+			kernel.Bind<IUserManager>().To<UserManager>().InRequestScope();
+			kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
+
+			kernel.Bind<IJwtHelper>().To<JwtHelper>().InSingletonScope();
+
+			//dashboard
+			kernel.Bind<IExpenseStorySummaryBuilder>().To<ExpenseStorySummaryBuilder>().InRequestScope();
+			kernel.Bind<IDashboardSummaryBuilder>().To<DashboardSummaryBuilder>().InRequestScope();
         }        
     }
 }

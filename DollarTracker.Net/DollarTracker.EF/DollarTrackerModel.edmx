@@ -4,13 +4,22 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DollarTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DollarTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AppSetting">
+          <Key>
+            <PropertyRef Name="AppSettingId" />
+          </Key>
+          <Property Name="AppSettingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <EntityType Name="Collaborator">
           <Key>
             <PropertyRef Name="CollaboratorId" />
           </Key>
           <Property Name="CollaboratorId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ExpenseStoryId" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="CreatedUtcDt" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
@@ -20,7 +29,7 @@
             <PropertyRef Name="CustomExpenseCategoryId" />
           </Key>
           <Property Name="CustomExpenseCategoryId" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDt" Type="datetime2" Precision="7" />
           <Property Name="Status" Type="bit" Nullable="false" />
@@ -32,6 +41,7 @@
           <Property Name="ExpenseId" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ExpenseStoryId" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="CollaboratorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
           <Property Name="Amount" Type="float" Nullable="false" />
           <Property Name="Receipt" Type="image" />
           <Property Name="CreatedUtcDt" Type="datetime2" Precision="7" />
@@ -52,9 +62,10 @@
           </Key>
           <Property Name="ExpenseStoryId" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ExpenseStoryTypeId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
           <Property Name="Budget" Type="real" />
           <Property Name="Income" Type="real" />
-          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="StartDt" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="EndDt" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedUtcDt" Type="datetime2" Precision="7" Nullable="false" />
@@ -70,13 +81,13 @@
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="PasswordSalt" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDtUtc" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="50" />
+          <Property Name="ProfilePic" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_Collaborator_ToExpenseStory">
           <End Role="ExpenseStory" Type="Self.ExpenseStory" Multiplicity="1" />
@@ -163,6 +174,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DollarTrackerModelStoreContainer">
+          <EntitySet Name="AppSetting" EntityType="Self.AppSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Collaborator" EntityType="Self.Collaborator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomExpenseCategory" EntityType="Self.CustomExpenseCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
@@ -199,34 +211,38 @@
             <End Role="ExpenseStory" EntitySet="ExpenseStory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DollarTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AppSetting">
+          <Key>
+            <PropertyRef Name="AppSettingId" />
+          </Key>
+          <Property Name="AppSettingId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="Collaborator">
           <Key>
             <PropertyRef Name="CollaboratorId" />
           </Key>
           <Property Name="CollaboratorId" Type="Guid" Nullable="false" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ExpenseStoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedUtcDt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_Collaborator_ToExpenseStory" FromRole="Collaborator" ToRole="ExpenseStory" />
-          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToCollaborators" FromRole="Collaborator" ToRole="Expense" />
         </EntityType>
         <EntityType Name="CustomExpenseCategory">
           <Key>
             <PropertyRef Name="CustomExpenseCategoryId" />
           </Key>
           <Property Name="CustomExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedDt" Type="DateTime" Precision="7" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_CustomExpenseCategories_ToUsers" FromRole="CustomExpenseCategory" ToRole="User" />
-          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToCustomExpenseCategories" FromRole="CustomExpenseCategory" ToRole="Expense" />
         </EntityType>
         <EntityType Name="Expense">
           <Key>
@@ -235,16 +251,13 @@
           <Property Name="ExpenseId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ExpenseStoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CollaboratorId" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Amount" Type="Double" Nullable="false" />
           <Property Name="Receipt" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="CreatedUtcDt" Type="DateTime" Precision="7" />
           <Property Name="Comments" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
           <Property Name="ExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CustomExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Collaborator" Relationship="Self.FK_Expenses_ToCollaborators" FromRole="Expense" ToRole="Collaborator" />
-          <NavigationProperty Name="CustomExpenseCategory" Relationship="Self.FK_Expenses_ToCustomExpenseCategories" FromRole="Expense" ToRole="CustomExpenseCategory" />
-          <NavigationProperty Name="ExpenseCategory" Relationship="Self.FK_Expenses_ToExpenseCategories" FromRole="Expense" ToRole="ExpenseCategory" />
-          <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_Expenses_ToExpenseStories" FromRole="Expense" ToRole="ExpenseStory" />
         </EntityType>
         <EntityType Name="ExpenseCategory">
           <Key>
@@ -252,7 +265,6 @@
           </Key>
           <Property Name="ExpenseCategoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToExpenseCategories" FromRole="ExpenseCategory" ToRole="Expense" />
         </EntityType>
         <EntityType Name="ExpenseStory">
           <Key>
@@ -260,15 +272,13 @@
           </Key>
           <Property Name="ExpenseStoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ExpenseStoryTypeId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Budget" Type="Single" />
           <Property Name="Income" Type="Single" />
-          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="StartDt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="EndDt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CreatedUtcDt" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Collaborator" Relationship="Self.FK_Collaborator_ToExpenseStory" FromRole="ExpenseStory" ToRole="Collaborator" />
-          <NavigationProperty Name="Expense" Relationship="Self.FK_Expenses_ToExpenseStories" FromRole="ExpenseStory" ToRole="Expense" />
-          <NavigationProperty Name="ExpenseStoryType" Relationship="Self.FK_ExpenseStories_ToExpenseStoryTypes" FromRole="ExpenseStory" ToRole="ExpenseStoryType" />
         </EntityType>
         <EntityType Name="ExpenseStoryType">
           <Key>
@@ -276,20 +286,18 @@
           </Key>
           <Property Name="ExpenseStoryTypeId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ExpenseStory" Relationship="Self.FK_ExpenseStories_ToExpenseStoryTypes" FromRole="ExpenseStoryType" ToRole="ExpenseStory" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PasswordSalt" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedDtUtc" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CustomExpenseCategory" Relationship="Self.FK_CustomExpenseCategories_ToUsers" FromRole="User" ToRole="CustomExpenseCategory" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Collaborator_ToExpenseStory">
           <End Role="ExpenseStory" Type="Self.ExpenseStory" Multiplicity="1" />
@@ -376,6 +384,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DollarTrackerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AppSetting" EntityType="Self.AppSetting" />
           <EntitySet Name="Collaborator" EntityType="Self.Collaborator" />
           <EntitySet Name="CustomExpenseCategory" EntityType="Self.CustomExpenseCategory" />
           <EntitySet Name="Expense" EntityType="Self.Expense" />
@@ -418,6 +427,16 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DollarTrackerModelStoreContainer" CdmEntityContainer="DollarTrackerEntities">
+          <EntitySetMapping Name="AppSetting">
+            <EntityTypeMapping TypeName="DollarTrackerModel.AppSetting">
+              <MappingFragment StoreEntitySet="AppSetting">
+                <ScalarProperty Name="AppSettingId" ColumnName="AppSettingId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Collaborator">
             <EntityTypeMapping TypeName="DollarTrackerModel.Collaborator">
               <MappingFragment StoreEntitySet="Collaborator">
@@ -446,6 +465,7 @@
                 <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
                 <ScalarProperty Name="ExpenseStoryId" ColumnName="ExpenseStoryId" />
                 <ScalarProperty Name="CollaboratorId" ColumnName="CollaboratorId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Receipt" ColumnName="Receipt" />
                 <ScalarProperty Name="CreatedUtcDt" ColumnName="CreatedUtcDt" />
@@ -468,6 +488,7 @@
               <MappingFragment StoreEntitySet="ExpenseStory">
                 <ScalarProperty Name="ExpenseStoryId" ColumnName="ExpenseStoryId" />
                 <ScalarProperty Name="ExpenseStoryTypeId" ColumnName="ExpenseStoryTypeId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Budget" ColumnName="Budget" />
                 <ScalarProperty Name="Income" ColumnName="Income" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -488,13 +509,13 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="DollarTrackerModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="CreatedDtUtc" ColumnName="CreatedDtUtc" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

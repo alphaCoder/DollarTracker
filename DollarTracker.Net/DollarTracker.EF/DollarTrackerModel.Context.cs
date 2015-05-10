@@ -32,6 +32,7 @@ namespace DollarTracker.EF
         {
         }
     
+        public virtual DbSet<AppSetting> AppSetting { get; set; }
         public virtual DbSet<Collaborator> Collaborator { get; set; }
         public virtual DbSet<CustomExpenseCategory> CustomExpenseCategory { get; set; }
         public virtual DbSet<Expense> Expense { get; set; }

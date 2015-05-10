@@ -14,14 +14,7 @@ namespace DollarTracker.EF
     
     public partial class ExpenseCategory
     {
-        public ExpenseCategory()
-        {
-            this.Expense = new HashSet<Expense>();
-        }
-    
         public string ExpenseCategoryId { get; set; }
         public string Description { get; set; }
-    
-        public virtual ICollection<Expense> Expense { get; set; }
     }
 }

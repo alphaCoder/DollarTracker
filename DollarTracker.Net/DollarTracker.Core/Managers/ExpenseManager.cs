@@ -1,4 +1,5 @@
-﻿using DollarTracker.Core.Infrastructure;
+﻿using DollarTracker.Common;
+using DollarTracker.Core.Infrastructure;
 using DollarTracker.Core.Repository;
 using DollarTracker.EF;
 using System;
@@ -13,9 +14,15 @@ namespace DollarTracker.Core.Managers
 	{
 		void AddExpense(Expense e);
 		void UpdateExpense(Expense e);
+
 		IEnumerable<Expense> GetAllExpenses(string storyId);
 		IEnumerable<Expense> GetAllExpenses(string storyId, Guid collaboratorId);
+		IEnumerable<Expense> GetTopNExpense(string storyId, int n);
+		List<ExpensesStat> GetExpensesStats(string storyId);
+		int TotalExpenseCount(string storyId);
+
 		void DeleteExpense(string expenseId);
+		void DeleteAllExpenses(string expenseStoryId);
 		void SaveExpense();
 	}
 	public class ExpenseManager : IExpenseManager
@@ -44,12 +51,12 @@ namespace DollarTracker.Core.Managers
 			if (existingExpense != null)
 			{
 				existingExpense.Amount = e.Amount;
-				if(!string.IsNullOrEmpty(e.CustomExpenseCategoryId)) {
+				if (!string.IsNullOrEmpty(e.CustomExpenseCategoryId))
+				{
 					existingExpense.CustomExpenseCategoryId = e.CustomExpenseCategoryId;
 				}
 				expenseRepository.Update(existingExpense);
 				SaveExpense();
-				//? todo: need to determine if modify any other fields.
 			}
 		}
 
@@ -62,12 +69,38 @@ namespace DollarTracker.Core.Managers
 			return expenseRepository.GetMany(x => x.ExpenseStoryId == storyId && x.CollaboratorId == collaboratorId);
 		}
 
+		public IEnumerable<Expense> GetTopNExpense(string storyId, int n)
+		{
+			return expenseRepository.GetMany(x => x.ExpenseStoryId == storyId).Take(n);
+		}
+
+		public List<ExpensesStat> GetExpensesStats(string storyId)
+		{
+			var stats = GetAllExpenses(storyId).GroupBy(e => e.ExpenseCategoryId).Select(c => new
+			ExpensesStat
+			{
+				Label = c.Key,
+				Value = c.Sum(x => x.Amount)
+			}).ToList();
+
+			return stats;
+		}
+
+		public int TotalExpenseCount(string storyId)
+		{
+			return expenseRepository.Count(e => e.ExpenseStoryId == storyId);
+		}
+
 		public void DeleteExpense(string expenseId)
 		{
-			if(expenseRepository.Any(x=>x.ExpenseId == expenseId)){
-				expenseRepository.Delete(x=>x.ExpenseId == expenseId);
-				SaveExpense();
-			}
+			expenseRepository.Delete(x => x.ExpenseId == expenseId);
+			SaveExpense();
+		}
+
+		public void DeleteAllExpenses(string expenseStoryId)
+		{
+			expenseRepository.Delete(x => x.ExpenseStoryId == expenseStoryId);
+			SaveExpense();
 		}
 
 		public void SaveExpense()

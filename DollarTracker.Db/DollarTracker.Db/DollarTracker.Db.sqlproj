@@ -69,6 +69,7 @@
     <Build Include="CustomExpenseCategorie.sql" />
     <Build Include="dbo.Expense.sql" />
     <None Include="SqlQueriesUtils\DropUtils.sql" />
+    <Build Include="AppSetting.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="DollarTracker.Db.refactorlog" />

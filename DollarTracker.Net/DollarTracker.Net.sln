@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40418.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DollarTracker.Web", "DollarTracker.Web\DollarTracker.Web.csproj", "{4A1C8910-8D0B-4DDE-88CB-A326D6D0AAF9}"
 EndProject
@@ -12,6 +12,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DollarTracker.Core.Tests", "DollarTracker.Core.Tests\DollarTracker.Core.Tests.csproj", "{8F90164D-6166-416E-89E1-B16CDA6D94E1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{61DC53ED-180C-409D-BAB5-74C1CE659910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DollarTracker.Common", "DollarTracker.Common\DollarTracker.Common.csproj", "{27DC9FC3-3F94-40C1-89F4-F9AFEBF178D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DollarTracker.Web.Tests", "DollarTracker.Web.Tests\DollarTracker.Web.Tests.csproj", "{877252EF-48D8-4C94-9E81-687B68A417E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7463B0F1-99A3-4EC6-9CF7-E89B345B4232}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +44,14 @@ Global
 		{8F90164D-6166-416E-89E1-B16CDA6D94E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F90164D-6166-416E-89E1-B16CDA6D94E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F90164D-6166-416E-89E1-B16CDA6D94E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27DC9FC3-3F94-40C1-89F4-F9AFEBF178D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27DC9FC3-3F94-40C1-89F4-F9AFEBF178D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27DC9FC3-3F94-40C1-89F4-F9AFEBF178D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27DC9FC3-3F94-40C1-89F4-F9AFEBF178D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{877252EF-48D8-4C94-9E81-687B68A417E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{877252EF-48D8-4C94-9E81-687B68A417E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{877252EF-48D8-4C94-9E81-687B68A417E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{877252EF-48D8-4C94-9E81-687B68A417E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

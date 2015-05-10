@@ -27,9 +27,7 @@ namespace DollarTracker.Core.Tests
 		{
 			return new User
 			{
-				UserId = Guid.NewGuid(),
-				Password = Guid.NewGuid().ToString("N"),
-				PasswordSalt = Guid.NewGuid(),
+				UserId = Guid.NewGuid().ToString("N"),
 				Username = Guid.NewGuid().ToString("N").Substring(0, 10),
 				Email = Guid.NewGuid().ToString("N").Substring(0,10) +  "@test.com",
 				CreatedDtUtc = DateTime.UtcNow,
@@ -37,17 +35,17 @@ namespace DollarTracker.Core.Tests
 			};
 		}
 
-		protected ExpenseStory GetNewMockPersonalExpenseStory(Guid userId)
+		protected ExpenseStory GetNewMockPersonalExpenseStory(string userId)
 		{
 			return GetNewMockExpenseStory("Personal", userId);
 		}
 
-		protected ExpenseStory GetNewMockSharedExpenseStory(Guid userId)
+		protected ExpenseStory GetNewMockSharedExpenseStory(string userId)
 		{
 			return GetNewMockExpenseStory("Shared", userId);
 		}
 
-		protected ExpenseStory GetNewMockExpenseStory(string expenseStoryTypeId, Guid userId)
+		protected ExpenseStory GetNewMockExpenseStory(string expenseStoryTypeId, string userId)
 		{
 			var expenseStory = new ExpenseStory
 			{
@@ -76,7 +74,7 @@ namespace DollarTracker.Core.Tests
 			};
 		}
 
-		protected Collaborator GetNewMockCollaborator(Guid userId, string storyId)
+		protected Collaborator GetNewMockCollaborator(string userId, string storyId)
 		{
 			return new Collaborator
 			{

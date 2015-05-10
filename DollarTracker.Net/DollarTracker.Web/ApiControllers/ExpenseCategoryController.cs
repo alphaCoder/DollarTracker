@@ -7,10 +7,12 @@ using System.Web.Http;
 
 using DollarTracker.Core.Managers;
 using DollarTracker.EF;
+using DollarTracker.Web.Utils;
 
 namespace DollarTracker.Web.ApiControllers
 {
-    public class ExpenseCategoryController : ApiController
+	[DTJwtApiAuthorization]
+    public class ExpenseCategoryController : DollarTrackerBaseController
     {
 		private IExpenseCategoryManager expenseCategoryManager;
 		public ExpenseCategoryController(IExpenseCategoryManager expenseCategoryManager)

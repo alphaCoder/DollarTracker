@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DollarTracker.Common
+{
+	public class ExpensesStat
+	{
+		public string Label { get; set; }
+		public Double Value { get; set; }
+	}
+}

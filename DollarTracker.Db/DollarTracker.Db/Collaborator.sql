@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Collaborator]
 (
 	[CollaboratorId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [UserId] UNIQUEIDENTIFIER NOT NULL, 
+    [UserId] VARCHAR(50) NOT NULL, 
     [ExpenseStoryId] VARCHAR(20) NOT NULL, 
     [CreatedUtcDt] DATETIME2 NOT NULL, 
     [Status] BIT NOT NULL, 
