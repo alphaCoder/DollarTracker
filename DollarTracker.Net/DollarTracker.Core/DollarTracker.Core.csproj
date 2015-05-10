@@ -57,6 +57,7 @@
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IFileStorageProvider.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
@@ -74,7 +75,9 @@
     <Compile Include="Repository\ExpenseStoryRepository.cs" />
     <Compile Include="Repository\ExpenseStoryTypeRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
-    <Compile Include="Services\DashboardSummaryBuilder.cs" />
+    <Compile Include="Services\DashboardSummaryBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Services\ExpenseStorySummaryBuilder.cs" />
     <Compile Include="Utils\DataMock.cs" />
     <Compile Include="Utils\UniqueKeyGenerator.cs" />
