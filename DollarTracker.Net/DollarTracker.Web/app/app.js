@@ -21,11 +21,7 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, 
             }]
         }
     })
-    .state('profile', {
-        url: '/profile',
-        templateUrl: 'app/user/profile/profile.html?random=' + RANDOM,
-        controller: 'profileCtrl'
-    })
+  
      .state('settings', {
          url: '/settings',
          template: '<h1>Settings Page is Coming Soon</h1>'

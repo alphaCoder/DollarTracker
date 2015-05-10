@@ -428,6 +428,7 @@
     <Content Include="app\user\logout.ctrl.js" />
     <Content Include="app\user\profile\profile.html" />
     <Content Include="app\user\profile\profile.ctrl.js" />
+    <Content Include="app\user\profile\profile.route.js" />
     <Content Include="app\user\register.ctrl.js" />
     <Content Include="app\user\register.html" />
     <Content Include="Content\angular-chart.css" />

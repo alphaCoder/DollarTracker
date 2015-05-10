@@ -67,8 +67,6 @@
     <Compile Include="Managers\ExpenseManager.cs" />
     <Compile Include="Managers\ExpenseStoryManager.cs" />
     <Compile Include="Managers\UserManager.cs" />
-    <Compile Include="Models\DashboardSummary.cs" />
-    <Compile Include="Models\ExpenseStorySummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CollaboratorRepository.cs" />
     <Compile Include="Repository\ExpenseCategoryRepository.cs" />

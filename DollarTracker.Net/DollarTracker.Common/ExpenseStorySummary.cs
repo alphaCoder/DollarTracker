@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DollarTracker.Core.Models
+namespace DollarTracker.Common
 {
 	public class ExpenseStorySummary
 	{

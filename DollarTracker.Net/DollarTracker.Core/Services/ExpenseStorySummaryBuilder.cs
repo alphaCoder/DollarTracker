@@ -1,5 +1,5 @@
 ﻿using DollarTracker.Core.Managers;
-using DollarTracker.Core.Models;
+using DollarTracker.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

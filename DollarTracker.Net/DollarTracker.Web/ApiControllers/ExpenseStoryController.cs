@@ -1,6 +1,5 @@
 ﻿using DollarTracker.Common;
 using DollarTracker.Core.Managers;
-using DollarTracker.Core.Models;
 using DollarTracker.Core.Services;
 using DollarTracker.Core.Utils;
 using DollarTracker.EF;

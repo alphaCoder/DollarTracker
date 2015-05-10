@@ -77,7 +77,10 @@ namespace DollarTracker.Core.Tests.Managers
 			var collaborator2 = GetNewMockCollaborator(user.UserId, expenseStory1.ExpenseStoryId);
 			var collaborator3 = GetNewMockCollaborator(user.UserId, expenseStory1.ExpenseStoryId);
 			var collaboratorMgr = new CollaboratorManager(new CollaboratorRepository(dbFactory), unitOfWork);
-			new ExpenseStoryManager(new ExpenseStoryRepository(dbFactory), unitOfWork).AddExpenseStory(expenseStory1);
+			var expenseStoryRepository = new ExpenseStoryRepository(dbFactory);
+			new ExpenseStoryManager(expenseStoryRepository, unitOfWork,
+				new ExpenseManager(new ExpenseRepository(dbFactory), unitOfWork),
+				new CollaboratorManager(new CollaboratorRepository(dbFactory), unitOfWork)).AddExpenseStory(expenseStory1);
 			var expectedCollaboratorsCount = 3;
 
 			collaboratorMgr.AddCollaborator(collaborator1);
@@ -106,7 +109,10 @@ namespace DollarTracker.Core.Tests.Managers
 			var expenseStory1 = GetNewMockPersonalExpenseStory(user.UserId);
 			var collaborator1 = GetNewMockCollaborator(user.UserId, expenseStory1.ExpenseStoryId);
 			var collaboratorMgr = new CollaboratorManager(new CollaboratorRepository(dbFactory), unitOfWork);
-			new ExpenseStoryManager(new ExpenseStoryRepository(dbFactory), unitOfWork).AddExpenseStory(expenseStory1);
+			var expenseStoryRepository = new ExpenseStoryRepository(dbFactory);
+			new ExpenseStoryManager(expenseStoryRepository, unitOfWork,
+				new ExpenseManager(new ExpenseRepository(dbFactory), unitOfWork),
+				new CollaboratorManager(new CollaboratorRepository(dbFactory), unitOfWork)).AddExpenseStory(expenseStory1);
 
 			collaboratorMgr.AddCollaborator(collaborator1);
 			collaboratorMgr.DeleteCollaborator(collaborator1.CollaboratorId);

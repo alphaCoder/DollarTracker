@@ -27,7 +27,10 @@ namespace DollarTracker.Core.Tests.Managers
 			user = GetNewMockUser();
 			new UserManager(new UserRepository(dbFactory), unitOfWork).AddUser(user);
 			expenseStory = GetNewMockPersonalExpenseStory(user.UserId);
-			new ExpenseStoryManager(new ExpenseStoryRepository(dbFactory), unitOfWork).AddExpenseStory(expenseStory);
+			var expenseStoryRepository = new ExpenseStoryRepository(dbFactory);
+			new ExpenseStoryManager(expenseStoryRepository, unitOfWork,
+				new ExpenseManager(new ExpenseRepository(dbFactory), unitOfWork),
+				new CollaboratorManager(new CollaboratorRepository(dbFactory), unitOfWork)).AddExpenseStory(expenseStory);
 
 			collaborator = GetNewMockCollaborator(user.UserId, expenseStory.ExpenseStoryId);
 			dataContext.Collaborator.Add(collaborator);
