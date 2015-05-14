@@ -20,7 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <NuGetPackageImportStamp>0f940aa5</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>fa653f08</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -650,15 +650,15 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\packages\Npm.js.1.3.15.4\build\npm.js.targets" Condition="Exists('..\packages\Npm.js.1.3.15.4\build\npm.js.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Npm.js.1.3.15.4\build\npm.js.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Npm.js.1.3.15.4\build\npm.js.targets'))" />
     <Error Condition="!Exists('..\packages\Grunt.js.0.4.2.6\build\grunt.js.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grunt.js.0.4.2.6\build\grunt.js.targets'))" />
+    <Error Condition="!Exists('..\packages\Npm.js.1.3.15.10\build\npm.js.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Npm.js.1.3.15.10\build\npm.js.targets'))" />
   </Target>
   <Import Project="..\packages\Grunt.js.0.4.2.6\build\grunt.js.targets" Condition="Exists('..\packages\Grunt.js.0.4.2.6\build\grunt.js.targets')" />
+  <Import Project="..\packages\Npm.js.1.3.15.10\build\npm.js.targets" Condition="Exists('..\packages\Npm.js.1.3.15.10\build\npm.js.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
