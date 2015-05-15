@@ -395,6 +395,7 @@
     <Content Include="app\expenseStory\expenseStoryInfo.Directive.js" />
     <Content Include="app\expenseStory\expenseStoryInfo.html" />
     <Content Include="app\expenseStory\expenseStoryInfoChart.html" />
+    <Content Include="app\lib\angular-bootstrap-datepicker.js" />
     <Content Include="app\lib\angular-chart.js" />
     <Content Include="app\notification\messageInfo.ctrl.js" />
     <Content Include="app\notification\messageInfo.html" />
@@ -431,6 +432,7 @@
     <Content Include="app\user\profile\profile.route.js" />
     <Content Include="app\user\register.ctrl.js" />
     <Content Include="app\user\register.html" />
+    <Content Include="Content\angular-bootstrap-datepicker.css" />
     <Content Include="Content\angular-chart.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />

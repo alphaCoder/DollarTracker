@@ -74,7 +74,7 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, 
 
     $httpProvider.interceptors.push('authInterceptor');
 }])
-.constant('API_URL', 'http://pencilconnect.azurewebsites.net/')
+.constant('API_URL', 'http://localhost:54973/api/')
 .controller('appCtrl', ['$scope', '$auth', 'user', function ($scope, $auth, user) {
     $scope.isAuthenticated = $auth.isAuthenticated;
     $scope.user = user;
