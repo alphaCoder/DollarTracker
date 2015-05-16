@@ -46,6 +46,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IAuthProvider.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />
     <Compile Include="Infrastructure\IFileStorageProvider.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
@@ -79,6 +82,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\ExpenseStorySummaryBuilder.cs" />
+    <Compile Include="Services\GoogleAuthProvider.cs" />
     <Compile Include="Utils\DataMock.cs" />
     <Compile Include="Utils\UniqueKeyGenerator.cs" />
   </ItemGroup>

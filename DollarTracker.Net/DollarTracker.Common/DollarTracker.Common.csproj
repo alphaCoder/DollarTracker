@@ -46,6 +46,7 @@
     <Compile Include="ExpensesStat.cs" />
     <Compile Include="ExpenseStorySummary.cs" />
     <Compile Include="FileData.cs" />
+    <Compile Include="OAuthRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserClaim.cs" />
   </ItemGroup>

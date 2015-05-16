@@ -69,7 +69,12 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, 
 
     $authProvider.google({
         clientId: '603422408309-rinan2timml0ufbbp0qi9jmnjf6n9bkl.apps.googleusercontent.com',
-        url: API_URL + 'auth/google'
+        url: API_URL + 'authorize/google'
+    })
+
+    $authProvider.facebook({
+        clientId: '616886765115201',
+        url: API_URL + 'authorize/facebook'
     })
 
     $httpProvider.interceptors.push('authInterceptor');

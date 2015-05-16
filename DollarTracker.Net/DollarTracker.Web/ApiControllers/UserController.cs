@@ -1,4 +1,6 @@
-﻿using DollarTracker.Core.Managers;
+﻿using DollarTracker.Common;
+using DollarTracker.Core.Managers;
+using DollarTracker.Core.Services;
 using DollarTracker.EF;
 using DollarTracker.Web.Utils;
 using System;
@@ -18,12 +20,15 @@ namespace DollarTracker.Web.ApiControllers
 		public string ImageBase64 { get; set; }
 		public string UserId { get; set; }
 	}
+
 	public class UserController : DollarTrackerBaseController
 	{
 		private readonly IUserManager userManager;
-		public UserController(IUserManager userManager)
+		private readonly IAppSettingManager appSettingManager;
+		public UserController(IUserManager userManager, IAppSettingManager appSettingManager)
 		{
 			this.userManager = userManager;
+			this.appSettingManager = appSettingManager;
 		}
 
 		[Route("api/profilePic/{userId}")]
@@ -40,7 +45,7 @@ namespace DollarTracker.Web.ApiControllers
 				else
 				{
 					var defaultImg = @"~/Images/default_user_icon.jpg";
-					response.Content =  new StreamContent(new FileStream(System.Web.Hosting.HostingEnvironment.MapPath(defaultImg), FileMode.Open, FileAccess.Read));
+					response.Content = new StreamContent(new FileStream(System.Web.Hosting.HostingEnvironment.MapPath(defaultImg), FileMode.Open, FileAccess.Read));
 				}
 				response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
 			}
@@ -66,5 +71,18 @@ namespace DollarTracker.Web.ApiControllers
 
 		//[Route("api/login")]
 		//public void Post()
+
+		[Route("api/authorize/{provider}")]
+		public void Post(string provider,OAuthRequest request)
+		{
+			if (!string.IsNullOrEmpty(provider) && provider == "google")
+			{
+				var googleProvider = new GoogleAuthProvider(appSettingManager);
+				googleProvider.AuthenticateAsync(request);
+			}
+		}
 	}
+	
+
+
 }
