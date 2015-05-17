@@ -9,6 +9,6 @@ namespace DollarTracker.Core.Infrastructure
 {
 	public interface IAuthProvider
 	{
-		void AuthenticateAsync(OAuthRequest request);
+		Task<OAuthTokenValidationResponse> AuthenticateAsync(OAuthRequest request);
 	}
 }

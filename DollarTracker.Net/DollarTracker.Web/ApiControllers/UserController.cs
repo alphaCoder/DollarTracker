@@ -3,6 +3,9 @@ using DollarTracker.Core.Managers;
 using DollarTracker.Core.Services;
 using DollarTracker.EF;
 using DollarTracker.Web.Utils;
+using Microsoft.Owin;
+using Microsoft.Owin.Builder;
+using Microsoft.Owin.Security.Google;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -75,10 +78,17 @@ namespace DollarTracker.Web.ApiControllers
 		[Route("api/authorize/{provider}")]
 		public void Post(string provider,OAuthRequest request)
 		{
+
+			var options = new GoogleOAuth2AuthenticationOptions()
+			{
+
+			};
+		//	var a = new GoogleOAuth2AuthenticationMiddleware(new OwinMiddleware(), new AppBuilder(), options);
+
 			if (!string.IsNullOrEmpty(provider) && provider == "google")
 			{
 				var googleProvider = new GoogleAuthProvider(appSettingManager);
-				googleProvider.AuthenticateAsync(request);
+				var response = googleProvider.AuthenticateAsync(request);
 			}
 		}
 	}
